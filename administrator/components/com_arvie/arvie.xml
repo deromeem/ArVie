@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.0" method="upgrade">
+ 	<name>com_arvie</name>
+	<creationDate>Novembre 2017</creationDate>
+	<author>Etudiants BTS-SIO2 Louis-Armand Paris</author>
+	<copyright>All rights reserved</copyright>
+	<license>GNU/GPL</license>
+	<version>0.6</version>
+	<description>com_arvie_descr</description>
+
+	<install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.sql</file>
+        </sql>
+    </install>
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/uninstall.sql</file>
+        </sql>
+    </uninstall>
+
+	<administration>
+		<menu>com_arvie</menu>
+		<submenu>
+			<menu link="option=com_arvie&amp;view=abonnements">com_arvie_abonnements</menu>
+			<menu link="option=com_arvie&amp;view=discussions">com_arvie_discussions</menu>
+			<menu link="option=com_arvie&amp;view=evenements">com_arvie_evenements</menu>
+			<menu link="option=com_arvie&amp;view=groupes">com_arvie_groupes</menu>
+			<menu link="option=com_arvie&amp;view=messages">com_arvie_messages</menu>
+			<menu link="option=com_arvie&amp;view=parrains">com_arvie_parrains</menu>
+			<menu link="option=com_arvie&amp;view=publications">com_arvie_publications</menu>
+			<menu link="option=com_arvie&amp;view=utilisateurs">com_arvie_utilisateurs</menu>
+		</submenu>
+		<files folder="admin">
+			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>language</folder>
+			<folder>models</folder>
+			<folder>sql</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+			<filename>access.xml</filename>
+			<filename>arvie.php</filename>
+			<filename>arvie.xml</filename>
+			<filename>config.xml</filename>
+			<filename>controller.php</filename>
+			<filename>index.html</filename>
+		</files>
+		<languages folder="admin">
+			<language tag="en-GB">language/en-GB/en-GB.com_arvie.ini</language>
+			<language tag="en-GB">language/en-GB/en-GB.com_arvie.sys.ini</language>
+			<language tag="fr-FR">language/fr-FR/fr-FR.com_arvie.ini</language>
+			<language tag="fr-FR">language/fr-FR/fr-FR.com_arvie.sys.ini</language>
+		</languages>
+	</administration>
+</extension>

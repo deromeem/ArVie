@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<fieldset
+		name="annuaire"
+		label="COM_ANNUAIRE_OPTIONS"
+		description="COM_ANNUAIRE_OPTIONS_DESCR">		
+		<field
+			name="show_title"
+			type="radio"
+			class="btn-group btn-group-yesno"
+			default="1"
+			label="COM_ANNUAIRE_OPTIONS_SHOW_ENTREPRISES_NOM_LABEL"
+			description="COM_ANNUAIRE_OPTIONS_SHOW_ENTREPRISES_NOM_DESCR">
+			<option value="1">JSHOW</option>
+			<option value="0">JHIDE</option>
+		</field>
+		<field
+			name="link_titles"
+			type="radio"
+			class="btn-group btn-group-yesno"
+			default="1"
+			label="COM_ANNUAIRE_OPTIONS_SHOW_ENTREPRISES_LOGO_LABEL"
+			description="COM_ANNUAIRE_OPTIONS_SHOW_ENTREPRISES_LOGO_DESCR">
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
+		</field>
+	</fieldset>
+	<fieldset
+		name="permissions"
+		label="JCONFIG_PERMISSIONS_LABEL"
+		description="JCONFIG_PERMISSIONS_DESC"
+		>
+		<field
+			name="rules"
+			type="rules"
+			label="JCONFIG_PERMISSIONS_LABEL"
+			class="inputbox"
+			validate="rules"
+			filter="rules"
+			component="com_annuaire"
+			section="component" />
+	</fieldset>
+</config>

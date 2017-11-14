@@ -1,0 +1,16 @@
+DROP TABLE IF EXISTS `#__arvie_utilisateur_classe_map`;
+DROP TABLE IF EXISTS `#__arvie_groupes_classes`;
+DROP TABLE IF EXISTS `#__arvie_utilisateur_interet_map`;
+DROP TABLE IF EXISTS `#__arvie_groupes_interets`;
+DROP TABLE IF EXISTS `#__arvie_metier_groupe_map`;
+DROP TABLE IF EXISTS `#__arvie_metiers`;
+DROP TABLE IF EXISTS `#__arvie_utilisateur_even_map`;
+DROP TABLE IF EXISTS `#__arvie_evenements`;
+DROP TABLE IF EXISTS `#__arvie_publications`;
+DROP TABLE IF EXISTS `#__arvie_groupes`;
+DROP TABLE IF EXISTS `#__arvie_messages`;
+DROP TABLE IF EXISTS `#__arvie_utilisateur_discu_map`;
+DROP TABLE IF EXISTS `#__arvie_discussions`;
+DROP TABLE IF EXISTS `#__arvie_parrains`;
+DROP TABLE IF EXISTS `#__arvie_abonnements`;
+DROP TABLE IF EXISTS `#__arvie_utilisateurs`;

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Créer un contact" option="Créer">
+		<message>
+			<![CDATA[Affiche un formulaire pour créer un contact]]>
+		</message>
+	</layout>
+</metadata>

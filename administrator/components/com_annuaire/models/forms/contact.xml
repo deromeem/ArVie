@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field name="id" type="hidden" />
+
+		<field name="asset_id" type="hidden" filter="unset" />
+		
+        <field name="nom" type="text" label="COM_ANNUAIRE_CONTACTS_NOM"
+            description="COM_ANNUAIRE_CONTACTS_NOM"
+            size="40" class="input-large-text" default="" required="true"
+        />
+        <field name="prenom" type="text" label="COM_ANNUAIRE_CONTACTS_PRENOM"
+            description="COM_ANNUAIRE_CONTACTS_PRENOM"
+            size="40" class="input-large-text" default="" required="true"
+        />        
+		<field name="alias" type="text"
+			label="JFIELD_ALIAS_LABEL"
+			description="JFIELD_ALIAS_DESC"
+			hint="JFIELD_ALIAS_PLACEHOLDER"
+			class="inputbox" size="45"
+		/>
+		<field name="civilites_id" type="sql" default="" label="COM_ANNUAIRE_CONTACTS_CIVILITE" 
+			description="COM_ANNUAIRE_CONTACTS_CIVILITE" 
+			query="SELECT id, civilite FROM #__annuaire_civilites ORDER BY civilite" 
+			key_field="id" value_field="civilite" required="false"
+		/>
+		<field name="typescontacts_id" type="sql" default="" label="COM_ANNUAIRE_CONTACTS_TYPECONTACT" 
+			description="COM_ANNUAIRE_CONTACTS_TYPECONTACT"
+			query="SELECT id, typeContact FROM #__annuaire_typescontacts ORDER BY typeContact" 
+			key_field="id" value_field="typeContact" required="false"
+		/>
+		<field name="entreprises_id" type="sql" default="" label="COM_ANNUAIRE_CONTACTS_ENTREPRISE" 
+			description="COM_ANNUAIRE_CONTACTS_ENTREPRISE"
+			query="SELECT id, nom FROM #__annuaire_entreprises ORDER BY nom" 
+			key_field="id" value_field="nom" required="false"
+		/>
+        <field name="fonction" type="text" label="COM_ANNUAIRE_CONTACTS_FONCTION"
+            description="COM_ANNUAIRE_CONTACTS_FONCTION"
+            size="40" class="input-xxlarge" default="" required="false"
+        />        
+        <field name="email" type="text" label="COM_ANNUAIRE_CONTACTS_EMAIL"
+            description="COM_ANNUAIRE_CONTACTS_EMAIL"
+            size="40" class="inputbox" default="" required="false"
+        />        
+        <field name="mobile" type="text" label="COM_ANNUAIRE_CONTACTS_MOBILE"
+            description="COM_ANNUAIRE_CONTACTS_MOBILE"
+            size="40" class="inputbox" default="" required="false"
+        />        
+        <field name="tel" type="text" label="COM_ANNUAIRE_CONTACTS_TEL"
+            description="COM_ANNUAIRE_CONTACTS_TEL"
+            size="40" class="inputbox" default="" required="false"
+        />        
+		<field
+			name="commentaire" type="editor" label="COM_ANNUAIRE_COMMENT"
+			description="COM_ANNUAIRE_COMMENT"
+			class="inputbox"
+			filter="JComponentHelper::filterText"
+			buttons="true"
+			hide="readmore,pagebreak"
+		/>		
+		<field id="published" name="published" type="list"
+			label="JSTATUS"	description="JSTATUS"
+			class="chzn-color-state" size="1" default="1"
+		>
+			<option value="1">
+				JPUBLISHED</option>
+			<option value="0">
+				JUNPUBLISHED</option>
+			<option value="2">
+				JARCHIVED</option>
+			<option value="-2">
+				JTRASHED</option>
+		</field>		
+		<field
+			name="hits" type="text" label="JGLOBAL_HITS"
+			description="JGLOBAL_HITS"
+			size="6" class="readonly" readonly="true" filter="unset"
+		/>
+		
+		<field
+			name="created" type="calendar" label="JGLOBAL_FIELD_CREATED_LABEL"
+			description="JGLOBAL_FIELD_CREATED_LABEL"
+			size="22" class="inputbox" default=""
+			format="%Y-%m-%d %H:%M:%S" filter="user_utc"
+		/>
+		<field
+			name="created_by" type="user" label="JGLOBAL_FIELD_CREATED_BY_LABEL"
+			description="JGLOBAL_FIELD_CREATED_BY_LABEL"
+			class="inputbox" default=""
+		/>
+		<field
+			name="modified" type="calendar" label="JGLOBAL_FIELD_MODIFIED_LABEL"
+			description="JGLOBAL_FIELD_MODIFIED_LABEL"
+			size="22"  class="readonly" default="" readonly="true"
+			format="%Y-%m-%d %H:%M:%S" filter="user_utc"
+		/>
+		<field
+			name="modified_by" type="user" label="JGLOBAL_FIELD_MODIFIED_BY_LABEL"
+			description="JGLOBAL_FIELD_MODIFIED_BY_DESC"
+			class="inputbox" default=""
+		/>
+	</fieldset>
+</form>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<metadata> 
+	<layout title="Détail d'une entreprise"> 
+		<message> 
+			<![CDATA[Ecran de détail d'une entreprise]]> 
+		</message> 
+	</layout> 
+
+	<fields name="request">
+		<fieldset name="request">
+			<field name="id" type="text"
+				label="ID entreprise"
+				description="Saisir l'ID de l'entreprise à lier à ce menu"
+				required="true" edit="false" clear="true"                         
+			/>
+		</fieldset>
+	</fields>
+</metadata>

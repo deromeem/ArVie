@@ -10,14 +10,14 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
                 <?php echo JHtml::_('grid.checkall'); ?>
         </th>                   
         <th width="1%">
-                <?php echo JHtml::_('grid.sort', 'COM_ARVIE_GROUPES_NOM', 'g.nom', $listDirn, $listOrder) ?>
+                <?php echo JHtml::_('grid.sort', 'Nom', 'g.nom', $listDirn, $listOrder) ?>
         </th>
         <th width="2%">
-                <?php echo JHtml::_('grid.sort', 'COM_ARVIE_GROUPES_PARENT', 'gp.nom', $listDirn, $listOrder) ?>
+                <?php echo JHtml::_('grid.sort', 'Groupe parent', 'gp.nom', $listDirn, $listOrder) ?>
         </th>
 
         <th width="2%">
-                <?php echo JHtml::_('grid.sort', 'COM_ARVIE_GROUPES_CREE_PAR', 'u.name', $listDirn, $listOrder) ?>
+                <?php echo JHtml::_('grid.sort', 'Crée par', 'u.name', $listDirn, $listOrder) ?>
         </th>
 
         <th width="1%" style="min-width:55px" class="">

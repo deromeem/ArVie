@@ -210,6 +210,7 @@ CREATE TABLE `arvie_arvie_discussions` (
 
 CREATE TABLE `arvie_arvie_evenements` (
   `id` int(11) NOT NULL,
+  `titre` varchar(255) NOT NULL,
   `date_event` datetime NOT NULL,
   `lieu` varchar(50) NOT NULL,
   `alias` varchar(255) NOT NULL,
@@ -391,7 +392,7 @@ INSERT INTO `arvie_arvie_metier_groupe_map` (`metier`, `groupe`, `alias`, `publi
 
 CREATE TABLE `arvie_arvie_parrains` (
   `parrain` int(11) NOT NULL,
-  `filleuil` int(11) NOT NULL,
+  `filleul` int(11) NOT NULL,
   `date_deb` date NOT NULL,
   `date_fin` date NOT NULL,
   `alias` varchar(255) NOT NULL,
@@ -2647,8 +2648,8 @@ ALTER TABLE `arvie_arvie_metier_groupe_map`
 -- Index pour la table `arvie_arvie_parrains`
 --
 ALTER TABLE `arvie_arvie_parrains`
-  ADD PRIMARY KEY (`parrain`,`filleuil`),
-  ADD KEY `filleuil` (`filleuil`);
+  ADD PRIMARY KEY (`parrain`,`filleul`),
+  ADD KEY `filleul` (`filleul`);
 
 --
 -- Index pour la table `arvie_arvie_publications`
@@ -3638,7 +3639,7 @@ ALTER TABLE `arvie_arvie_messages`
 -- Contraintes pour la table `arvie_arvie_parrains`
 --
 ALTER TABLE `arvie_arvie_parrains`
-  ADD CONSTRAINT `arvie_arvie_parrains_ibfk_1` FOREIGN KEY (`filleuil`) REFERENCES `arvie_arvie_utilisateurs` (`id`),
+  ADD CONSTRAINT `arvie_arvie_parrains_ibfk_1` FOREIGN KEY (`filleul`) REFERENCES `arvie_arvie_utilisateurs` (`id`),
   ADD CONSTRAINT `arvie_arvie_parrains_ibfk_2` FOREIGN KEY (`parrain`) REFERENCES `arvie_arvie_utilisateurs` (`id`);
 
 --

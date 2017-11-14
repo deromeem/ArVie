@@ -66,7 +66,7 @@ CREATE TABLE `#__arvie_abonnements` (
 
 CREATE TABLE `#__arvie_parrains` (
   `parrain` int(11) NOT NULL,
-  `filleuil` int(11) NOT NULL,
+  `filleul` int(11) NOT NULL,
   `date_deb` date NOT NULL,
   `date_fin` date NOT NULL,
   `alias` varchar(255) NOT NULL,
@@ -76,8 +76,8 @@ CREATE TABLE `#__arvie_parrains` (
   `modified` datetime NOT NULL,
   `modified_by` int(11) NOT NULL,
   `hits` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`parrain`,`filleuil`),
-  FOREIGN KEY (`filleuil`) REFERENCES `#__arvie_utilisateurs` (`id`),
+  PRIMARY KEY (`parrain`,`filleul`),
+  FOREIGN KEY (`filleul`) REFERENCES `#__arvie_utilisateurs` (`id`),
   FOREIGN KEY (`parrain`) REFERENCES `#__arvie_utilisateurs` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -221,6 +221,7 @@ INSERT INTO `#__arvie_publications` (`id`, `parent`, `groupe`, `auteur`, `texte`
 
 CREATE TABLE `#__arvie_evenements` (
   `id` int(11) NOT NULL,
+  `titre` varchar(255) NOT NULL,
   `date_event` datetime NOT NULL,
   `lieu` varchar(50) NOT NULL,
   `alias` varchar(255) NOT NULL,

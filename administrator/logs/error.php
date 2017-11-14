@@ -10,3 +10,4 @@
 2017-11-12T16:06:21+00:00	INFO ::1	joomlafailure	Un mot de passe vide n'est pas autorisé
 2017-11-14T07:34:29+00:00	INFO ::1	joomlafailure	Le mot de passe ne correspond pas au nom d'utilisateur, ou vous n'avez pas encore de compte.
 2017-11-14T08:32:31+00:00	INFO ::1	joomlafailure	Le mot de passe ne correspond pas au nom d'utilisateur, ou vous n'avez pas encore de compte.
+2017-11-14T14:14:10+00:00	INFO ::1	joomlafailure	Vous devez indiquer un mot de passe!

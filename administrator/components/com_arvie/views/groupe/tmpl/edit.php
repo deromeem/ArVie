@@ -31,13 +31,15 @@ JHtml::_('formbehavior.chosen', 'select');
 	<div class="form-horizontal">
 		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'details')); ?>
 
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'details', JText::_('Groupe')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'details', JText::_('COM_ARVIE_GROUPE')); ?>
+		<!-- Renommez le mot parent car il est reservé
 		<div class="control-group">
 			<div class="span3">
 				<div class="control-label"><?php echo $this->form->getLabel('parent'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('parent'); ?></div>
 			</div>
 		</div>
+		-->
 		<div class="row-fluid">
 			<div class="span3">
 				<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>

@@ -9,17 +9,22 @@ class ArvieModelParrains extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'parrain',        'p.parrain',
-				'filleul',        'p.filleul',
-				'date_deb',       'p.date_deb',
-				'date_fin',       'p.date_fin',
-				'alias',          'p.alias',
-				'published',      'p.published',
-				'created',        'p.created',
-				'created_by',     'p.created_by',
-				'modified',       'p.modified',
-				'modified_by',    'p.modified_by',
-				'hits',           'p.hits'
+				'id' =>             'id',
+				'parrain' =>        'p.parrain',
+				'nom_parrain' =>    'up.nom',
+				'prenom_parrain' => 'up.prenom',
+				'filleul' =>        'p.filleul',
+				'nom_filleul' =>    'uf.nom',
+				'prenom_filleul' => 'uf.prenom',
+				'date_deb' =>       'p.date_deb',
+				'date_fin' =>       'p.date_fin',
+				'alias' =>          'p.alias',
+				'published' =>      'p.published',
+				'created' =>        'p.created',
+				'created_by' =>     'p.created_by',
+				'modified' =>       'p.modified',
+				'modified_by' =>    'p.modified_by',
+				'hits' =>           'p.hits'
 			);
 		}
 		parent::__construct($config);
@@ -44,11 +49,12 @@ class ArvieModelParrains extends JModelList
 	{
 		// construit la requête d'affichage de la liste
 		$query = $this->_db->getQuery(true);
-		$query->select('p.parrain, p.filleul, p.date_deb, p.date_fin, p.alias, p.published, p.created, p.created_by, p.modified, p.modified_by, p.hits');
+		$query->select('CONCAT(p.parrain, p.filleul) AS id, p.parrain, p.filleul, p.date_deb, p.date_fin, p.alias, p.published, p.created, p.created_by, p.modified, p.modified_by, p.hits');
 		$query->from('#__arvie_parrains p');
 		
 		// joint la table users
-		//$query->select('jp.password')->join('LEFT', '#__users AS ju ON p.date_fin = jp.date_fin');
+		$query->select('up.nom nom_parrain, up.prenom prenom_parrain')->join('INNER', '#__arvie_utilisateurs AS up ON p.parrain = up.id');
+		$query->select('uf.nom nom_filleul, uf.prenom prenom_filleul')->join('INNER', '#__arvie_utilisateurs AS uf ON p.filleul = uf.id');
 
 
 		// filtre de recherche rapide textuel

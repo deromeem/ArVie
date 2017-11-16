@@ -73,10 +73,12 @@ class ArvieViewParrains extends JViewLegacy
 	{
 		// prépare l'affichage des colonnes de tri du calque
 		return array(
-			'p.nom' => JText::_('COM_ARVIE_UTILISATEURS_NOM'),
-			'p.date_deb' => JText::_('COM_ARVIE_UTILISATEURS_PRENOM'),
+			'up.nom' => JText::_('COM_ARVIE_PARRAINS_PARRAIN'),
+			'uf.nom' => JText::_('COM_ARVIE_PARRAINS_FILLEUL'),
+			'p.date_deb' => JText::_('COM_ARVIE_PARRAINS_DATE_DEB'),
+			'p.date_fin' => JText::_('COM_ARVIE_PARRAINS_DATE_FIN'),
 			'p.published' => JText::_('JSTATUS'),
-			'p.id' => "ID"
+			'id' => "ID"
 		);
 	}
 }

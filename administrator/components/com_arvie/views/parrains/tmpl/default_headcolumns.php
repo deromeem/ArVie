@@ -10,13 +10,16 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 		<?php echo JHtml::_('grid.checkall'); ?> 
 	</th>
 	<th width="20%">
-		<?php echo JHtml::_('grid.sort', 'COM_ARVIE_UTILISATEURS_NOM', 'p.nom', $listDirn, $listOrder) ?>
+		<?php echo JHtml::_('grid.sort', 'COM_ARVIE_PARRAINS_PARRAIN', 'up.nom', $listDirn, $listOrder) ?>
+	</th>
+	<th width="20%">
+		<?php echo JHtml::_('grid.sort', 'COM_ARVIE_PARRAINS_FILLEUL', 'uf.nom', $listDirn, $listOrder) ?>
 	</th>
 	<th width="15%" class="nowrap">
-		<?php echo JHtml::_('grid.sort', 'COM_ARVIE_UTILISATEURS_PRENOM', 'p.date_deb', $listDirn, $listOrder) ?>
+		<?php echo JHtml::_('grid.sort', 'COM_ARVIE_PARRAINS_DATE_DEB', 'p.date_deb', $listDirn, $listOrder) ?>
 	</th>
 	<th width="20%" class="nowrap">
-		<?php echo JHtml::_('grid.sort', 'COM_ARVIE_UTILISATEURS_EMAIL', 'p.date_fin', $listDirn, $listOrder) ?>
+		<?php echo JHtml::_('grid.sort', 'COM_ARVIE_PARRAINS_DATE_FIN', 'p.date_fin', $listDirn, $listOrder) ?>
 	</th>
 	<th width="1%" style="min-width:55px" class="nowrap center ">
 		<?php echo JHtml::_('grid.sort', 'Publié', 'p.published', $listDirn, $listOrder) ?>
@@ -28,7 +31,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 		<?php echo JHtml::_('grid.sort', 'JGLOBAL_HITS', 'p.hits', $listDirn, $listOrder); ?>
 	</th>
 	<th width="1%" class="nowrap center hidden-phone">
-		<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'p.id', $listDirn, $listOrder); ?>
+		<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'id', $listDirn, $listOrder); ?>
 	</th>
 </tr>
 

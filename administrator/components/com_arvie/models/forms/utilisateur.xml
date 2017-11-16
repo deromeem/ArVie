@@ -19,10 +19,13 @@
             description="COM_ARVIE_UTILISATEURS_EMAIL"
             size="40" class="inputbox" default=""
         />
-
-        <field name="fonction" type="text" label="COM_ARVIE_UTILISATEURS_FONCTION"
-            description="COM_ARVIE_UTILISATEURS_FONCTION"
-            size="40" class="inputbox" default="" required="true"
+		<field name="mobile" type="mobile" label="COM_ARVIE_UTILISATEURS_MOBILE"
+            description="COM_ARVIE_UTILISATEURS_MOBILE"
+            size="40" class="inputbox" default=""
+        />
+		<field name="date_naiss" type="date_naiss" label="COM_ARVIE_UTILISATEURS_DATE_NAISS"
+            description="COM_ARVIE_UTILISATEURS_DATE_NAISS"
+            size="40" class="inputbox" default=""
         />
 		
 		<field id="published" name="published" type="list"

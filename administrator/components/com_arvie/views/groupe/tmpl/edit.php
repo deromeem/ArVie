@@ -33,12 +33,10 @@ JHtml::_('formbehavior.chosen', 'select');
 
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'details', JText::_('Groupe')); ?>
 		<div class="control-group">
-			<div class="span2">
-				<div class="control-label"><?php echo $this->form->getLabel('groupes_parent'); ?></div>
-			</div>					
-			<div class="span7">
-				<div class="controls"><?php echo $this->form->getInput('groupes_parent'); ?></div>
-			</div>					
+			<div class="span3">
+				<div class="control-label"><?php echo $this->form->getLabel('parent'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('parent'); ?></div>
+			</div>
 		</div>
 		<div class="row-fluid">
 			<div class="span3">
@@ -64,7 +62,6 @@ JHtml::_('formbehavior.chosen', 'select');
 				<?php echo JLayoutHelper::render('joomla.edit.metadata', $this); ?>
 			</div>
 		</div>
-	
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 
 		<?php echo JLayoutHelper::render('joomla.edit.params', $this); ?>

@@ -230,7 +230,7 @@ CREATE TABLE `arvie_arvie_evenements` (
 
 CREATE TABLE `arvie_arvie_groupes` (
   `id` int(11) NOT NULL,
-  `parent` int(11) DEFAULT NULL,
+  `groupe_parent` int(11) DEFAULT NULL,
   `nom` varchar(40) NOT NULL,
   `alias` varchar(255) NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT '0',
@@ -245,7 +245,7 @@ CREATE TABLE `arvie_arvie_groupes` (
 -- Déchargement des données de la table `arvie_arvie_groupes`
 --
 
-INSERT INTO `arvie_arvie_groupes` (`id`, `parent`, `nom`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
+INSERT INTO `arvie_arvie_groupes` (`id`, `groupe_parent`, `nom`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
 (1, NULL, 'Arvie', '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
 (2, 1, 'Louis Armand', '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
 (3, 2, 'BTS', '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
@@ -412,7 +412,7 @@ CREATE TABLE `arvie_arvie_parrains` (
 
 CREATE TABLE `arvie_arvie_publications` (
   `id` int(11) NOT NULL,
-  `parent` int(11) DEFAULT NULL,
+  `publication_parent` int(11) DEFAULT NULL,
   `groupe` int(11) NOT NULL,
   `auteur` int(11) NOT NULL,
   `texte` text NOT NULL,
@@ -431,7 +431,7 @@ CREATE TABLE `arvie_arvie_publications` (
 -- Déchargement des données de la table `arvie_arvie_publications`
 --
 
-INSERT INTO `arvie_arvie_publications` (`id`, `parent`, `groupe`, `auteur`, `texte`, `date_publi`, `public`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
+INSERT INTO `arvie_arvie_publications` (`id`, `publication_parent`, `groupe`, `auteur`, `texte`, `date_publi`, `public`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
 (1, NULL, 1, 5, 'Salut les gars, les gens ils croient on fait pas mais si on fait !', '2017-10-19 16:32:12', 1, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
@@ -2604,7 +2604,7 @@ ALTER TABLE `arvie_arvie_evenements`
 --
 ALTER TABLE `arvie_arvie_groupes`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `parent` (`parent`);
+  ADD KEY `groupe_parent` (`groupe_parent`);
 
 --
 -- Index pour la table `arvie_arvie_groupes_classes`
@@ -2642,7 +2642,9 @@ ALTER TABLE `arvie_arvie_metiers`
 -- Index pour la table `arvie_arvie_metier_groupe_map`
 --
 ALTER TABLE `arvie_arvie_metier_groupe_map`
-  ADD PRIMARY KEY (`metier`,`groupe`);
+  ADD PRIMARY KEY (`metier`,`groupe`),
+  FOREIGN KEY (`metier`) REFERENCES `#__arvie_metiers` (`id`),
+  FOREIGN KEY (`groupe`) REFERENCES `#__arvie_groupes` (`id`);
 
 --
 -- Index pour la table `arvie_arvie_parrains`
@@ -2657,7 +2659,7 @@ ALTER TABLE `arvie_arvie_parrains`
 ALTER TABLE `arvie_arvie_publications`
   ADD PRIMARY KEY (`id`),
   ADD KEY `auteur` (`auteur`),
-  ADD KEY `parent` (`parent`),
+  ADD KEY `publication_parent` (`publication_parent`),
   ADD KEY `groupe` (`groupe`);
 
 --
@@ -3608,7 +3610,7 @@ ALTER TABLE `arvie_arvie_evenements`
 -- Contraintes pour la table `arvie_arvie_groupes`
 --
 ALTER TABLE `arvie_arvie_groupes`
-  ADD CONSTRAINT `arvie_arvie_groupes_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `arvie_arvie_groupes` (`id`);
+  ADD CONSTRAINT `arvie_arvie_groupes_ibfk_1` FOREIGN KEY (`groupe_parent`) REFERENCES `arvie_arvie_groupes` (`id`);
 
 --
 -- Contraintes pour la table `arvie_arvie_groupes_classes`
@@ -3647,7 +3649,7 @@ ALTER TABLE `arvie_arvie_parrains`
 --
 ALTER TABLE `arvie_arvie_publications`
   ADD CONSTRAINT `arvie_arvie_publications_ibfk_1` FOREIGN KEY (`auteur`) REFERENCES `arvie_arvie_utilisateurs` (`id`),
-  ADD CONSTRAINT `arvie_arvie_publications_ibfk_2` FOREIGN KEY (`parent`) REFERENCES `arvie_arvie_publications` (`id`),
+  ADD CONSTRAINT `arvie_arvie_publications_ibfk_2` FOREIGN KEY (`publication_parent`) REFERENCES `arvie_arvie_publications` (`id`),
   ADD CONSTRAINT `arvie_arvie_publications_ibfk_3` FOREIGN KEY (`groupe`) REFERENCES `arvie_arvie_groupes` (`id`);
 
 --

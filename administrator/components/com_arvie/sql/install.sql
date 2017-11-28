@@ -153,7 +153,7 @@ CREATE TABLE `#__arvie_messages` (
 
 CREATE TABLE `#__arvie_groupes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent` int(11) DEFAULT NULL,
+  `groupe_parent` int(11) DEFAULT NULL,
   `nom` varchar(40) NOT NULL,
   `alias` varchar(255) NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT '0',
@@ -163,14 +163,14 @@ CREATE TABLE `#__arvie_groupes` (
   `modified_by` int(11) NOT NULL,
   `hits` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`parent`) REFERENCES `#__arvie_groupes` (`id`)
+  FOREIGN KEY (`groupe_parent`) REFERENCES `#__arvie_groupes` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Chargement des données de la table `groupes`
 --
 
-INSERT INTO `#__arvie_groupes` (`id`, `parent`, `nom`) VALUES
+INSERT INTO `#__arvie_groupes` (`id`, `groupe_parent`, `nom`) VALUES
 (1, NULL, 'Arvie'),
 (2, 1, 'Louis Armand'),
 (3, 2, 'BTS'),
@@ -187,7 +187,7 @@ INSERT INTO `#__arvie_groupes` (`id`, `parent`, `nom`) VALUES
 
 CREATE TABLE `#__arvie_publications` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `parent` int(11) DEFAULT NULL,
+  `publication_parent` int(11) DEFAULT NULL,
   `groupe` int(11) NOT NULL,
   `auteur` int(11) NOT NULL,
   `texte` text NOT NULL,
@@ -202,7 +202,7 @@ CREATE TABLE `#__arvie_publications` (
   `hits` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   FOREIGN KEY (`auteur`) REFERENCES `#__arvie_utilisateurs` (`id`),
-  FOREIGN KEY (`parent`) REFERENCES `#__arvie_publications` (`id`),
+  FOREIGN KEY (`publication_parent`) REFERENCES `#__arvie_publications` (`id`),
   FOREIGN KEY (`groupe`) REFERENCES `#__arvie_groupes` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -210,7 +210,7 @@ CREATE TABLE `#__arvie_publications` (
 -- Chargement des données de la table `publications`
 --
 
-INSERT INTO `#__arvie_publications` (`id`, `parent`, `groupe`, `auteur`, `texte`, `date_publi`, `public`) VALUES
+INSERT INTO `#__arvie_publications` (`id`, `publication_parent`, `groupe`, `auteur`, `texte`, `date_publi`, `public`) VALUES
 (1, NULL, 1, 5, 'Salut les gars, les gens ils croient on fait pas mais si on fait !', '2017-10-19 16:32:12', 1);
 
 -- --------------------------------------------------------
@@ -300,7 +300,9 @@ CREATE TABLE `#__arvie_metier_groupe_map` (
   `modified` datetime NOT NULL,
   `modified_by` int(11) NOT NULL,
   `hits` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`metier`,`groupe`)
+  PRIMARY KEY (`metier`,`groupe`),
+  FOREIGN KEY (`metier`) REFERENCES `#__arvie_metiers` (`id`),
+  FOREIGN KEY (`groupe`) REFERENCES `#__arvie_groupes` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --

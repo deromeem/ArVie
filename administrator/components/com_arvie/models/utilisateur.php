@@ -24,6 +24,7 @@ class ArvieModelUtilisateur extends JModelAdmin
 		{
 			return false;
 		}
+		
 		return $form;
 	}
 

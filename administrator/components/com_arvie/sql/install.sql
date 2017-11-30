@@ -43,6 +43,7 @@ INSERT INTO `#__arvie_utilisateurs` (`id`, `email`, `prenom`, `nom`, `mobile`, `
 --
 
 CREATE TABLE `#__arvie_abonnements` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `abonne` int(11) NOT NULL,
   `suivi` int(11) NOT NULL,
   `date` datetime NOT NULL,
@@ -53,7 +54,7 @@ CREATE TABLE `#__arvie_abonnements` (
   `modified` datetime NOT NULL,
   `modified_by` int(11) NOT NULL,
   `hits` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`abonne`,`suivi`),
+  PRIMARY KEY (`id`),
   FOREIGN KEY (`abonne`) REFERENCES `#__arvie_utilisateurs` (`id`),
   FOREIGN KEY (`suivi`) REFERENCES `#__arvie_utilisateurs` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -65,6 +66,7 @@ CREATE TABLE `#__arvie_abonnements` (
 --
 
 CREATE TABLE `#__arvie_parrains` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `parrain` int(11) NOT NULL,
   `filleul` int(11) NOT NULL,
   `date_deb` date NOT NULL,
@@ -76,7 +78,7 @@ CREATE TABLE `#__arvie_parrains` (
   `modified` datetime NOT NULL,
   `modified_by` int(11) NOT NULL,
   `hits` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`parrain`,`filleul`),
+  PRIMARY KEY (`id`),
   FOREIGN KEY (`filleul`) REFERENCES `#__arvie_utilisateurs` (`id`),
   FOREIGN KEY (`parrain`) REFERENCES `#__arvie_utilisateurs` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -107,6 +109,7 @@ CREATE TABLE `#__arvie_discussions` (
 --
 
 CREATE TABLE `#__arvie_utilisateur_discu_map` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `utilisateur` int(11) NOT NULL,
   `discussion` int(11) NOT NULL,
   `admin` tinyint(1) NOT NULL,
@@ -117,7 +120,7 @@ CREATE TABLE `#__arvie_utilisateur_discu_map` (
   `modified` datetime NOT NULL,
   `modified_by` int(11) NOT NULL,
   `hits` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`utilisateur`,`discussion`),
+  PRIMARY KEY (`id`),
   FOREIGN KEY (`utilisateur`) REFERENCES `#__arvie_utilisateurs` (`id`),
   FOREIGN KEY (`discussion`) REFERENCES `#__arvie_discussions` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -291,6 +294,7 @@ INSERT INTO `#__arvie_metiers` (`id`, `label`) VALUES
 --
 
 CREATE TABLE `#__arvie_metier_groupe_map` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `metier` int(11) NOT NULL,
   `groupe` int(11) NOT NULL,
   `alias` varchar(255) NOT NULL,
@@ -300,7 +304,7 @@ CREATE TABLE `#__arvie_metier_groupe_map` (
   `modified` datetime NOT NULL,
   `modified_by` int(11) NOT NULL,
   `hits` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`metier`,`groupe`),
+  PRIMARY KEY (`id`),
   FOREIGN KEY (`metier`) REFERENCES `#__arvie_metiers` (`id`),
   FOREIGN KEY (`groupe`) REFERENCES `#__arvie_groupes` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -316,13 +320,35 @@ INSERT INTO `#__arvie_metier_groupe_map` (`metier`, `groupe`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `groupes_interets`
+-- Structure de la table `roles`
 --
 
-CREATE TABLE `#__arvie_groupes_interets` (
-  `id` int(11) NOT NULL,
-  `public` tinyint(1) NOT NULL,
-  `proprietaire` int(11) DEFAULT NULL,
+CREATE TABLE `#__arvie_roles` (
+  `id` int (11) NOT NULL AUTO_INCREMENT,
+  `label` int(11) NOT NULL,
+  `alias` varchar(255) NOT NULL,
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `created` datetime NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `modified` datetime NOT NULL,
+  `modified_by` int(11) NOT NULL,
+  `hits` int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `groupe_utilisateur_map`
+--
+
+CREATE TABLE `#__arvie_groupe_utilisateur_map` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `utilisateur` int(11) NOT NULL,
+  `groupe` int(11) NOT NULL,
+  `date_deb` datetime NOT NULL,
+  `date_fin` datetime DEFAULT NULL,
+  `role` int(11) NOT NULL,
   `alias` varchar(255) NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
@@ -331,108 +357,7 @@ CREATE TABLE `#__arvie_groupes_interets` (
   `modified_by` int(11) NOT NULL,
   `hits` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  FOREIGN KEY (`id`) REFERENCES `#__arvie_groupes` (`id`),
-  FOREIGN KEY (`proprietaire`) REFERENCES `#__arvie_utilisateurs` (`id`)
+  FOREIGN KEY (`groupe`) REFERENCES `arvie_arvie_groupes` (`id`),
+  FOREIGN KEY (`role`) REFERENCES `arvie_arvie_roles` (`id`),
+  FOREIGN KEY (`utilisateur`) REFERENCES `arvie_arvie_utilisateurs` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Chargement des données de la table `groupes_interets`
---
-
-INSERT INTO `#__arvie_groupes_interets` (`id`, `public`, `proprietaire`) VALUES
-(5, 1, NULL);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `utilisateur_interet_map`
---
-
-CREATE TABLE `#__arvie_utilisateur_interet_map` (
-  `utilisateur` int(11) NOT NULL,
-  `interet` int(11) NOT NULL,
-  `date_deb` datetime NOT NULL,
-  `date_fin` datetime DEFAULT NULL,
-  `alias` varchar(255) NOT NULL,
-  `published` tinyint(1) NOT NULL DEFAULT '0',
-  `created` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `modified` datetime NOT NULL,
-  `modified_by` int(11) NOT NULL,
-  `hits` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`utilisateur`,`interet`),
-  FOREIGN KEY (`interet`) REFERENCES `#__arvie_groupes_interets` (`id`),
-  FOREIGN KEY (`utilisateur`) REFERENCES `#__arvie_utilisateurs` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `groupes_classes`
---
-
-CREATE TABLE `#__arvie_groupes_classes` (
-  `id` int(11) NOT NULL,
-  `annee_scolaire` int(4) NOT NULL,
-  `prof_principal` int(11) DEFAULT NULL,
-  `delegue_1` int(11) DEFAULT NULL,
-  `delegue_2` int(11) DEFAULT NULL,
-  `suppleant_1` int(11) DEFAULT NULL,
-  `suppleant_2` int(11) DEFAULT NULL,
-  `alias` varchar(255) NOT NULL,
-  `published` tinyint(1) NOT NULL DEFAULT '0',
-  `created` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `modified` datetime NOT NULL,
-  `modified_by` int(11) NOT NULL,
-  `hits` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`,`annee_scolaire`),FOREIGN KEY (`id`) REFERENCES `#__arvie_groupes` (`id`),
-  FOREIGN KEY (`prof_principal`) REFERENCES `#__arvie_utilisateurs` (`id`),
-  FOREIGN KEY (`delegue_1`) REFERENCES `#__arvie_utilisateurs` (`id`),
-  FOREIGN KEY (`delegue_2`) REFERENCES `#__arvie_utilisateurs` (`id`),
-  FOREIGN KEY (`suppleant_1`) REFERENCES `#__arvie_utilisateurs` (`id`),
-  FOREIGN KEY (`suppleant_2`) REFERENCES `#__arvie_utilisateurs` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Chargement des données de la table `groupes_classes`
---
-
-INSERT INTO `#__arvie_groupes_classes` (`id`, `annee_scolaire`, `prof_principal`, `delegue_1`, `delegue_2`, `suppleant_1`, `suppleant_2`) VALUES
-(4, 2016, 1, NULL, NULL, NULL, NULL),
-(4, 2017, NULL, NULL, NULL, NULL, NULL),
-(7, 2017, NULL, 3, NULL, 4, NULL);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `utilisateur_classe_map`
---
-
-CREATE TABLE `#__arvie_utilisateur_classe_map` (
-  `classe` int(11) NOT NULL,
-  `annee_inscription` int(4) NOT NULL,
-  `utilisateur` int(11) NOT NULL,
-  `alias` varchar(255) NOT NULL,
-  `published` tinyint(1) NOT NULL DEFAULT '0',
-  `created` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `modified` datetime NOT NULL,
-  `modified_by` int(11) NOT NULL,
-  `hits` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`utilisateur`,`classe`,`annee_inscription`),
-  FOREIGN KEY (`utilisateur`) REFERENCES `#__arvie_utilisateurs` (`id`),
-  FOREIGN KEY (`classe`,`annee_inscription`) REFERENCES `#__arvie_groupes_classes` (`id`, `annee_scolaire`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Chargement des données de la table `utilisateur_classe_map`
---
-
-INSERT INTO `#__arvie_utilisateur_classe_map` (`classe`, `annee_inscription`, `utilisateur`) VALUES
-(4, 2016, 3),
-(7, 2017, 3),
-(4, 2016, 4),
-(7, 2017, 4);
-
--- --------------------------------------------------------

@@ -38,7 +38,7 @@ class ArvieHelper extends JHelperContent
 		JHtmlSidebar::addEntry(
 			JText::_('Parrains'),
 			'index.php?option=com_arvie&view=parrains',
-			$vName == 'groupes'
+			$vName == 'parrains'
 		);
 		
 		JHtmlSidebar::addEntry(

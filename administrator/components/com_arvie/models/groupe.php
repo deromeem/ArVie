@@ -1,16 +1,16 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
 
-class ArvieModelUtilisateur extends JModelAdmin
+class ArvieModelGroupe extends JModelAdmin
 {
 	protected $_compo = 'com_arvie';
-	protected $_context = 'utilisateur';
-	public $typeAlias = 'com_arvie.utilisateur';
+	protected $_context = 'groupe';
+	public $typeAlias = 'com_arvie.groupe';
 	
 	// Surcharges des m�thodes de la classe m�re pour :
 	
 	// 1) d�finir la table de soutien � utiliser
-	public function getTable($type = 'Utilisateur', $prefix = 'ArvieTable', $config = array()) 
+	public function getTable($type = 'groupe', $prefix = 'ArvieTable', $config = array()) 
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}
@@ -24,7 +24,6 @@ class ArvieModelUtilisateur extends JModelAdmin
 		{
 			return false;
 		}
-		
 		return $form;
 	}
 

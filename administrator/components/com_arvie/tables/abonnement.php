@@ -1,11 +1,11 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
  
-class ArvieTableParrain extends JTable
+class ArvieTableAbonnement extends JTable
 {
 	function __construct(&$db) 
 	{
-			parent::__construct('#__arvie_parrains', 'id', $db);
+			parent::__construct('#__arvie_abonnements', 'id', $db);
 	}
 
 	public function store($updateNulls = false)
@@ -31,7 +31,7 @@ class ArvieTableParrain extends JTable
 		}
 		
 		// contrôle d'unicité de l'alias SEF
-		$table = JTable::getInstance('Parrain', 'ArvieTable');
+		$table = JTable::getInstance('Abonnement', 'ArvieTable');
 		// if ($table->load(array('alias' => $this->alias)) && ($table->id != $this->id || $this->id == 0))
 		// {
 			// $this->setError("COM_ARVIE_ALIAS_USED");

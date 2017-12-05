@@ -48,6 +48,12 @@ class ArvieHelper extends JHelperContent
 		);
 		
 		JHtmlSidebar::addEntry(
+			JText::_('Roles'),
+			'index.php?option=com_arvie&view=roles',
+			$vName == 'roles'
+		);
+		
+		JHtmlSidebar::addEntry(
 			JText::_('Utilisateurs'),
 			'index.php?option=com_arvie&view=utilisateurs',
 			$vName == 'utilisateurs'

@@ -5,23 +5,23 @@
 
 		<field name="asset_id" type="hidden" filter="unset" />
 		
-        <field name="nom" type="text" label="COM_ARVIE_UTILISATEURS_NOM"
-            description="COM_ARVIE_UTILISATEURS_NOM"
+        <field name="abonne" type="text" label="COM_ARVIE_ABONNEMENTS_ABONNE"
+            description="COM_ARVIE_ABONNEMENTS_ABONNE"
             size="40" class="inputbox" default="" required="true"
         />
 
-        <field name="prenom" type="text" label="COM_ARVIE_UTILISATEURS_PRENOM"
-            description="COM_ARVIE_UTILISATEURS_PRENOM"
+        <field name="suivi" type="text" label="COM_ARVIE_ABONNEMENTS_SUIVI"
+            description="COM_ARVIE_ABONNEMENTS_SUIVI"
             size="40" class="inputbox" default="" required="true"
         />
 
-        <field name="email" type="email" label="COM_ARVIE_UTILISATEURS_EMAIL"
-            description="COM_ARVIE_UTILISATEURS_EMAIL"
+        <field name="date" type="date" label="COM_ARVIE_ABONNEMENTS_DATE"
+            description="COM_ARVIE_ABONNEMENTS_ALIAS"
             size="40" class="inputbox" default=""
         />
 
-        <field name="fonction" type="text" label="COM_ARVIE_UTILISATEURS_FONCTION"
-            description="COM_ARVIE_UTILISATEURS_FONCTION"
+        <field name="alias" type="text" label="COM_ARVIE_ABONNEMENTS_ALIAS"
+            description="COM_ARVIE_ABONNEMENTS_ALIAS"
             size="40" class="inputbox" default="" required="true"
         />
 		

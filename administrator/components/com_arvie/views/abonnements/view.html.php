@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
  
-class ArvieViewPublications extends JViewLegacy
+class ArvieViewAbonnements extends JViewLegacy
 {
 	function display($tpl = null) 
 	{
@@ -31,7 +31,7 @@ class ArvieViewPublications extends JViewLegacy
 		// ajoute la toolbar contenant les boutons d'actions
 		$this->addToolBar();
 		// invoque la méthode addSubmenu du fichier de soutien (helper)
-		ArvieHelper::addSubmenu('publications');
+		ArvieHelper::addSubmenu('abonnements');
 		// prépare et affuche la sidebar à gauche de la liste
 		$this->prepareSideBar();
 		$this->sidebar = JHtmlSidebar::render();
@@ -43,24 +43,24 @@ class ArvieViewPublications extends JViewLegacy
 	protected function addToolBar() 
 	{
 		// affiche le titre de la page
-		JToolBarHelper::title(JText::_('COM_ARVIE')." : ".JText::_('COM_ARVIE_PUBLICATIONS'));
+		JToolBarHelper::title(JText::_('COM_ARVIE')." : ".JText::_('COM_ARVIE_ABONNEMENTS'));
 		
 		// affiche les boutons d'action
-		JToolBarHelper::addNew('publication.add');
-		JToolBarHelper::editList('publication.edit');
-		JToolBarHelper::deleteList('Etes vous sûr ?', 'publications.delete');
-		JToolbarHelper::publish('publications.publish', 'JTOOLBAR_PUBLISH', true);
-		JToolbarHelper::unpublish('publications.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-		JToolbarHelper::archiveList('publications.archive');
-		JToolbarHelper::checkin('publications.checkin');
-		JToolbarHelper::trash('publications.trash');
+		JToolBarHelper::addNew('abonnement.add');
+		JToolBarHelper::editList('abonnement.edit');
+		JToolBarHelper::deleteList('Etes vous sûr ?', 'abonnements.delete');
+		JToolbarHelper::publish('abonnements.publish', 'JTOOLBAR_PUBLISH', true);
+		JToolbarHelper::unpublish('abonnements.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+		JToolbarHelper::archiveList('abonnements.archive');
+		JToolbarHelper::checkin('abonnements.checkin');
+		JToolbarHelper::trash('abonnements.trash');
 		JToolbarHelper::preferences('com_arvie');
 	}
 
 	protected function prepareSideBar()
 	{
 		// definit l'action du formulaire sidebar
-		JHtmlSidebar::setAction('index.php?option=com_arvie&view=publications');
+		JHtmlSidebar::setAction('index.php?option=com_arvie&view=abonnements');
 		
 		// ajoute le filtre standard des statuts dans le bloc des sous-menus
 		JHtmlSidebar::addFilter( JText::_('JOPTION_SELECT_PUBLISHED'), 'filter_published',
@@ -73,18 +73,10 @@ class ArvieViewPublications extends JViewLegacy
 	{
 		// prépare l'affichage des colonnes de tri du calque
 		return array(
-			'p.auteur' => JText::_('COM_ARVIE_PUBLICATIONS_AUTEUR'),
-			'p.groupe' => JText::_('COM_ARVIE_PUBLICATIONS_GROUPE'),
-			'p.published' => JText::_('JSTATUS'),
-			'p.id' => "ID"
+			'a.abonne' => JText::_('COM_ARVIE_ABONNEMENTS_ABONNE'),
+			'a.suivi' => JText::_('COM_ARVIE_ABONNEMENTS_SUIVI'),
+			'a.published' => JText::_('JSTATUS')
+			//'u.id' => "ID"
 		);
-	}
-
-	protected function displayParentPublication($currParentPublication) 
-	{
-		foreach ($this->publications as $publications) {
-			if($publications->id==$currParentPublication) return $publications->id;
-		}
-		return "N.C.";
 	}
 }

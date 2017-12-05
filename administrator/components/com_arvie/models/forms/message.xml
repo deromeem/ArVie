@@ -5,26 +5,34 @@
 
 		<field name="asset_id" type="hidden" filter="unset" />
 		
-        <field name="nom" type="text" label="COM_ARVIE_PUBLICATIONS_ID"
-            description="Id"
-            size="40" class="inputbox" default="" required="true"
-        />
-
-        <field name="prenom" type="text" label="COM_ARVIE_PUBLICATIONS_PARENT"
-            description="Parent"
-            size="40" class="inputbox" default="" required="true"
-        />
-
-        <field name="email" type="email" label="COM_ARVIE_PUBLICATIONS_GROUPE"
-            description="Groupe"
-            size="40" class="inputbox" default=""
-        />
-
-        <field name="fonction" type="text" label="COM_ARVIE_PUBLICATIONS_AUTEUR"
-            description="Auteur"
-            size="40" class="inputbox" default="" required="true"
-        />
+		<field name="auteur" type="sql" default="" label="COM_ARVIE_AUTEUR" 
+			description="COM_ARVIE_AUTEUR"
+			query="SELECT id, auteur FROM #__arvie_message_auteur ORDER BY auteur" 
+			key_field="id" value_field="auteur" required="false"
+		/>
 		
+		<field name="discussion" type="sql" default="" label="COM_ARVIE_MESSAGE_DISCUSSION" 
+			description="COM_ARVIE_DISCUSSION"
+			query="SELECT id, discussion FROM #__arvie_message_discussions ORDER BY discussion" 
+			key_field="id" value_field="discussion" required="false"
+		/>
+
+		<field name="alias" type="text"
+			label="JFIELD_ALIAS_LABEL"
+			description="JFIELD_ALIAS_DESC"
+			hint="JFIELD_ALIAS_PLACEHOLDER"
+			class="inputbox" size="45"
+		/>
+
+		<field
+			name="contenu" type="editor" label="COM_ARVIE_CONTENU"
+			description="COM_ARVIE_CONTENU"
+			class="inputbox"
+			filter="JComponentHelper::filterText"
+			buttons="true"
+			hide="readmore,pagebreak"
+		/>	
+        
 		<field id="published" name="published" type="list"
 			label="JSTATUS"	description="JSTATUS"
 			class="chzn-color-state" size="1" default="1"
@@ -39,19 +47,13 @@
 				JTRASHED</option>
 		</field>
 		
-		
-		<field
-			name="hits" type="text" label="JGLOBAL_HITS"
-			description="JGLOBAL_HITS"
-			size="6" class="readonly" readonly="true" filter="unset"
-		/>
-		
 		<field
 			name="created" type="calendar" label="JGLOBAL_FIELD_CREATED_LABEL"
 			description="JGLOBAL_FIELD_CREATED_LABEL"
 			size="22" class="inputbox" default=""
 			format="%Y-%m-%d %H:%M:%S" filter="user_utc"
 		/>
+
 		<field
 			name="created_by" type="user" label="JGLOBAL_FIELD_CREATED_BY_LABEL"
 			description="JGLOBAL_FIELD_CREATED_BY_LABEL"
@@ -63,11 +65,18 @@
 			size="22"  class="readonly" default="" readonly="true"
 			format="%Y-%m-%d %H:%M:%S" filter="user_utc"
 		/>
+		
 		<field
 			name="modified_by" type="user" label="JGLOBAL_FIELD_MODIFIED_BY_LABEL"
 			description="JGLOBAL_FIELD_MODIFIED_BY_DESC"
 			class="inputbox" default=""
 		/>
 
+		<field
+			name="hits" type="text" label="JGLOBAL_HITS"
+			description="JGLOBAL_HITS"
+			size="6" class="readonly" readonly="true" filter="unset"
+		/>
+		
 	</fieldset>
 </form>

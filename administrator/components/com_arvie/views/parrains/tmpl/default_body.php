@@ -19,19 +19,18 @@ if ($saveOrder)
 	</td>
 	<td class="wrap has-context">
 		<div class="pull-left">
-			<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=parrain.edit&id='.(int) $item->id); ?>">
-				<?php echo $this->escape($item->nom); ?>
+			<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=utilisateur.edit&id='.(int) $item->parrain); ?>">
+				<?= $this->escape($item->nom_parrain) ?> <?= $item->prenom_parrain ?>
 			</a>
-			<div class="small hidden-phone">
-				<?php // extrait description selon les paramètres de configuration
-				if ($this->paramDescShow) {
-					$desc = JFilterOutput::cleanText($item->activite);
-					echo substr($desc, 0, $this->paramDescSize);
-					echo (strlen($desc)>$this->paramDescSize?"...":"") ;
-				}
-				?>
-			</div>
 		</div>
+	</td>
+	<td align="small">
+		<div class="pull-left">
+			<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=utilisateur.edit&id='.(int) $item->filleul); ?>">
+				<?= $this->escape($item->nom_filleul) ?> <?= $item->prenom_filleul ?>
+			</a>
+		</div>
+	</td>
 	</td>
 	<td align="small">
 		<?php echo $item->date_deb; ?>

@@ -17,7 +17,7 @@
 			class="inputbox" size="45"
 		/>
 
-		<field name="groupes_parent" type="sql" default="" label="Groupe Parent" 
+		<field name="parent" type="sql" default="" label="Groupe Parent" 
 			description="Groupe Parent"
 			query="SELECT id, nom FROM #__arvie_groupes ORDER BY nom" 
 			key_field="id" value_field="nom" required="false"

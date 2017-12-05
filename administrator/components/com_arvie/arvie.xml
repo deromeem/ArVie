@@ -22,12 +22,6 @@
 	<administration>
 		<menu>com_arvie</menu>
 		<submenu>
-			<menu link="option=com_arvie&amp;view=abonnements">com_arvie_abonnements</menu>
-			<menu link="option=com_arvie&amp;view=discussions">com_arvie_discussions</menu>
-			<menu link="option=com_arvie&amp;view=evenements">com_arvie_evenements</menu>
-			<menu link="option=com_arvie&amp;view=groupes">com_arvie_groupes</menu>
-			<menu link="option=com_arvie&amp;view=messages">com_arvie_messages</menu>
-			<menu link="option=com_arvie&amp;view=parrains">com_arvie_parrains</menu>
 			<menu link="option=com_arvie&amp;view=publications">com_arvie_publications</menu>
 			<menu link="option=com_arvie&amp;view=utilisateurs">com_arvie_utilisateurs</menu>
 		</submenu>

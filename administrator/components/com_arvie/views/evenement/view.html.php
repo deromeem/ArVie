@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
  
-class ArvieViewParrain extends JViewLegacy
+class ArvieViewEvenement extends JViewLegacy
 {
 	protected $form;
 	protected $item;
@@ -33,23 +33,23 @@ class ArvieViewParrain extends JViewLegacy
 		// $checkedOut	= !($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 	
 		$isNew = ($this->item->id == 0);
-		JToolBarHelper::title(JText::_('COM_ARVIE_UTILISATEUR')." : ".($isNew ? JText::_('COM_ARVIE_NEW'): JText::_('COM_ARVIE_MODIF')), 'address');
+		JToolBarHelper::title(JText::_('COM_ARVIE_EVENEMENT')." : ".($isNew ? JText::_('COM_ARVIE_NEW'): JText::_('COM_ARVIE_MODIF')), 'address');
 
 
 		if ($isNew)
 		{
-			JToolbarHelper::apply('parrain.apply');
-			JToolbarHelper::save('parrain.save');
-			JToolbarHelper::save2new('parrain.save2new');
+			JToolbarHelper::apply('evenement.apply');
+			JToolbarHelper::save('evenement.save');
+			JToolbarHelper::save2new('evenement.save2new');
 		}
 		else
 		{
 			// if (!$checkedOut)
 			// {
-				JToolbarHelper::apply('parrain.apply');
-				JToolbarHelper::save('parrain.save');
+				JToolbarHelper::apply('evenement.apply');
+				JToolbarHelper::save('evenement.save');
 			// }
 		}
-		JToolBarHelper::cancel('parrain.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
+		JToolBarHelper::cancel('evenement.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
 	}
 }

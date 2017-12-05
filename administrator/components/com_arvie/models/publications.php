@@ -57,7 +57,7 @@ class ArvieModelPublications extends JModelList
 		$query->select('pp.nom AS groupes_nom')->join('LEFT', '#__arvie_groupes AS pp ON pp.id=p.groupe');
 
 		// joint la table groupes pour les parent
-		//$query->select('gp.nom AS parent_nom')->join('LEFT', '#__arvie_groupes AS gp ON gp.id=g.parent');
+		$query->select('p.id AS parent_id')->join('LEFT', '#__arvie_publications AS op ON p.id=op.parent');
 
 		// filtre de recherche rapide textuel
 		$search = $this->getState('filter.search');

@@ -79,4 +79,12 @@ class ArvieViewPublications extends JViewLegacy
 			'p.id' => "ID"
 		);
 	}
+
+	protected function displayParentPublication($currParentPublication) 
+	{
+		foreach ($this->publications as $publications) {
+			if($publications->id==$currParentPublication) return $publications->id;
+		}
+		return "N.C.";
+	}
 }

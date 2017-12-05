@@ -6,22 +6,22 @@
 		<field name="asset_id" type="hidden" filter="unset" />
 		
         <field name="nom" type="text" label="COM_ARVIE_PUBLICATIONS_ID"
-            description="COM_ARVIE_PUBLICATIONS_NOM"
+            description="Id"
             size="40" class="inputbox" default="" required="true"
         />
 
         <field name="prenom" type="text" label="COM_ARVIE_PUBLICATIONS_PARENT"
-            description="COM_ARVIE_PUBLICATIONS_PRENOM"
+            description="Parent"
             size="40" class="inputbox" default="" required="true"
         />
 
         <field name="email" type="email" label="COM_ARVIE_PUBLICATIONS_GROUPE"
-            description="COM_ARVIE_PUBLICATIONS_EMAIL"
+            description="Groupe"
             size="40" class="inputbox" default=""
         />
 
         <field name="fonction" type="text" label="COM_ARVIE_PUBLICATIONS_AUTEUR"
-            description="COM_ARVIE_PUBLICATIONS_FONCTION"
+            description="Auteur"
             size="40" class="inputbox" default="" required="true"
         />
 		

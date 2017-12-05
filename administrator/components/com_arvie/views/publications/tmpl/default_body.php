@@ -34,7 +34,7 @@ if ($saveOrder)
 		</div>
 	</td>
 	<td align="small">
-		<?php echo $item->parent; ?>
+		<?php echo $item->publication_parent; ?>
 	</td>
 	<td align="small">
 		<?php echo $item->groupes_nom; ?>
@@ -45,13 +45,13 @@ if ($saveOrder)
 	<td align="center">
 		<?php echo $item->texte; ?>
 	</td>
-	<td align="center hidden phone ">
+	<td width="5%" style="min-width:55px" align="center">
 		<?php echo JHtml::_('jgrid.published', $item->published, $i, 'publications.', true); ?>
 	</td>
-	<td class="center hidden-phone">
+	<td class="nowrap center hidden-phone ">
 		<?php echo JHtml::_('date', $item->modified, $this->paramDateFmt); ?>
 	</td>
-	<td class="pull-right hidden-tablet hidden-phone">
+	<td class="nowrap center hidden-phone">
 			<?php echo (int) $item->hits; ?>
 	</td>
 

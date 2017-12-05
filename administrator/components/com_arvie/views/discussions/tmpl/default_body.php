@@ -7,25 +7,25 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 $saveOrder	= $listOrder == 'ordering';
 if ($saveOrder)
 {
-	$saveOrderingUrl = 'index.php?option=com_arvie&task=publications.saveOrderAjax&tmpl=component';
+	$saveOrderingUrl = 'index.php?option=com_arvie&task=discussions.saveOrderAjax&tmpl=component';
 	JHtml::_('sortablelist.sortable', 'articleList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
 }
 ?>
 
 <?php foreach($this->items as $i => $item): ?>
 <tr class="row<?php echo $i % 2; ?>">
-	<td class="hidden-phone">
+	<td class="center hidden-phone">
 		<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 	</td>
 	<td class="wrap has-context">
 		<div class="pull-left">
-			<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=publication.edit&id='.(int) $item->id); ?>">
-				<?php echo $this->escape($item->id); ?>
+			<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=discussion.edit&id='.(int) $item->id); ?>">
+				<?php echo $this->escape($item->nom); ?>
 			</a>
 			<div class="small hidden-phone">
 				<?php // extrait description selon les paramètres de configuration
 				if ($this->paramDescShow) {
-					$desc = JFilterOutput::cleanText($item->activite);
+					$desc = JFilterOutput::cleanText($item->nom);
 					echo substr($desc, 0, $this->paramDescSize);
 					echo (strlen($desc)>$this->paramDescSize?"...":"") ;
 				}
@@ -33,27 +33,18 @@ if ($saveOrder)
 			</div>
 		</div>
 	</td>
-	<td align="small">
-		<?php echo $item->publication_parent; ?>
+	
+	<td width="5%" align="center">
+		<?php echo JHtml::_('jgrid.published', $item->published, $i, 'discussions.', true); ?>
 	</td>
-	<td align="small">
-		<?php echo $item->groupes_nom; ?>
-	</td>
-	<td align="small">
-		<?php echo $item->auteur_nom; ?>
-	</td>
-	<td align="center">
-		<?php echo $item->texte; ?>
-	</td>
-	<td width="5%" style="min-width:55px" align="center">
-		<?php echo JHtml::_('jgrid.published', $item->published, $i, 'publications.', true); ?>
-	</td>
-	<td class="nowrap center hidden-phone ">
+	<td class="center hidden-phone">
 		<?php echo JHtml::_('date', $item->modified, $this->paramDateFmt); ?>
 	</td>
-	<td class="nowrap center hidden-phone">
+	<td class="center hidden-tablet hidden-phone">
 			<?php echo (int) $item->hits; ?>
 	</td>
-
+	<td class="center hidden-phone">
+		<?php echo (int) $item->id; ?>
+	</td>
 </tr>
 <?php endforeach; ?>

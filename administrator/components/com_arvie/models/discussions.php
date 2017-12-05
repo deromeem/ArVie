@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
 
-class ArvieModelPublications extends JModelList
+class ArvieModelDiscussions extends JModelList
 {
 	public function __construct($config = array())
 	{
@@ -9,20 +9,14 @@ class ArvieModelPublications extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'id',             'p.id',
-				'parent',		  'p.publication_parent',
-				'groupes_nom',    'p.groupe',
-				'auteur_nom',     'p.auteur',
-				'texte',          'p.texte',
-				'date_publi',     'p.date_publi',
-				'public',		  'p.public',
-				'alias',          'p.alias',
-				'published',      'p.published',
-				'created',        'p.created',
-				'created_by',     'p.created_by',
-				'modified',       'p.modified',
-				'modified_by',    'p.modified_by',
-				'hits',           'p.hits'
+				'id',             'd.id',
+				'nom',            'd.nom',
+				'published',      'd.published',
+				'created',        'd.created',
+				'created_by',     'd.created_by',
+				'modified',       'd.modified',
+				'modified_by',    'd.modified_by',
+				'hits',           'd.hits'
 			);
 		}
 		parent::__construct($config);
@@ -30,7 +24,7 @@ class ArvieModelPublications extends JModelList
 
 	protected function populateState($ordering = null, $direction = null)
 	{
-		// récupère les informations de la session publication nécessaires au paramétrage de l'écran
+		// récupère les informations de la session utilisateur nécessaires au paramétrage de l'écran
 		$search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
 		$this->setState('filter.search', $search);
 
@@ -40,41 +34,40 @@ class ArvieModelPublications extends JModelList
 		$published = $this->getUserStateFromRequest($this->context.'.filter.published', 'filter_published', '');
 		$this->setState('filter.published', $published);
 
-		//parent::populateState('nom', 'asc');
+		parent::populateState('nom', 'asc');
 	}
 	
 	protected function getListQuery()
 	{
 		// construit la requête d'affichage de la liste
 		$query = $this->_db->getQuery(true);
-		$query->select('p.id, p.publication_parent, p.groupe, p.auteur, p.texte, p.published, p.created, p.created_by, p.modified, p.modified_by, p.hits');
-		$query->from('#__arvie_publications p');
+		$query->select('d.id, d.nom, d.published, d.created, d.created_by, d.modified, d.modified_by, d.hits');
+		$query->from('#__arvie_discussions d');
 		
-		// joint la table utilisateur pour les auteurs
-		$query->select('ap.nom AS auteur_nom')->join('LEFT', '#__arvie_utilisateurs AS ap ON ap.id=p.auteur');
 		
-		// joint la table groupes pour les groupes
-		$query->select('pp.nom AS groupes_nom')->join('LEFT', '#__arvie_groupes AS pp ON pp.id=p.groupe');
-
-		// joint la table groupes pour les parent
-		$query->select('p.id AS parent_id')->join('LEFT', '#__arvie_publications AS op ON p.id=op.publication_parent');
+		//joint entre la table #__arvie_utilisateur_discu_map
+		//$query->select('ud.utilisateur')->join('INNER','#__arvie_utilisateur__discu_map AS ud ON ud.discussion = d.id');
+		
+		//SELECT d.nom ,COUNT(*) AS nbUtilisateurs
+		//FROM `arvie_arvie_utilisateur_discu_map` ud
+		//JOIN `arvie_arvie_discussions` d 
+		//ON ud.discussion = d.id
+		//GROUP BY d.nom
 
 		// filtre de recherche rapide textuel
 		$search = $this->getState('filter.search');
 		if (!empty($search)) {
 			// recherche prefixée par 'id:'
 			if (stripos($search, 'id:') === 0) {
-				$query->where('p.id = '.(int) substr($search, 3));
+				$query->where('d.id = '.(int) substr($search, 3));
 			}
 			else {
 				// recherche textuelle classique (sans préfixe)
 				$search = $this->_db->Quote('%'.$this->_db->escape($search, true).'%');
 				// Compile les clauses de recherche
 				$searches	= array();
-				$searches[]	= 'p.parent LIKE '.$search;
-				$searches[]	= 'p.groupe LIKE '.$search;
-				//$searches[]	= 'u.fonction LIKE '.$search;
-				$searches[]	= 'p.auteur LIKE '.$search;
+				$searches[]	= 'd.nom LIKE '.$search;
+
 				// Ajoute les clauses à la requête
 				$query->where('('.implode(' OR ', $searches).')');
 			}
@@ -83,11 +76,11 @@ class ArvieModelPublications extends JModelList
 		// filtre selon l'état du filtre 'filter_published'
 		$published = $this->getState('filter.published');
 		if (is_numeric($published)) {
-			$query->where('p.published=' . (int) $published);
+			$query->where('d.published=' . (int) $published);
 		}
 		elseif ($published === '') {
 			// si aucune sélection, on n'affiche que les publié et dépublié
-			$query->where('(p.published=0 OR p.published=1)');
+			$query->where('(d.published=0 OR d.published=1)');
 		}
 
 		// tri des colonnes
@@ -98,4 +91,5 @@ class ArvieModelPublications extends JModelList
 		// echo nl2br(str_replace('#__','egs_',$query));			// TEST/DEBUG
 		return $query;
 	}
+
 }

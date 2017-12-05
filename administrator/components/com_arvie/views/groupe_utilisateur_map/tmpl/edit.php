@@ -8,7 +8,7 @@ JHtml::_('formbehavior.chosen', 'select');
 <script type="text/javascript">
 	Joomla.submitbutton = function(task)
 	{
-		if (task == 'groupe.cancel' || document.formvalidator.isValid(document.id('arvie-form')))
+		if (task == 'groupe_utilisateur_map.cancel' || document.formvalidator.isValid(document.id('arvie-form')))
 		{
 			Joomla.submitform(task, document.getElementById('arvie-form'));
 		}
@@ -19,7 +19,7 @@ JHtml::_('formbehavior.chosen', 'select');
       method="post" name="adminForm" id="arvie-form" class="form-validate">
 
 	<div class="form-inline form-inline-header">
-		<div class="control-groupe_util_map">
+		<div class="control-groupe_utilisateur_map">
 			<div class="control-label"><?php echo $this->form->getLabel('nom'); ?></div>
 			<div class="controls"><?php echo $this->form->getInput('nom'); ?></div>
 
@@ -33,7 +33,7 @@ JHtml::_('formbehavior.chosen', 'select');
 
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'details', JText::_('COM_ARVIE_GROUPE')); ?>
 		<!-- Renommez le mot parent car il est reservé
-		<div class="control-groupe_util_map">
+		<div class="control-groupe_utilisateur_map">
 			<div class="span3">
 				<div class="control-label"><?php echo $this->form->getLabel('parent'); ?></div>
 				<div class="controls"><?php echo $this->form->getInput('parent'); ?></div>

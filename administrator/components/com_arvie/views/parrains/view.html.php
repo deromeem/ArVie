@@ -78,7 +78,7 @@ class ArvieViewParrains extends JViewLegacy
 			'p.date_deb' => JText::_('COM_ARVIE_PARRAINS_DATE_DEB'),
 			'p.date_fin' => JText::_('COM_ARVIE_PARRAINS_DATE_FIN'),
 			'p.published' => JText::_('JSTATUS'),
-			'id' => "ID"
+			'p.id' => "ID"
 		);
 	}
 }

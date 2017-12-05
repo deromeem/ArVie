@@ -11,7 +11,7 @@ class ArvieModelGroupes extends JModelList
 			$config['filter_fields'] = array(
 				'id', 'g.id',
 				'nom', 'g.nom',
-				'parent','g.parent',
+				'parent','g.groupe_parent',
 				'created_by','g.created_by',
 				'published', 'g.published',
 				'hits', 'g.hits',
@@ -39,11 +39,11 @@ class ArvieModelGroupes extends JModelList
 	
 		// construit la requête d'affichage de la liste
 		$query = $this->_db->getQuery(true);
-		$query->select('g.id,g.parent, g.nom, g.published, g.hits, g.modified,g.created_by');
+		$query->select('g.id,g.groupe_parent, g.nom, g.published, g.hits, g.modified,g.created_by');
 		$query->from('#__arvie_groupes g');
 
 		// joint la table parent pour les parents
-		$query->select('gp.nom AS parent_nom')->join('LEFT', '#__arvie_groupes AS gp ON gp.id=g.parent');
+		$query->select('gp.nom AS parent_nom')->join('LEFT', '#__arvie_groupes AS gp ON gp.id=g.groupe_parent');
 
 		// joint la table #_users pour les created_by
 		$query->select('u.name AS created_by_nom')->join('LEFT', '#__users AS u ON g.created_by=u.id');

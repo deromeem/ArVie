@@ -5,11 +5,18 @@
 
 		<field name="asset_id" type="hidden" filter="unset" />
 		
-        <field name="auteur" type="hidden" label="COM_ARVIE_MESSAGE_AUTEUR"
-            description="COM_ARVIE_MESSAGE_AUTEUR"
-            size="40" class="inputbox" default="" required="true"
-        />
+		<field name="auteur" type="sql" default="" label="COM_ARVIE_AUTEUR" 
+			description="COM_ARVIE_AUTEUR"
+			query="SELECT id, auteur FROM #__arvie_message_auteur ORDER BY auteur" 
+			key_field="id" value_field="auteur" required="false"
+		/>
 		
+		<field name="discussion" type="sql" default="" label="COM_ARVIE_MESSAGE_DISCUSSION" 
+			description="COM_ARVIE_DISCUSSION"
+			query="SELECT id, discussion FROM #__arvie_message_discussions ORDER BY discussion" 
+			key_field="id" value_field="discussion" required="false"
+		/>
+
 		<field name="alias" type="text"
 			label="JFIELD_ALIAS_LABEL"
 			description="JFIELD_ALIAS_DESC"
@@ -17,7 +24,14 @@
 			class="inputbox" size="45"
 		/>
 
-		<field name="discussion" type="hidden" >
+		<field
+			name="contenu" type="editor" label="COM_ARVIE_CONTENU"
+			description="COM_ARVIE_CONTENU"
+			class="inputbox"
+			filter="JComponentHelper::filterText"
+			buttons="true"
+			hide="readmore,pagebreak"
+		/>	
         
 		<field id="published" name="published" type="list"
 			label="JSTATUS"	description="JSTATUS"

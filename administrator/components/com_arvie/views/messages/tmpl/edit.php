@@ -8,7 +8,7 @@ JHtml::_('formbehavior.chosen', 'select');
 <script type="text/javascript">
 	Joomla.submitbutton = function(task)
 	{
-		if (task == 'message.cancel' || document.formvalidator.isValid(document.id('arvie-form')))
+		if (task == 'messages.cancel' || document.formvalidator.isValid(document.id('arvie-form')))
 		{
 			Joomla.submitform(task, document.getElementById('arvie-form'));
 		}
@@ -25,9 +25,9 @@ JHtml::_('formbehavior.chosen', 'select');
 
 
 	<div class="form-horizontal">
-		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'message')); ?>
+		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'messages')); ?>
 
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'message', JText::_('COM_ARVIE_MESSAGE')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'messages', JText::_('COM_ARVIE_MESSAGES')); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="form-vertical">
 				<div class="control-group">

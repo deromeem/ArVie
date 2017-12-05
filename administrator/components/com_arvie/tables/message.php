@@ -5,7 +5,7 @@ class ArvieTableMessage extends JTable
 {
 	function __construct(&$db) 
 	{
-			parent::__construct('#__arvie_message', 'id', $db);
+			parent::__construct('#__arvie_messages', 'id', $db);
 	}
 
 	public function store($updateNulls = false)

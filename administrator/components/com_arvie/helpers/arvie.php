@@ -38,13 +38,19 @@ class ArvieHelper extends JHelperContent
 		JHtmlSidebar::addEntry(
 			JText::_('Parrains'),
 			'index.php?option=com_arvie&view=parrains',
-			$vName == 'groupes'
+			$vName == 'parrains'
 		);
 		
 		JHtmlSidebar::addEntry(
 			JText::_('Publications'),
 			'index.php?option=com_arvie&view=publications',
 			$vName == 'publications'
+		);
+		
+		JHtmlSidebar::addEntry(
+			JText::_('Roles'),
+			'index.php?option=com_arvie&view=roles',
+			$vName == 'roles'
 		);
 		
 		JHtmlSidebar::addEntry(

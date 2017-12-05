@@ -1,7 +1,5 @@
-DROP TABLE IF EXISTS `#__arvie_utilisateur_classe_map`;
-DROP TABLE IF EXISTS `#__arvie_groupes_classes`;
-DROP TABLE IF EXISTS `#__arvie_utilisateur_interet_map`;
-DROP TABLE IF EXISTS `#__arvie_groupes_interets`;
+DROP TABLE IF EXISTS `#__arvie_groupe_utilisateur_map`;
+DROP TABLE IF EXISTS `#__arvie_roles`;
 DROP TABLE IF EXISTS `#__arvie_metier_groupe_map`;
 DROP TABLE IF EXISTS `#__arvie_metiers`;
 DROP TABLE IF EXISTS `#__arvie_utilisateur_even_map`;

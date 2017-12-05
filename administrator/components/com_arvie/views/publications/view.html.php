@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
  
-class ArvieViewGroupes extends JViewLegacy
+class ArvieViewPublications extends JViewLegacy
 {
 	function display($tpl = null) 
 	{
@@ -31,8 +31,8 @@ class ArvieViewGroupes extends JViewLegacy
 		// ajoute la toolbar contenant les boutons d'actions
 		$this->addToolBar();
 		// invoque la méthode addSubmenu du fichier de soutien (helper)
-		ArvieHelper::addSubmenu('groupes');
-		// prépare et affiche la sidebar à gauche de la liste
+		ArvieHelper::addSubmenu('publications');
+		// prépare et affuche la sidebar à gauche de la liste
 		$this->prepareSideBar();
 		$this->sidebar = JHtmlSidebar::render();
 
@@ -43,24 +43,24 @@ class ArvieViewGroupes extends JViewLegacy
 	protected function addToolBar() 
 	{
 		// affiche le titre de la page
-		JToolBarHelper::title('Arvie : Groupes');
+		JToolBarHelper::title(JText::_('COM_ARVIE')." : ".JText::_('COM_ARVIE_PUBLICATIONS'));
 		
 		// affiche les boutons d'action
-		JToolBarHelper::addNew('groupe.add', 'Nouveau groupe');
-		JToolBarHelper::editList('groupe.edit', 'Modifier groupe');
-		JToolBarHelper::deleteList('Etes vous sur ?', 'groupes.delete', 'Supprimer groupes');
-		JToolbarHelper::publish('groupes.publish', 'JTOOLBAR_PUBLISH', true);
-		JToolbarHelper::unpublish('groupes.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-		JToolbarHelper::archiveList('groupes.archive');
-		JToolbarHelper::checkin('groupes.checkin');
-		JToolbarHelper::trash('groupes.trash');
+		JToolBarHelper::addNew('publication.add');
+		JToolBarHelper::editList('publication.edit');
+		JToolBarHelper::deleteList('Etes vous sûr ?', 'publications.delete');
+		JToolbarHelper::publish('publications.publish', 'JTOOLBAR_PUBLISH', true);
+		JToolbarHelper::unpublish('publications.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+		JToolbarHelper::archiveList('publications.archive');
+		JToolbarHelper::checkin('publications.checkin');
+		JToolbarHelper::trash('publications.trash');
 		JToolbarHelper::preferences('com_arvie');
 	}
 
 	protected function prepareSideBar()
 	{
 		// definit l'action du formulaire sidebar
-		JHtmlSidebar::setAction('index.php?option=com_arvie');
+		JHtmlSidebar::setAction('index.php?option=com_arvie&view=publications');
 		
 		// ajoute le filtre standard des statuts dans le bloc des sous-menus
 		JHtmlSidebar::addFilter( JText::_('JOPTION_SELECT_PUBLISHED'), 'filter_published',
@@ -73,21 +73,18 @@ class ArvieViewGroupes extends JViewLegacy
 	{
 		// prépare l'affichage des colonnes de tri du calque
 		return array(
-			'g.published' => JText::_('JSTATUS'),
-			'g.nom' => JText::_('COM_ARVIE_GROUPES_NOM'),
-			'g.id' => 'ID',
-			'gp.id' => JText::_('COM_ARVIE_GROUPES_PARENT'),
-			'g.created_by' => JText::_('COM_ARVIE_GROUPES_CREE_PAR'),
+			'p.auteur' => JText::_('COM_ARVIE_PUBLICATIONS_AUTEUR'),
+			'p.groupe' => JText::_('COM_ARVIE_PUBLICATIONS_GROUPE'),
+			'p.published' => JText::_('JSTATUS'),
+			'p.id' => "ID"
 		);
 	}
 
-	protected function displayParent($currParent) 
+	protected function displayParentPublication($currParentPublication) 
 	{
-		foreach ($this->groupes as $groupe) {
-			if($groupe->id==$currParent) return $groupe->nom;
+		foreach ($this->publications as $publications) {
+			if($publications->id==$currParentPublication) return $publications->id;
 		}
 		return "N.C.";
 	}
-
 }
- 

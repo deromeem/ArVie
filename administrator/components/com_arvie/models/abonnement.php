@@ -1,16 +1,16 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
 
-class ArvieModelParrain extends JModelAdmin
+class ArvieModelAbonnement extends JModelAdmin
 {
 	protected $_compo = 'com_arvie';
-	protected $_context = 'parrain';
-	public $typeAlias = 'com_arvie.parrain';
+	protected $_context = 'abonnement';
+	public $typeAlias = 'com_arvie.abonnement';
 	
 	// Surcharges des m�thodes de la classe m�re pour :
 	
 	// 1) d�finir la table de soutien � utiliser
-	public function getTable($type = 'Parrain', $prefix = 'ArvieTable', $config = array()) 
+	public function getTable($type = 'Abonnement', $prefix = 'ArvieTable', $config = array()) 
 	{
 		return JTable::getInstance($type, $prefix, $config);
 	}

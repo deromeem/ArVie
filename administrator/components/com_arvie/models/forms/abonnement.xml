@@ -5,34 +5,25 @@
 
 		<field name="asset_id" type="hidden" filter="unset" />
 		
-        <field name="nom" type="text" label="Nom"
-            description="Nom"
-            size="40" class="input-large-text" default="" required="true"
+        <field name="abonne" type="text" label="COM_ARVIE_ABONNEMENTS_ABONNE"
+            description="COM_ARVIE_ABONNEMENTS_ABONNE"
+            size="40" class="inputbox" default="" required="true"
         />
 
-		<field name="alias" type="text"
-			label="JFIELD_ALIAS_LABEL"
-			description="JFIELD_ALIAS_DESC"
-			hint="JFIELD_ALIAS_PLACEHOLDER"
-			class="inputbox" size="45"
-		/>
+        <field name="suivi" type="text" label="COM_ARVIE_ABONNEMENTS_SUIVI"
+            description="COM_ARVIE_ABONNEMENTS_SUIVI"
+            size="40" class="inputbox" default="" required="true"
+        />
 
-		<field name="parent" type="sql" default="" label="Groupe Parent" 
-			description="Groupe Parent"
-			query="SELECT id, nom FROM #__arvie_groupes ORDER BY nom" 
-			key_field="id" value_field="nom" required="false"
-		/>
+        <field name="date" type="date" label="COM_ARVIE_ABONNEMENTS_DATE"
+            description="COM_ARVIE_ABONNEMENTS_ALIAS"
+            size="40" class="inputbox" default=""
+        />
 
-		<field
-				name="commentaire" type="editor" label="COM_ARVIE_GROUPES_COMMENTAIRE"
-				description="COM_ARVIE_GROUPES_COMMENTAIRE"
-				height = "10px"
-				width = "10px"
-				class="inputbox"
-				filter="JComponentHelper::filterText"
-				buttons="true"
-				hide="readmore,pagebreak"
-		/>
+        <field name="alias" type="text" label="COM_ARVIE_ABONNEMENTS_ALIAS"
+            description="COM_ARVIE_ABONNEMENTS_ALIAS"
+            size="40" class="inputbox" default="" required="true"
+        />
 		
 		<field id="published" name="published" type="list"
 			label="JSTATUS"	description="JSTATUS"

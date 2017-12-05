@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
  
-class ArvieViewParrain extends JViewLegacy
+class ArvieViewAbonnement extends JViewLegacy
 {
 	protected $form;
 	protected $item;
@@ -38,18 +38,18 @@ class ArvieViewParrain extends JViewLegacy
 
 		if ($isNew)
 		{
-			JToolbarHelper::apply('parrain.apply');
-			JToolbarHelper::save('parrain.save');
-			JToolbarHelper::save2new('parrain.save2new');
+			JToolbarHelper::apply('abonnement.apply');
+			JToolbarHelper::save('abonnement.save');
+			JToolbarHelper::save2new('abonnement.save2new');
 		}
 		else
 		{
 			// if (!$checkedOut)
 			// {
-				JToolbarHelper::apply('parrain.apply');
-				JToolbarHelper::save('parrain.save');
+				JToolbarHelper::apply('abonnement.apply');
+				JToolbarHelper::save('abonnement.save');
 			// }
 		}
-		JToolBarHelper::cancel('parrain.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
+		JToolBarHelper::cancel('abonnement.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
 	}
 }

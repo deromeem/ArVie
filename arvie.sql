@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le :  mar. 14 nov. 2017 à 11:12
+-- Généré le :  lun. 04 déc. 2017 à 09:45
 -- Version du serveur :  10.1.26-MariaDB
 -- Version de PHP :  7.1.9
 
@@ -172,6 +172,7 @@ INSERT INTO `arvie_annuaire_typescontacts` (`id`, `typeContact`, `published`) VA
 --
 
 CREATE TABLE `arvie_arvie_abonnements` (
+  `id` int(11) NOT NULL,
   `abonne` int(11) NOT NULL,
   `suivi` int(11) NOT NULL,
   `date` datetime NOT NULL,
@@ -230,8 +231,10 @@ CREATE TABLE `arvie_arvie_evenements` (
 
 CREATE TABLE `arvie_arvie_groupes` (
   `id` int(11) NOT NULL,
-  `parent` int(11) DEFAULT NULL,
+  `groupe_parent` int(11) DEFAULT NULL,
   `nom` varchar(40) NOT NULL,
+  `est_groupe_interet` tinyint(1) NOT NULL DEFAULT '0',
+  `est_public` tinyint(1) NOT NULL DEFAULT '0',
   `alias` varchar(255) NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
@@ -245,29 +248,28 @@ CREATE TABLE `arvie_arvie_groupes` (
 -- Déchargement des données de la table `arvie_arvie_groupes`
 --
 
-INSERT INTO `arvie_arvie_groupes` (`id`, `parent`, `nom`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
-(1, NULL, 'Arvie', '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
-(2, 1, 'Louis Armand', '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
-(3, 2, 'BTS', '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
-(4, 3, 'SIO 1', '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
-(5, 1, 'sport', '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
-(6, 5, 'basket', '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
-(7, 3, 'SIO 2', '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0);
+INSERT INTO `arvie_arvie_groupes` (`id`, `groupe_parent`, `nom`, `est_groupe_interet`, `est_public`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
+(1, NULL, 'Arvie', 0, 0, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
+(2, 1, 'Louis Armand', 0, 0, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
+(3, 2, 'BTS', 0, 0, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
+(4, 3, 'SIO 1', 0, 0, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
+(5, 1, 'sport', 0, 0, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
+(6, 5, 'basket', 0, 0, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
+(7, 3, 'SIO 2', 0, 0, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `arvie_arvie_groupes_classes`
+-- Structure de la table `arvie_arvie_groupe_utilisateur_map`
 --
 
-CREATE TABLE `arvie_arvie_groupes_classes` (
+CREATE TABLE `arvie_arvie_groupe_utilisateur_map` (
   `id` int(11) NOT NULL,
-  `annee_scolaire` int(4) NOT NULL,
-  `prof_principal` int(11) DEFAULT NULL,
-  `delegue_1` int(11) DEFAULT NULL,
-  `delegue_2` int(11) DEFAULT NULL,
-  `suppleant_1` int(11) DEFAULT NULL,
-  `suppleant_2` int(11) DEFAULT NULL,
+  `utilisateur` int(11) NOT NULL,
+  `groupe` int(11) NOT NULL,
+  `date_deb` datetime NOT NULL,
+  `date_fin` datetime DEFAULT NULL,
+  `role` int(11) NOT NULL,
   `alias` varchar(255) NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
@@ -276,41 +278,6 @@ CREATE TABLE `arvie_arvie_groupes_classes` (
   `modified_by` int(11) NOT NULL,
   `hits` int(11) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `arvie_arvie_groupes_classes`
---
-
-INSERT INTO `arvie_arvie_groupes_classes` (`id`, `annee_scolaire`, `prof_principal`, `delegue_1`, `delegue_2`, `suppleant_1`, `suppleant_2`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
-(4, 2016, 1, NULL, NULL, NULL, NULL, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
-(4, 2017, NULL, NULL, NULL, NULL, NULL, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
-(7, 2017, NULL, 3, NULL, 4, NULL, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `arvie_arvie_groupes_interets`
---
-
-CREATE TABLE `arvie_arvie_groupes_interets` (
-  `id` int(11) NOT NULL,
-  `public` tinyint(1) NOT NULL,
-  `proprietaire` int(11) DEFAULT NULL,
-  `alias` varchar(255) NOT NULL,
-  `published` tinyint(1) NOT NULL DEFAULT '0',
-  `created` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `modified` datetime NOT NULL,
-  `modified_by` int(11) NOT NULL,
-  `hits` int(11) UNSIGNED NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `arvie_arvie_groupes_interets`
---
-
-INSERT INTO `arvie_arvie_groupes_interets` (`id`, `public`, `proprietaire`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
-(5, 1, NULL, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -365,6 +332,7 @@ INSERT INTO `arvie_arvie_metiers` (`id`, `label`, `alias`, `published`, `created
 --
 
 CREATE TABLE `arvie_arvie_metier_groupe_map` (
+  `id` int(11) NOT NULL,
   `metier` int(11) NOT NULL,
   `groupe` int(11) NOT NULL,
   `alias` varchar(255) NOT NULL,
@@ -380,9 +348,9 @@ CREATE TABLE `arvie_arvie_metier_groupe_map` (
 -- Déchargement des données de la table `arvie_arvie_metier_groupe_map`
 --
 
-INSERT INTO `arvie_arvie_metier_groupe_map` (`metier`, `groupe`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
-(1, 4, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
-(1, 7, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0);
+INSERT INTO `arvie_arvie_metier_groupe_map` (`id`, `metier`, `groupe`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
+(1, 1, 4, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
+(2, 1, 7, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -391,6 +359,7 @@ INSERT INTO `arvie_arvie_metier_groupe_map` (`metier`, `groupe`, `alias`, `publi
 --
 
 CREATE TABLE `arvie_arvie_parrains` (
+  `id` int(11) NOT NULL,
   `parrain` int(11) NOT NULL,
   `filleul` int(11) NOT NULL,
   `date_deb` date NOT NULL,
@@ -412,7 +381,7 @@ CREATE TABLE `arvie_arvie_parrains` (
 
 CREATE TABLE `arvie_arvie_publications` (
   `id` int(11) NOT NULL,
-  `parent` int(11) DEFAULT NULL,
+  `publication_parent` int(11) DEFAULT NULL,
   `groupe` int(11) NOT NULL,
   `auteur` int(11) NOT NULL,
   `texte` text NOT NULL,
@@ -431,8 +400,26 @@ CREATE TABLE `arvie_arvie_publications` (
 -- Déchargement des données de la table `arvie_arvie_publications`
 --
 
-INSERT INTO `arvie_arvie_publications` (`id`, `parent`, `groupe`, `auteur`, `texte`, `date_publi`, `public`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
+INSERT INTO `arvie_arvie_publications` (`id`, `publication_parent`, `groupe`, `auteur`, `texte`, `date_publi`, `public`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
 (1, NULL, 1, 5, 'Salut les gars, les gens ils croient on fait pas mais si on fait !', '2017-10-19 16:32:12', 1, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `arvie_arvie_roles`
+--
+
+CREATE TABLE `arvie_arvie_roles` (
+  `id` int(11) NOT NULL,
+  `label` int(11) NOT NULL,
+  `alias` varchar(255) NOT NULL,
+  `published` tinyint(1) NOT NULL DEFAULT '0',
+  `created` datetime NOT NULL,
+  `created_by` int(11) NOT NULL,
+  `modified` datetime NOT NULL,
+  `modified_by` int(11) NOT NULL,
+  `hits` int(11) UNSIGNED NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -465,36 +452,7 @@ INSERT INTO `arvie_arvie_utilisateurs` (`id`, `email`, `prenom`, `nom`, `mobile`
 (2, 'f.salimou@hotmail.fr', 'Salimou', 'Fofana', NULL, '1998-03-01', '', 1, '2017-10-19 16:32:12', 416, '2017-10-19 16:32:12', 416, 0),
 (3, 'gregory.brugnet@gmail.com', 'Gregory', 'Brugnet', NULL, '1996-10-01', '', 1, '2017-10-19 16:32:12', 416, '2017-10-19 16:32:12', 416, 0),
 (4, 'n.peugnet@free.fr', 'Nicolas', 'Peugnet', NULL, '1996-05-09', '', 1, '2017-10-19 16:32:12', 416, '2017-10-19 16:32:12', 416, 0),
-(5, 'rahari.anja@gmail.com', 'Anja', 'Raharijaonarivelo', NULL, '1997-06-15', '', 1, '2017-10-19 16:32:12', 416, '2017-10-19 16:32:12', 416, 0);
-
--- --------------------------------------------------------
-
---
--- Structure de la table `arvie_arvie_utilisateur_classe_map`
---
-
-CREATE TABLE `arvie_arvie_utilisateur_classe_map` (
-  `classe` int(11) NOT NULL,
-  `annee_inscription` int(4) NOT NULL,
-  `utilisateur` int(11) NOT NULL,
-  `alias` varchar(255) NOT NULL,
-  `published` tinyint(1) NOT NULL DEFAULT '0',
-  `created` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `modified` datetime NOT NULL,
-  `modified_by` int(11) NOT NULL,
-  `hits` int(11) UNSIGNED NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `arvie_arvie_utilisateur_classe_map`
---
-
-INSERT INTO `arvie_arvie_utilisateur_classe_map` (`classe`, `annee_inscription`, `utilisateur`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
-(4, 2016, 3, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
-(7, 2017, 3, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
-(4, 2016, 4, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
-(7, 2017, 4, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0);
+(5, 'rahari.anja@gmail.com', 'Anja', 'Raharijaonarivelo', 0, '1997-06-15', 'raharijaonarivelo', 1, '2017-10-19 16:32:12', 416, '2017-11-16 15:58:09', 416, 0);
 
 -- --------------------------------------------------------
 
@@ -503,6 +461,7 @@ INSERT INTO `arvie_arvie_utilisateur_classe_map` (`classe`, `annee_inscription`,
 --
 
 CREATE TABLE `arvie_arvie_utilisateur_discu_map` (
+  `id` int(11) NOT NULL,
   `utilisateur` int(11) NOT NULL,
   `discussion` int(11) NOT NULL,
   `admin` tinyint(1) NOT NULL,
@@ -522,29 +481,10 @@ CREATE TABLE `arvie_arvie_utilisateur_discu_map` (
 --
 
 CREATE TABLE `arvie_arvie_utilisateur_even_map` (
+  `id` int(11) NOT NULL,
   `participant` int(11) NOT NULL,
   `evenement` int(11) NOT NULL,
   `date` datetime NOT NULL,
-  `alias` varchar(255) NOT NULL,
-  `published` tinyint(1) NOT NULL DEFAULT '0',
-  `created` datetime NOT NULL,
-  `created_by` int(11) NOT NULL,
-  `modified` datetime NOT NULL,
-  `modified_by` int(11) NOT NULL,
-  `hits` int(11) UNSIGNED NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `arvie_arvie_utilisateur_interet_map`
---
-
-CREATE TABLE `arvie_arvie_utilisateur_interet_map` (
-  `utilisateur` int(11) NOT NULL,
-  `interet` int(11) NOT NULL,
-  `date_deb` datetime NOT NULL,
-  `date_fin` datetime DEFAULT NULL,
   `alias` varchar(255) NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
@@ -882,7 +822,7 @@ CREATE TABLE `arvie_content` (
 --
 
 INSERT INTO `arvie_content` (`id`, `asset_id`, `title`, `alias`, `introtext`, `fulltext`, `state`, `catid`, `created`, `created_by`, `created_by_alias`, `modified`, `modified_by`, `checked_out`, `checked_out_time`, `publish_up`, `publish_down`, `images`, `urls`, `attribs`, `version`, `ordering`, `metakey`, `metadesc`, `access`, `hits`, `metadata`, `featured`, `language`, `xreference`) VALUES
-(1, 56, 'Bienvenue', 'bienvenue', '<p>Bienvenue sur le site école réalisé par les étudiants en BTS-SIO option SLAM en 2e année qu Lycée Louis Armand (Paris 15e).</p>\r\n<p>ArVie est un réseau social destiné aux élèves, étudiants, professeurs, personnels et anciens des lycées Louis-Armand et François-Villon.</p>\r\n<p>Il est accessible depuis ce site ArVie.org et depuis l\'application Android ArVie.</p>', '', 1, 2, '2017-11-11 09:11:26', 416, '', '2017-11-11 10:30:07', 416, 0, '0000-00-00 00:00:00', '2017-11-11 09:11:26', '0000-00-00 00:00:00', '{\"image_intro\":\"\",\"float_intro\":\"\",\"image_intro_alt\":\"\",\"image_intro_caption\":\"\",\"image_fulltext\":\"\",\"float_fulltext\":\"\",\"image_fulltext_alt\":\"\",\"image_fulltext_caption\":\"\"}', '{\"urla\":false,\"urlatext\":\"\",\"targeta\":\"\",\"urlb\":false,\"urlbtext\":\"\",\"targetb\":\"\",\"urlc\":false,\"urlctext\":\"\",\"targetc\":\"\"}', '{\"article_layout\":\"\",\"show_title\":\"\",\"link_titles\":\"\",\"show_tags\":\"\",\"show_intro\":\"\",\"info_block_position\":\"\",\"info_block_show_title\":\"\",\"show_category\":\"\",\"link_category\":\"\",\"show_parent_category\":\"\",\"link_parent_category\":\"\",\"show_associations\":\"\",\"show_author\":\"\",\"link_author\":\"\",\"show_create_date\":\"\",\"show_modify_date\":\"\",\"show_publish_date\":\"\",\"show_item_navigation\":\"\",\"show_icons\":\"\",\"show_print_icon\":\"\",\"show_email_icon\":\"\",\"show_vote\":\"\",\"show_hits\":\"\",\"show_noauth\":\"\",\"urls_position\":\"\",\"alternative_readmore\":\"\",\"article_page_title\":\"\",\"show_publishing_options\":\"\",\"show_article_options\":\"\",\"show_urls_images_backend\":\"\",\"show_urls_images_frontend\":\"\"}', 2, 4, '', '', 1, 33, '{\"robots\":\"\",\"author\":\"\",\"rights\":\"\",\"xreference\":\"\"}', 0, '*', ''),
+(1, 56, 'Bienvenue', 'bienvenue', '<p>Bienvenue sur le site école réalisé par les étudiants en BTS-SIO option SLAM en 2e année qu Lycée Louis Armand (Paris 15e).</p>\r\n<p>ArVie est un réseau social destiné aux élèves, étudiants, professeurs, personnels et anciens des lycées Louis-Armand et François-Villon.</p>\r\n<p>Il est accessible depuis ce site ArVie.org et depuis l\'application Android ArVie.</p>', '', 1, 2, '2017-11-11 09:11:26', 416, '', '2017-11-11 10:30:07', 416, 0, '0000-00-00 00:00:00', '2017-11-11 09:11:26', '0000-00-00 00:00:00', '{\"image_intro\":\"\",\"float_intro\":\"\",\"image_intro_alt\":\"\",\"image_intro_caption\":\"\",\"image_fulltext\":\"\",\"float_fulltext\":\"\",\"image_fulltext_alt\":\"\",\"image_fulltext_caption\":\"\"}', '{\"urla\":false,\"urlatext\":\"\",\"targeta\":\"\",\"urlb\":false,\"urlbtext\":\"\",\"targetb\":\"\",\"urlc\":false,\"urlctext\":\"\",\"targetc\":\"\"}', '{\"article_layout\":\"\",\"show_title\":\"\",\"link_titles\":\"\",\"show_tags\":\"\",\"show_intro\":\"\",\"info_block_position\":\"\",\"info_block_show_title\":\"\",\"show_category\":\"\",\"link_category\":\"\",\"show_parent_category\":\"\",\"link_parent_category\":\"\",\"show_associations\":\"\",\"show_author\":\"\",\"link_author\":\"\",\"show_create_date\":\"\",\"show_modify_date\":\"\",\"show_publish_date\":\"\",\"show_item_navigation\":\"\",\"show_icons\":\"\",\"show_print_icon\":\"\",\"show_email_icon\":\"\",\"show_vote\":\"\",\"show_hits\":\"\",\"show_noauth\":\"\",\"urls_position\":\"\",\"alternative_readmore\":\"\",\"article_page_title\":\"\",\"show_publishing_options\":\"\",\"show_article_options\":\"\",\"show_urls_images_backend\":\"\",\"show_urls_images_frontend\":\"\"}', 2, 4, '', '', 1, 35, '{\"robots\":\"\",\"author\":\"\",\"rights\":\"\",\"xreference\":\"\"}', 0, '*', ''),
 (2, 57, 'Publications', 'publications', '<p>Cette page présente les publications et événements des lycées LA et FV.</p>\r\n<p>La création de publications ou d\'événements est réservée aux utilisateurs enregistrés et membres d\'un groupe (direction, agent, professeur, élève ou ancien).</p>', '', 1, 2, '2017-11-11 09:19:16', 416, '', '2017-11-11 09:27:41', 416, 0, '0000-00-00 00:00:00', '2017-11-11 09:19:16', '0000-00-00 00:00:00', '{\"image_intro\":\"\",\"float_intro\":\"\",\"image_intro_alt\":\"\",\"image_intro_caption\":\"\",\"image_fulltext\":\"\",\"float_fulltext\":\"\",\"image_fulltext_alt\":\"\",\"image_fulltext_caption\":\"\"}', '{\"urla\":false,\"urlatext\":\"\",\"targeta\":\"\",\"urlb\":false,\"urlbtext\":\"\",\"targetb\":\"\",\"urlc\":false,\"urlctext\":\"\",\"targetc\":\"\"}', '{\"article_layout\":\"\",\"show_title\":\"\",\"link_titles\":\"\",\"show_tags\":\"\",\"show_intro\":\"\",\"info_block_position\":\"\",\"info_block_show_title\":\"\",\"show_category\":\"\",\"link_category\":\"\",\"show_parent_category\":\"\",\"link_parent_category\":\"\",\"show_associations\":\"\",\"show_author\":\"\",\"link_author\":\"\",\"show_create_date\":\"\",\"show_modify_date\":\"\",\"show_publish_date\":\"\",\"show_item_navigation\":\"\",\"show_icons\":\"\",\"show_print_icon\":\"\",\"show_email_icon\":\"\",\"show_vote\":\"\",\"show_hits\":\"\",\"show_noauth\":\"\",\"urls_position\":\"\",\"alternative_readmore\":\"\",\"article_page_title\":\"\",\"show_publishing_options\":\"\",\"show_article_options\":\"\",\"show_urls_images_backend\":\"\",\"show_urls_images_frontend\":\"\"}', 2, 3, '', '', 1, 6, '{\"robots\":\"\",\"author\":\"\",\"rights\":\"\",\"xreference\":\"\"}', 0, '*', ''),
 (3, 58, 'Discussions', 'discussions', '<p>Cette page est aux utilisateurs enregistrés et membres d\'un groupe (direction, agent, professeur, élève ou ancien).</p>\r\n<p>Elle présente les discussions en cours et permet d\'y participer ou d\'en créer de nouvelles</p>', '', 1, 2, '2017-11-11 09:26:26', 416, '', '2017-11-11 09:26:26', 0, 0, '0000-00-00 00:00:00', '2017-11-11 09:26:26', '0000-00-00 00:00:00', '{\"image_intro\":\"\",\"float_intro\":\"\",\"image_intro_alt\":\"\",\"image_intro_caption\":\"\",\"image_fulltext\":\"\",\"float_fulltext\":\"\",\"image_fulltext_alt\":\"\",\"image_fulltext_caption\":\"\"}', '{\"urla\":false,\"urlatext\":\"\",\"targeta\":\"\",\"urlb\":false,\"urlbtext\":\"\",\"targetb\":\"\",\"urlc\":false,\"urlctext\":\"\",\"targetc\":\"\"}', '{\"article_layout\":\"\",\"show_title\":\"\",\"link_titles\":\"\",\"show_tags\":\"\",\"show_intro\":\"\",\"info_block_position\":\"\",\"info_block_show_title\":\"\",\"show_category\":\"\",\"link_category\":\"\",\"show_parent_category\":\"\",\"link_parent_category\":\"\",\"show_associations\":\"\",\"show_author\":\"\",\"link_author\":\"\",\"show_create_date\":\"\",\"show_modify_date\":\"\",\"show_publish_date\":\"\",\"show_item_navigation\":\"\",\"show_icons\":\"\",\"show_print_icon\":\"\",\"show_email_icon\":\"\",\"show_vote\":\"\",\"show_hits\":\"\",\"show_noauth\":\"\",\"urls_position\":\"\",\"alternative_readmore\":\"\",\"article_page_title\":\"\",\"show_publishing_options\":\"\",\"show_article_options\":\"\",\"show_urls_images_backend\":\"\",\"show_urls_images_frontend\":\"\"}', 1, 2, '', '', 2, 1, '{\"robots\":\"\",\"author\":\"\",\"rights\":\"\",\"xreference\":\"\"}', 0, '*', ''),
 (4, 59, 'BTS-SIO', 'bts-sio', '<p>Le BTS-SIO, rénové en 2011, forme en deux ans des techniciens supérieurs en informatique...</p>', '', 1, 2, '2017-11-11 09:29:38', 416, '', '2017-11-11 09:29:38', 0, 0, '0000-00-00 00:00:00', '2017-11-11 09:29:38', '0000-00-00 00:00:00', '{\"image_intro\":\"\",\"float_intro\":\"\",\"image_intro_alt\":\"\",\"image_intro_caption\":\"\",\"image_fulltext\":\"\",\"float_fulltext\":\"\",\"image_fulltext_alt\":\"\",\"image_fulltext_caption\":\"\"}', '{\"urla\":false,\"urlatext\":\"\",\"targeta\":\"\",\"urlb\":false,\"urlbtext\":\"\",\"targetb\":\"\",\"urlc\":false,\"urlctext\":\"\",\"targetc\":\"\"}', '{\"article_layout\":\"\",\"show_title\":\"\",\"link_titles\":\"\",\"show_tags\":\"\",\"show_intro\":\"\",\"info_block_position\":\"\",\"info_block_show_title\":\"\",\"show_category\":\"\",\"link_category\":\"\",\"show_parent_category\":\"\",\"link_parent_category\":\"\",\"show_associations\":\"\",\"show_author\":\"\",\"link_author\":\"\",\"show_create_date\":\"\",\"show_modify_date\":\"\",\"show_publish_date\":\"\",\"show_item_navigation\":\"\",\"show_icons\":\"\",\"show_print_icon\":\"\",\"show_email_icon\":\"\",\"show_vote\":\"\",\"show_hits\":\"\",\"show_noauth\":\"\",\"urls_position\":\"\",\"alternative_readmore\":\"\",\"article_page_title\":\"\",\"show_publishing_options\":\"\",\"show_article_options\":\"\",\"show_urls_images_backend\":\"\",\"show_urls_images_frontend\":\"\"}', 1, 1, '', '', 1, 4, '{\"robots\":\"\",\"author\":\"\",\"rights\":\"\",\"xreference\":\"\"}', 0, '*', ''),
@@ -1134,7 +1074,7 @@ INSERT INTO `arvie_extensions` (`extension_id`, `package_id`, `name`, `type`, `e
 (449, 0, 'plg_authentication_cookie', 'plugin', 'cookie', 'authentication', 0, 1, 1, 0, '{\"name\":\"plg_authentication_cookie\",\"type\":\"plugin\",\"creationDate\":\"July 2013\",\"author\":\"Joomla! Project\",\"copyright\":\"Copyright (C) 2005 - 2017 Open Source Matters. All rights reserved.\",\"authorEmail\":\"admin@joomla.org\",\"authorUrl\":\"www.joomla.org\",\"version\":\"3.0.0\",\"description\":\"PLG_AUTH_COOKIE_XML_DESCRIPTION\",\"group\":\"\",\"filename\":\"cookie\"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (450, 0, 'plg_twofactorauth_yubikey', 'plugin', 'yubikey', 'twofactorauth', 0, 0, 1, 0, '{\"name\":\"plg_twofactorauth_yubikey\",\"type\":\"plugin\",\"creationDate\":\"September 2013\",\"author\":\"Joomla! Project\",\"copyright\":\"Copyright (C) 2005 - 2017 Open Source Matters. All rights reserved.\",\"authorEmail\":\"admin@joomla.org\",\"authorUrl\":\"www.joomla.org\",\"version\":\"3.2.0\",\"description\":\"PLG_TWOFACTORAUTH_YUBIKEY_XML_DESCRIPTION\",\"group\":\"\",\"filename\":\"yubikey\"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (451, 0, 'plg_search_tags', 'plugin', 'tags', 'search', 0, 1, 1, 0, '{\"name\":\"plg_search_tags\",\"type\":\"plugin\",\"creationDate\":\"March 2014\",\"author\":\"Joomla! Project\",\"copyright\":\"Copyright (C) 2005 - 2017 Open Source Matters. All rights reserved.\",\"authorEmail\":\"admin@joomla.org\",\"authorUrl\":\"www.joomla.org\",\"version\":\"3.0.0\",\"description\":\"PLG_SEARCH_TAGS_XML_DESCRIPTION\",\"group\":\"\",\"filename\":\"tags\"}', '{\"search_limit\":\"50\",\"show_tagged_items\":\"1\"}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
-(452, 0, 'plg_system_updatenotification', 'plugin', 'updatenotification', 'system', 0, 1, 1, 0, '{\"name\":\"plg_system_updatenotification\",\"type\":\"plugin\",\"creationDate\":\"May 2015\",\"author\":\"Joomla! Project\",\"copyright\":\"Copyright (C) 2005 - 2017 Open Source Matters. All rights reserved.\",\"authorEmail\":\"admin@joomla.org\",\"authorUrl\":\"www.joomla.org\",\"version\":\"3.5.0\",\"description\":\"PLG_SYSTEM_UPDATENOTIFICATION_XML_DESCRIPTION\",\"group\":\"\",\"filename\":\"updatenotification\"}', '{\"lastrun\":1510644851}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
+(452, 0, 'plg_system_updatenotification', 'plugin', 'updatenotification', 'system', 0, 1, 1, 0, '{\"name\":\"plg_system_updatenotification\",\"type\":\"plugin\",\"creationDate\":\"May 2015\",\"author\":\"Joomla! Project\",\"copyright\":\"Copyright (C) 2005 - 2017 Open Source Matters. All rights reserved.\",\"authorEmail\":\"admin@joomla.org\",\"authorUrl\":\"www.joomla.org\",\"version\":\"3.5.0\",\"description\":\"PLG_SYSTEM_UPDATENOTIFICATION_XML_DESCRIPTION\",\"group\":\"\",\"filename\":\"updatenotification\"}', '{\"lastrun\":1512375300}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (453, 0, 'plg_editors-xtd_module', 'plugin', 'module', 'editors-xtd', 0, 1, 1, 0, '{\"name\":\"plg_editors-xtd_module\",\"type\":\"plugin\",\"creationDate\":\"October 2015\",\"author\":\"Joomla! Project\",\"copyright\":\"Copyright (C) 2005 - 2017 Open Source Matters. All rights reserved.\",\"authorEmail\":\"admin@joomla.org\",\"authorUrl\":\"www.joomla.org\",\"version\":\"3.5.0\",\"description\":\"PLG_MODULE_XML_DESCRIPTION\",\"group\":\"\",\"filename\":\"module\"}', '', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (454, 0, 'plg_system_stats', 'plugin', 'stats', 'system', 0, 1, 1, 0, '{\"name\":\"plg_system_stats\",\"type\":\"plugin\",\"creationDate\":\"November 2013\",\"author\":\"Joomla! Project\",\"copyright\":\"Copyright (C) 2005 - 2017 Open Source Matters. All rights reserved.\",\"authorEmail\":\"admin@joomla.org\",\"authorUrl\":\"www.joomla.org\",\"version\":\"3.5.0\",\"description\":\"PLG_SYSTEM_STATS_XML_DESCRIPTION\",\"group\":\"\",\"filename\":\"stats\"}', '{\"mode\":3,\"lastrun\":1510390090,\"unique_id\":\"199e5d050a00030cdab163a94dc8b4add88e1d04\",\"interval\":12}', '', '', 0, '0000-00-00 00:00:00', 0, 0),
 (455, 0, 'plg_installer_packageinstaller', 'plugin', 'packageinstaller', 'installer', 0, 1, 1, 1, '{\"name\":\"plg_installer_packageinstaller\",\"type\":\"plugin\",\"creationDate\":\"May 2016\",\"author\":\"Joomla! Project\",\"copyright\":\"Copyright (C) 2005 - 2017 Open Source Matters. All rights reserved.\",\"authorEmail\":\"admin@joomla.org\",\"authorUrl\":\"www.joomla.org\",\"version\":\"3.6.0\",\"description\":\"PLG_INSTALLER_PACKAGEINSTALLER_PLUGIN_XML_DESCRIPTION\",\"group\":\"\",\"filename\":\"packageinstaller\"}', '', '', '', 0, '0000-00-00 00:00:00', 1, 0),
@@ -2126,7 +2066,7 @@ CREATE TABLE `arvie_session` (
 --
 
 INSERT INTO `arvie_session` (`session_id`, `client_id`, `guest`, `time`, `data`, `userid`, `username`) VALUES
-('vku2cclfhkqnhk32fbb5l58amg', 1, 0, '1510653732', 'joomla|s:1320:\"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjozOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjo0OntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aTo1NjtzOjU6InRva2VuIjtzOjMyOiJGZTNpRzZWS3FhcjE1UkZZTjFCMGNsYVJJWFRQWjRQSyI7czo1OiJ0aW1lciI7Tzo4OiJzdGRDbGFzcyI6Mzp7czo1OiJzdGFydCI7aToxNTEwNjUwMjg2O3M6NDoibGFzdCI7aToxNTEwNjUzNzI5O3M6Mzoibm93IjtpOjE1MTA2NTM3MzI7fX1zOjg6InJlZ2lzdHJ5IjtPOjI0OiJKb29tbGFcUmVnaXN0cnlcUmVnaXN0cnkiOjM6e3M6NzoiACoAZGF0YSI7Tzo4OiJzdGRDbGFzcyI6Mzp7czo5OiJjb21fYXJ2aWUiO086ODoic3RkQ2xhc3MiOjE6e3M6NDoiZWRpdCI7Tzo4OiJzdGRDbGFzcyI6MTp7czoxMToidXRpbGlzYXRldXIiO086ODoic3RkQ2xhc3MiOjI6e3M6MjoiaWQiO2E6MDp7fXM6NDoiZGF0YSI7Tjt9fX1zOjEyOiJjb21fYW5udWFpcmUiO086ODoic3RkQ2xhc3MiOjE6e3M6NDoiZWRpdCI7Tzo4OiJzdGRDbGFzcyI6MTp7czo3OiJjb250YWN0IjtPOjg6InN0ZENsYXNzIjoyOntzOjI6ImlkIjthOjA6e31zOjQ6ImRhdGEiO047fX19czoxMzoiY29tX2luc3RhbGxlciI7Tzo4OiJzdGRDbGFzcyI6Mzp7czo3OiJtZXNzYWdlIjtzOjA6IiI7czoxNzoiZXh0ZW5zaW9uX21lc3NhZ2UiO3M6MDoiIjtzOjEyOiJyZWRpcmVjdF91cmwiO047fX1zOjE0OiIAKgBpbml0aWFsaXplZCI7YjowO3M6OToic2VwYXJhdG9yIjtzOjE6Ii4iO31zOjQ6InVzZXIiO086MjA6Ikpvb21sYVxDTVNcVXNlclxVc2VyIjoxOntzOjI6ImlkIjtzOjM6IjQxNiI7fXM6MTE6ImFwcGxpY2F0aW9uIjtPOjg6InN0ZENsYXNzIjoxOntzOjU6InF1ZXVlIjthOjA6e319fX1zOjE0OiIAKgBpbml0aWFsaXplZCI7YjowO3M6OToic2VwYXJhdG9yIjtzOjE6Ii4iO30=\";', 416, 'SLAM');
+('au9afvu7chvvee80g16tl22dod', 0, 1, '1512376983', 'joomla|s:736:\"TzoyNDoiSm9vbWxhXFJlZ2lzdHJ5XFJlZ2lzdHJ5IjozOntzOjc6IgAqAGRhdGEiO086ODoic3RkQ2xhc3MiOjE6e3M6OToiX19kZWZhdWx0IjtPOjg6InN0ZENsYXNzIjozOntzOjc6InNlc3Npb24iO086ODoic3RkQ2xhc3MiOjM6e3M6NzoiY291bnRlciI7aTozO3M6NToidGltZXIiO086ODoic3RkQ2xhc3MiOjM6e3M6NToic3RhcnQiO2k6MTUxMjM3NTI5NjtzOjQ6Imxhc3QiO2k6MTUxMjM3NjE0MztzOjM6Im5vdyI7aToxNTEyMzc2OTgzO31zOjU6InRva2VuIjtzOjMyOiJmdHpNSW1FRk5zV0JibmlHZk4yVEpIWm93dDBzaktxeiI7fXM6ODoicmVnaXN0cnkiO086MjQ6Ikpvb21sYVxSZWdpc3RyeVxSZWdpc3RyeSI6Mzp7czo3OiIAKgBkYXRhIjtPOjg6InN0ZENsYXNzIjowOnt9czoxNDoiACoAaW5pdGlhbGl6ZWQiO2I6MDtzOjk6InNlcGFyYXRvciI7czoxOiIuIjt9czo0OiJ1c2VyIjtPOjIwOiJKb29tbGFcQ01TXFVzZXJcVXNlciI6MTp7czoyOiJpZCI7aTowO319fXM6MTQ6IgAqAGluaXRpYWxpemVkIjtiOjA7czo5OiJzZXBhcmF0b3IiO3M6MToiLiI7fQ==\";', 0, '');
 
 -- --------------------------------------------------------
 
@@ -2331,7 +2271,7 @@ CREATE TABLE `arvie_update_sites` (
 --
 
 INSERT INTO `arvie_update_sites` (`update_site_id`, `name`, `type`, `location`, `enabled`, `last_check_timestamp`, `extra_query`) VALUES
-(1, 'Joomla! Core', 'collection', 'https://update.joomla.org/core/list.xml', 1, 1510648367, ''),
+(1, 'Joomla! Core', 'collection', 'https://update.joomla.org/core/list.xml', 1, 1512375333, ''),
 (2, 'Accredited Joomla! Translations', 'collection', 'https://update.joomla.org/language/translationlist_3.xml', 1, 0, ''),
 (3, 'Joomla! Update Component Update Site', 'extension', 'https://update.joomla.org/core/extensions/com_joomlaupdate.xml', 1, 0, '');
 
@@ -2423,7 +2363,7 @@ CREATE TABLE `arvie_users` (
 --
 
 INSERT INTO `arvie_users` (`id`, `name`, `username`, `email`, `password`, `block`, `sendEmail`, `registerDate`, `lastvisitDate`, `activation`, `params`, `lastResetTime`, `resetCount`, `otpKey`, `otep`, `requireReset`) VALUES
-(416, 'Super Utilisateur', 'SLAM', 'emmanuel.derome@gmail.com', '$2y$10$.3gLjjdoOIexzDzlyZFEFuZUKHtzOTMimdK.Adj85unSnx0gN/5f2', 0, 1, '2017-11-11 08:46:40', '2017-11-14 09:04:46', '0', '', '0000-00-00 00:00:00', 0, '', '', 0),
+(416, 'Super Utilisateur', 'SLAM', 'emmanuel.derome@gmail.com', '$2y$10$.3gLjjdoOIexzDzlyZFEFuZUKHtzOTMimdK.Adj85unSnx0gN/5f2', 0, 1, '2017-11-11 08:46:40', '2017-12-04 08:15:26', '0', '', '0000-00-00 00:00:00', 0, '', '', 0),
 (417, 'Marcel DUPOND', 'mdupond', 'mdupond@arvie.org', '$2y$10$qNixBrOwFditD9ZjCiyije6JZHlpuGdQM6RGSALtxyD/WO1nswCE2', 0, 0, '2017-11-11 09:07:41', '2017-11-12 17:12:53', '', '{\"admin_style\":\"\",\"admin_language\":\"\",\"language\":\"\",\"editor\":\"\",\"helpsite\":\"\",\"timezone\":\"\"}', '0000-00-00 00:00:00', 0, '', '', 0);
 
 -- --------------------------------------------------------
@@ -2584,8 +2524,10 @@ ALTER TABLE `arvie_annuaire_typescontacts`
 -- Index pour la table `arvie_arvie_abonnements`
 --
 ALTER TABLE `arvie_arvie_abonnements`
-  ADD PRIMARY KEY (`abonne`,`suivi`),
-  ADD KEY `suivi` (`suivi`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `suivi` (`suivi`),
+  ADD KEY `abonne` (`abonne`),
+  ADD KEY `suivi_2` (`suivi`);
 
 --
 -- Index pour la table `arvie_arvie_discussions`
@@ -2604,25 +2546,16 @@ ALTER TABLE `arvie_arvie_evenements`
 --
 ALTER TABLE `arvie_arvie_groupes`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `parent` (`parent`);
+  ADD KEY `parent` (`groupe_parent`);
 
 --
--- Index pour la table `arvie_arvie_groupes_classes`
+-- Index pour la table `arvie_arvie_groupe_utilisateur_map`
 --
-ALTER TABLE `arvie_arvie_groupes_classes`
-  ADD PRIMARY KEY (`id`,`annee_scolaire`),
-  ADD KEY `prof_principal` (`prof_principal`),
-  ADD KEY `delegue_1` (`delegue_1`),
-  ADD KEY `delegue_2` (`delegue_2`),
-  ADD KEY `suppleant_1` (`suppleant_1`),
-  ADD KEY `suppleant_2` (`suppleant_2`);
-
---
--- Index pour la table `arvie_arvie_groupes_interets`
---
-ALTER TABLE `arvie_arvie_groupes_interets`
+ALTER TABLE `arvie_arvie_groupe_utilisateur_map`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `proprietaire` (`proprietaire`);
+  ADD KEY `groupe` (`groupe`),
+  ADD KEY `role` (`role`),
+  ADD KEY `utilisateur` (`utilisateur`);
 
 --
 -- Index pour la table `arvie_arvie_messages`
@@ -2642,13 +2575,17 @@ ALTER TABLE `arvie_arvie_metiers`
 -- Index pour la table `arvie_arvie_metier_groupe_map`
 --
 ALTER TABLE `arvie_arvie_metier_groupe_map`
-  ADD PRIMARY KEY (`metier`,`groupe`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `metier` (`metier`),
+  ADD KEY `groupe` (`groupe`);
 
 --
 -- Index pour la table `arvie_arvie_parrains`
 --
 ALTER TABLE `arvie_arvie_parrains`
-  ADD PRIMARY KEY (`parrain`,`filleul`),
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `filleuil` (`filleul`),
+  ADD KEY `parrain` (`parrain`),
   ADD KEY `filleul` (`filleul`);
 
 --
@@ -2657,8 +2594,14 @@ ALTER TABLE `arvie_arvie_parrains`
 ALTER TABLE `arvie_arvie_publications`
   ADD PRIMARY KEY (`id`),
   ADD KEY `auteur` (`auteur`),
-  ADD KEY `parent` (`parent`),
+  ADD KEY `parent` (`publication_parent`),
   ADD KEY `groupe` (`groupe`);
+
+--
+-- Index pour la table `arvie_arvie_roles`
+--
+ALTER TABLE `arvie_arvie_roles`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `arvie_arvie_utilisateurs`
@@ -2667,32 +2610,22 @@ ALTER TABLE `arvie_arvie_utilisateurs`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `arvie_arvie_utilisateur_classe_map`
---
-ALTER TABLE `arvie_arvie_utilisateur_classe_map`
-  ADD PRIMARY KEY (`utilisateur`,`classe`,`annee_inscription`),
-  ADD KEY `classe` (`classe`,`annee_inscription`);
-
---
 -- Index pour la table `arvie_arvie_utilisateur_discu_map`
 --
 ALTER TABLE `arvie_arvie_utilisateur_discu_map`
-  ADD PRIMARY KEY (`utilisateur`,`discussion`),
-  ADD KEY `discussion` (`discussion`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `discussion` (`discussion`),
+  ADD KEY `utilisateur` (`utilisateur`),
+  ADD KEY `discussion_2` (`discussion`);
 
 --
 -- Index pour la table `arvie_arvie_utilisateur_even_map`
 --
 ALTER TABLE `arvie_arvie_utilisateur_even_map`
-  ADD PRIMARY KEY (`participant`,`evenement`),
-  ADD KEY `evenement` (`evenement`);
-
---
--- Index pour la table `arvie_arvie_utilisateur_interet_map`
---
-ALTER TABLE `arvie_arvie_utilisateur_interet_map`
-  ADD PRIMARY KEY (`utilisateur`,`interet`),
-  ADD KEY `interet` (`interet`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `evenement` (`evenement`),
+  ADD KEY `participant` (`participant`),
+  ADD KEY `evenement_2` (`evenement`);
 
 --
 -- Index pour la table `arvie_assets`
@@ -3328,6 +3261,12 @@ ALTER TABLE `arvie_annuaire_typescontacts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT pour la table `arvie_arvie_abonnements`
+--
+ALTER TABLE `arvie_arvie_abonnements`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `arvie_arvie_discussions`
 --
 ALTER TABLE `arvie_arvie_discussions`
@@ -3338,6 +3277,12 @@ ALTER TABLE `arvie_arvie_discussions`
 --
 ALTER TABLE `arvie_arvie_groupes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT pour la table `arvie_arvie_groupe_utilisateur_map`
+--
+ALTER TABLE `arvie_arvie_groupe_utilisateur_map`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `arvie_arvie_messages`
@@ -3352,16 +3297,46 @@ ALTER TABLE `arvie_arvie_metiers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT pour la table `arvie_arvie_metier_groupe_map`
+--
+ALTER TABLE `arvie_arvie_metier_groupe_map`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT pour la table `arvie_arvie_parrains`
+--
+ALTER TABLE `arvie_arvie_parrains`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `arvie_arvie_publications`
 --
 ALTER TABLE `arvie_arvie_publications`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT pour la table `arvie_arvie_roles`
+--
+ALTER TABLE `arvie_arvie_roles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `arvie_arvie_utilisateurs`
 --
 ALTER TABLE `arvie_arvie_utilisateurs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT pour la table `arvie_arvie_utilisateur_discu_map`
+--
+ALTER TABLE `arvie_arvie_utilisateur_discu_map`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `arvie_arvie_utilisateur_even_map`
+--
+ALTER TABLE `arvie_arvie_utilisateur_even_map`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `arvie_assets`
@@ -3608,25 +3583,15 @@ ALTER TABLE `arvie_arvie_evenements`
 -- Contraintes pour la table `arvie_arvie_groupes`
 --
 ALTER TABLE `arvie_arvie_groupes`
-  ADD CONSTRAINT `arvie_arvie_groupes_ibfk_1` FOREIGN KEY (`parent`) REFERENCES `arvie_arvie_groupes` (`id`);
+  ADD CONSTRAINT `arvie_arvie_groupes_ibfk_1` FOREIGN KEY (`groupe_parent`) REFERENCES `arvie_arvie_groupes` (`id`);
 
 --
--- Contraintes pour la table `arvie_arvie_groupes_classes`
+-- Contraintes pour la table `arvie_arvie_groupe_utilisateur_map`
 --
-ALTER TABLE `arvie_arvie_groupes_classes`
-  ADD CONSTRAINT `arvie_arvie_groupes_classes_ibfk_1` FOREIGN KEY (`id`) REFERENCES `arvie_arvie_groupes` (`id`),
-  ADD CONSTRAINT `arvie_arvie_groupes_classes_ibfk_2` FOREIGN KEY (`prof_principal`) REFERENCES `arvie_arvie_utilisateurs` (`id`),
-  ADD CONSTRAINT `arvie_arvie_groupes_classes_ibfk_3` FOREIGN KEY (`delegue_1`) REFERENCES `arvie_arvie_utilisateurs` (`id`),
-  ADD CONSTRAINT `arvie_arvie_groupes_classes_ibfk_4` FOREIGN KEY (`delegue_2`) REFERENCES `arvie_arvie_utilisateurs` (`id`),
-  ADD CONSTRAINT `arvie_arvie_groupes_classes_ibfk_5` FOREIGN KEY (`suppleant_1`) REFERENCES `arvie_arvie_utilisateurs` (`id`),
-  ADD CONSTRAINT `arvie_arvie_groupes_classes_ibfk_6` FOREIGN KEY (`suppleant_2`) REFERENCES `arvie_arvie_utilisateurs` (`id`);
-
---
--- Contraintes pour la table `arvie_arvie_groupes_interets`
---
-ALTER TABLE `arvie_arvie_groupes_interets`
-  ADD CONSTRAINT `arvie_arvie_groupes_interets_ibfk_1` FOREIGN KEY (`id`) REFERENCES `arvie_arvie_groupes` (`id`),
-  ADD CONSTRAINT `arvie_arvie_groupes_interets_ibfk_2` FOREIGN KEY (`proprietaire`) REFERENCES `arvie_arvie_utilisateurs` (`id`);
+ALTER TABLE `arvie_arvie_groupe_utilisateur_map`
+  ADD CONSTRAINT `arvie_arvie_groupe_utilisateur_map_ibfk_1` FOREIGN KEY (`groupe`) REFERENCES `arvie_arvie_groupes` (`id`),
+  ADD CONSTRAINT `arvie_arvie_groupe_utilisateur_map_ibfk_2` FOREIGN KEY (`role`) REFERENCES `arvie_arvie_roles` (`id`),
+  ADD CONSTRAINT `arvie_arvie_groupe_utilisateur_map_ibfk_3` FOREIGN KEY (`utilisateur`) REFERENCES `arvie_arvie_utilisateurs` (`id`);
 
 --
 -- Contraintes pour la table `arvie_arvie_messages`
@@ -3634,6 +3599,13 @@ ALTER TABLE `arvie_arvie_groupes_interets`
 ALTER TABLE `arvie_arvie_messages`
   ADD CONSTRAINT `arvie_arvie_messages_ibfk_1` FOREIGN KEY (`auteur`) REFERENCES `arvie_arvie_utilisateurs` (`id`),
   ADD CONSTRAINT `arvie_arvie_messages_ibfk_2` FOREIGN KEY (`discussion`) REFERENCES `arvie_arvie_discussions` (`id`);
+
+--
+-- Contraintes pour la table `arvie_arvie_metier_groupe_map`
+--
+ALTER TABLE `arvie_arvie_metier_groupe_map`
+  ADD CONSTRAINT `arvie_arvie_metier_groupe_map_ibfk_1` FOREIGN KEY (`metier`) REFERENCES `arvie_arvie_metiers` (`id`),
+  ADD CONSTRAINT `arvie_arvie_metier_groupe_map_ibfk_2` FOREIGN KEY (`groupe`) REFERENCES `arvie_arvie_groupes` (`id`);
 
 --
 -- Contraintes pour la table `arvie_arvie_parrains`
@@ -3647,15 +3619,8 @@ ALTER TABLE `arvie_arvie_parrains`
 --
 ALTER TABLE `arvie_arvie_publications`
   ADD CONSTRAINT `arvie_arvie_publications_ibfk_1` FOREIGN KEY (`auteur`) REFERENCES `arvie_arvie_utilisateurs` (`id`),
-  ADD CONSTRAINT `arvie_arvie_publications_ibfk_2` FOREIGN KEY (`parent`) REFERENCES `arvie_arvie_publications` (`id`),
+  ADD CONSTRAINT `arvie_arvie_publications_ibfk_2` FOREIGN KEY (`publication_parent`) REFERENCES `arvie_arvie_publications` (`id`),
   ADD CONSTRAINT `arvie_arvie_publications_ibfk_3` FOREIGN KEY (`groupe`) REFERENCES `arvie_arvie_groupes` (`id`);
-
---
--- Contraintes pour la table `arvie_arvie_utilisateur_classe_map`
---
-ALTER TABLE `arvie_arvie_utilisateur_classe_map`
-  ADD CONSTRAINT `arvie_arvie_utilisateur_classe_map_ibfk_1` FOREIGN KEY (`utilisateur`) REFERENCES `arvie_arvie_utilisateurs` (`id`),
-  ADD CONSTRAINT `arvie_arvie_utilisateur_classe_map_ibfk_2` FOREIGN KEY (`classe`,`annee_inscription`) REFERENCES `arvie_arvie_groupes_classes` (`id`, `annee_scolaire`);
 
 --
 -- Contraintes pour la table `arvie_arvie_utilisateur_discu_map`
@@ -3670,13 +3635,6 @@ ALTER TABLE `arvie_arvie_utilisateur_discu_map`
 ALTER TABLE `arvie_arvie_utilisateur_even_map`
   ADD CONSTRAINT `arvie_arvie_utilisateur_even_map_ibfk_1` FOREIGN KEY (`evenement`) REFERENCES `arvie_arvie_evenements` (`id`),
   ADD CONSTRAINT `arvie_arvie_utilisateur_even_map_ibfk_2` FOREIGN KEY (`participant`) REFERENCES `arvie_arvie_utilisateurs` (`id`);
-
---
--- Contraintes pour la table `arvie_arvie_utilisateur_interet_map`
---
-ALTER TABLE `arvie_arvie_utilisateur_interet_map`
-  ADD CONSTRAINT `arvie_arvie_utilisateur_interet_map_ibfk_1` FOREIGN KEY (`interet`) REFERENCES `arvie_arvie_groupes_interets` (`id`),
-  ADD CONSTRAINT `arvie_arvie_utilisateur_interet_map_ibfk_2` FOREIGN KEY (`utilisateur`) REFERENCES `arvie_arvie_utilisateurs` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

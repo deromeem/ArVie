@@ -8,7 +8,7 @@ JHtml::_('formbehavior.chosen', 'select');
 <script type="text/javascript">
 	Joomla.submitbutton = function(task)
 	{
-		if (task == 'parrain.cancel' || document.formvalidator.isValid(document.id('arvie-form')))
+		if (task == 'abonnement.cancel' || document.formvalidator.isValid(document.id('arvie-form')))
 		{
 			Joomla.submitform(task, document.getElementById('arvie-form'));
 		}
@@ -25,18 +25,18 @@ JHtml::_('formbehavior.chosen', 'select');
 
 
 	<div class="form-horizontal">
-		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'parrain')); ?>
+		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'abonnement')); ?>
 
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'parrain', JText::_('COM_ARVIE_UTILISATEUR')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'abonnement', JText::_('COM_ARVIE_ABONNEMENT')); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="form-vertical">
 				<div class="control-group">
-					<div class="control-label"><?php echo $this->form->getLabel('date_deb'); ?></div>
-					<div class="controls"><?php echo $this->form->getInput('date_deb'); ?></div>
+					<div class="control-label"><?php echo $this->form->getLabel('prenom'); ?></div>
+					<div class="controls"><?php echo $this->form->getInput('prenom'); ?></div>
 				</div>
 				<div class="control-group">
-					<div class="control-label"><?php echo $this->form->getLabel('date_fin'); ?></div>
-					<div class="controls"><?php echo $this->form->getInput('date_fin'); ?></div>
+					<div class="control-label"><?php echo $this->form->getLabel('email'); ?></div>
+					<div class="controls"><?php echo $this->form->getInput('email'); ?></div>
 				</div>
 			</div>
 		</div>

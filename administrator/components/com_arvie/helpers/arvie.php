@@ -24,6 +24,12 @@ class ArvieHelper extends JHelperContent
 		);
 		
 		JHtmlSidebar::addEntry(
+			JText::_('Groupe_util_map'),
+			'index.php?option=com_arvie&view=groupe_utilisateur_map',
+			$vName == 'groupe_utilisateur_map'
+		);		
+	
+		JHtmlSidebar::addEntry(
 			JText::_('Groupes'),
 			'index.php?option=com_arvie&view=groupes',
 			$vName == 'groupes'
@@ -34,7 +40,19 @@ class ArvieHelper extends JHelperContent
 			'index.php?option=com_arvie&view=messages',
 			$vName == 'messages'
 		);
+
+		JHtmlSidebar::addEntry(
+			JText::_('Metier_groupe_map'),
+			'index.php?option=com_arvie&view=metier_groupe_map',
+			$vName == 'metier_groupe_map'
+		);
 		
+		JHtmlSidebar::addEntry(
+			JText::_('Metiers'),
+			'index.php?option=com_arvie&view=metiers',
+			$vName == 'metiers'
+		);
+
 		JHtmlSidebar::addEntry(
 			JText::_('Parrains'),
 			'index.php?option=com_arvie&view=parrains',
@@ -52,11 +70,25 @@ class ArvieHelper extends JHelperContent
 			'index.php?option=com_arvie&view=roles',
 			$vName == 'roles'
 		);
+
+		JHtmlSidebar::addEntry(
+			JText::_('Utilisateur_discu_map'),
+			'index.php?option=com_arvie&view=utilisateur_discu_map',
+			$vName == 'utilisateur_discu_map'
+		);		
+
+		JHtmlSidebar::addEntry(
+			JText::_('Utilisateur_even_map'),
+			'index.php?option=com_arvie&view=utilisateur_even_map',
+			$vName == 'utilisateur_even_map'
+		);		
 		
 		JHtmlSidebar::addEntry(
 			JText::_('Utilisateurs'),
 			'index.php?option=com_arvie&view=utilisateurs',
 			$vName == 'utilisateurs'
 		);		
+				
+		
 	}
 }

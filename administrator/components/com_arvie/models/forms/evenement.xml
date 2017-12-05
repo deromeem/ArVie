@@ -20,10 +20,7 @@
             size="40" class="inputbox" default=""
         />
 
-        <field name="fonction" type="text" label="COM_ARVIE_EVENEMENTS_FONCTION"
-            description="COM_ARVIE_EVENEMENTS_FONCTION"
-            size="40" class="inputbox" default="" required="true"
-        />
+        
 		
 		<field id="published" name="published" type="list"
 			label="JSTATUS"	description="JSTATUS"

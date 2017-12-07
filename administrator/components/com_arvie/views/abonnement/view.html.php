@@ -33,7 +33,7 @@ class ArvieViewAbonnement extends JViewLegacy
 		// $checkedOut	= !($this->item->checked_out == 0 || $this->item->checked_out == $userId);
 	
 		$isNew = ($this->item->id == 0);
-		JToolBarHelper::title(JText::_('COM_ARVIE_UTILISATEUR')." : ".($isNew ? JText::_('COM_ARVIE_NEW'): JText::_('COM_ARVIE_MODIF')), 'address');
+		JToolBarHelper::title(JText::_('COM_ARVIE_ABONNEMENT')." : ".($isNew ? JText::_('COM_ARVIE_NEW'): JText::_('COM_ARVIE_MODIF')), 'address');
 
 
 		if ($isNew)

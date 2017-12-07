@@ -9,15 +9,17 @@ class ArvieModelGroupe_utilisateur_map extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'id', 'g.id',
-				'nom', 'g.nom',
-				'parent','g.groupe_parent',
-				'created_by','g.created_by',
-				'published', 'g.published',
-				'hits', 'g.hits',
-				'modified', 'g.modified',
-				'parent_nom','gp.nom',
-				'created_by_nom','u.name'
+				'id', 'gum.id',
+				'utilisateur', 'gum.utilisateur',
+				'groupe','gum.groupe',
+				'date_deb','gum.date_deb',
+				'date_fin','gum.date_fin',
+				'role','gum.role',
+				'published', 'gum.published',
+				'created','gum.created',
+				'modified', 'gum.modified',
+				'modified_by', 'gum.modified_by',
+				'hits', 'gum.hits'
 			);
 		}
 		parent::__construct($config);
@@ -39,29 +41,23 @@ class ArvieModelGroupe_utilisateur_map extends JModelList
 	
 		// construit la requête d'affichage de la liste
 		$query = $this->_db->getQuery(true);
-		$query->select('g.id,g.groupe_parent, g.nom, g.published, g.hits, g.modified,g.created_by');
-		$query->from('#__arvie_groupes g');
-
-		// joint la table parent pour les parents
-		$query->select('gp.nom AS parent_nom')->join('LEFT', '#__arvie_groupes AS gp ON gp.id=g.groupe_parent');
-
-		// joint la table #_users pour les created_by
-		$query->select('u.name AS created_by_nom')->join('LEFT', '#__users AS u ON g.created_by=u.id');
+		$query->select('gum.id, gum.utilisateur, gum.groupe, gum.date_deb, gum.date_fin, gum.role, gum.published, gum.created, gum.modified, gum.modified_by, gum.hits');
+		$query->from('#__arvie_groupe_utilisateur_map gum');
 
 		// filtre de recherche rapide textuel
 		$search = $this->getState('filter.search');
 		if (!empty($search)) {
 			// recherche prefixée par 'id:'
 			if (stripos($search, 'id:') === 0) {
-				$query->where('g.id = '.(int) substr($search, 3));
+				$query->where('gum.id = '.(int) substr($search, 3));
 			}
 			else {
 				// recherche textuelle classique (sans préfixe)
 				$search = $this->_db->Quote('%'.$this->_db->escape($search, true).'%');
 				// Compile les clauses de recherche
 				$searches	= array();
-				$searches[]	= 'g.nom LIKE '.$search;
-				$searches[]	= 'g.created_by LIKE '.$search;
+				$searches[]	= 'gum.nom LIKE '.$search;
+				$searches[]	= 'gum.created_by LIKE '.$search;
 				// Ajoute les clauses à la requête
 				$query->where('('.implode(' OR ', $searches).')');
 			}
@@ -70,11 +66,11 @@ class ArvieModelGroupe_utilisateur_map extends JModelList
 		// filtre selon l'état du filtre 'filter_published'
 		$published = $this->getState('filter.published');
 		if (is_numeric($published)) {
-			$query->where('g.published=' . (int) $published);
+			$query->where('gum.published=' . (int) $published);
 		}
 		elseif ($published === '') {
 			// si aucune sélection, on n'affiche que les publié et dépublié
-			$query->where('(g.published=0 OR g.published=1)');
+			$query->where('(gum.published=0 OR gum.published=1)');
 		}
 
 		// tri des colonnes

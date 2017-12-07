@@ -8,12 +8,22 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 	<tr>
         <th width="1%" class="hidden-phone">
                 <?php echo JHtml::_('grid.checkall'); ?>
-        </th>                   
+        </th> 
+
         <th width="1%">
                 <?php echo JHtml::_('grid.sort', 'Nom', 'g.nom', $listDirn, $listOrder) ?>
         </th>
+
         <th width="2%">
                 <?php echo JHtml::_('grid.sort', 'Groupe parent', 'gp.nom', $listDirn, $listOrder) ?>
+        </th>
+
+        <th width="2%">
+                <?php echo JHtml::_('grid.sort', 'Est-un groupe interet', 'g.est_groupe_interet', $listDirn, $listOrder) ?>
+        </th>
+
+        <th width="2%">
+                <?php echo JHtml::_('grid.sort', 'Est public', 'g.est_public', $listDirn, $listOrder) ?>
         </th>
 
         <th width="2%">

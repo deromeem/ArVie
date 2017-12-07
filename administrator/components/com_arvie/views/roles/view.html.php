@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
  
-class ArvieViewGroupe_utilisateur_map extends JViewLegacy
+class ArvieViewRoles extends JViewLegacy
 {
 	function display($tpl = null) 
 	{
@@ -31,7 +31,7 @@ class ArvieViewGroupe_utilisateur_map extends JViewLegacy
 		// ajoute la toolbar contenant les boutons d'actions
 		$this->addToolBar();
 		// invoque la méthode addSubmenu du fichier de soutien (helper)
-		ArvieHelper::addSubmenu('groupe_utilisateur_map');
+		ArvieHelper::addSubmenu('roles');
 		// prépare et affiche la sidebar à gauche de la liste
 		$this->prepareSideBar();
 		$this->sidebar = JHtmlSidebar::render();
@@ -43,17 +43,17 @@ class ArvieViewGroupe_utilisateur_map extends JViewLegacy
 	protected function addToolBar() 
 	{
 		// affiche le titre de la page
-		JToolBarHelper::title('Arvie : groupe_utilisateur_map');
+		JToolBarHelper::title('Arvie : Roles');
 		
 		// affiche les boutons d'action
-		JToolBarHelper::addNew('groupe_utilisateur_map.add', 'Nouveau groupe_utilisateur_map');
-		JToolBarHelper::editList('groupe_utilisateur_map.edit', 'Modifier groupe_utilisateur_map');
-		JToolBarHelper::deleteList('Etes vous sur ?', 'groupe_utilisateur_map.delete', 'Supprimer groupe_utilisateur_map');
-		JToolbarHelper::publish('groupe_utilisateur_map.publish', 'JTOOLBAR_PUBLISH', true);
-		JToolbarHelper::unpublish('groupe_utilisateur_map.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-		JToolbarHelper::archiveList('groupe_utilisateur_map.archive');
-		JToolbarHelper::checkin('groupe_utilisateur_map.checkin');
-		JToolbarHelper::trash('groupe_utilisateur_map.trash');
+		JToolBarHelper::addNew('role.add', 'Nouveau role');
+		JToolBarHelper::editList('role.edit', 'Modifier role');
+		JToolBarHelper::deleteList('Etes vous sur ?', 'roles.delete', 'Supprimer roles');
+		JToolbarHelper::publish('roles.publish', 'JTOOLBAR_PUBLISH', true);
+		JToolbarHelper::unpublish('roles.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+		JToolbarHelper::archiveList('roles.archive');
+		JToolbarHelper::checkin('roles.checkin');
+		JToolbarHelper::trash('roles.trash');
 		JToolbarHelper::preferences('com_arvie');
 	}
 
@@ -73,23 +73,10 @@ class ArvieViewGroupe_utilisateur_map extends JViewLegacy
 	{
 		// prépare l'affichage des colonnes de tri du calque
 		return array(
-			'gum.published' => JText::_('JSTATUS'),
-			'u.prenom' => 'Prenom',
-			'gum.id' => 'ID',
-			'r.label' => 'Role',
-			'g.nom' => 'Groupe',
-
-			
-			'g.created_by' => JText::_('COM_ARVIE_GROUPES_CREE_PAR'),
+			'r.published' => JText::_('JSTATUS'),
+			'r.label' => JText::_('COM_ARVIE_UTILISATEURS_NOM'),
+			'r.id' => 'ID',
 		);
-	}
-
-	protected function displayParent($currParent) 
-	{
-		foreach ($this->groupe_utilisateur_map as $groupe_utilisateur_map) {
-			if($groupe_utilisateur_map->id==$currParent) return $groupe_utilisateur_map->nom;
-		}
-		return "N.C.";
 	}
 
 }

@@ -34,15 +34,15 @@ if ($saveOrder)
 			</div>
                 </td>
                 <td align="small">
-                        <?php echo $item->utilisateur; ?>
+                        <?php echo $item->utilisateur_prenom; ?>
 		</td>
 
 		<td align="small">
-                        <?php echo $item->role; ?>
+                        <?php echo $item->role_label; ?>
 		</td>
 
 		<td align="small">
-                        <?php echo $item->groupe; ?>
+                        <?php echo $item->groupe_nom; ?>
 		</td>
 
 		<td align="small">

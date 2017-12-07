@@ -19,11 +19,13 @@ if ($saveOrder)
 	</td>
 	<td class="wrap has-context">
 		<div class="pull-left">
-				<?php echo $this->escape($item->nabonne); ?>
-			<div class="small hidden-phone">
-				<?php // extrait description selon les paramètres de configuration
-				if ($this->paramDescShow) {
-					$desc = JFilterOutput::cleanText($item->activite);
+		<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=abonnement.edit&id='.(int) $item->id); ?>">
+			<?php echo $this->escape($item->nabonne); ?>
+		</a>
+		<div class="small hidden-phone">
+			<?php // extrait description selon les paramètres de configuration
+			if ($this->paramDescShow) {
+				$desc = JFilterOutput::cleanText($item->activite);
 					echo substr($desc, 0, $this->paramDescSize);
 					echo (strlen($desc)>$this->paramDescSize?"...":"") ;
 				}
@@ -35,9 +37,9 @@ if ($saveOrder)
 		<?php echo $item->nsuivi; ?>
 	</td>
 	<td align="small">
-	<?php echo $item->date; ?>
-</td>
-<td align="small">
+		<?php echo $item->date; ?>
+	</td>
+	<td align="small">
 		<?php echo $item->alias; ?>
 	</td>
 	<td align="center">
@@ -47,7 +49,7 @@ if ($saveOrder)
 		<?php echo JHtml::_('date', $item->modified, $this->paramDateFmt); ?>
 	</td>
 	<td class="center hidden-tablet hidden-phone">
-			<?php echo (int) $item->hits; ?>
+		<?php echo (int) $item->hits; ?>
 	</td>
 </tr>
 <?php endforeach; ?>

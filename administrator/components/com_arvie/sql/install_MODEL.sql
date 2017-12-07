@@ -48,7 +48,6 @@ CREATE TABLE `discussions` (
 
 CREATE TABLE `evenements` (
   `id` int(11) NOT NULL,
-  `titre` varchar(255) NOT NULL,
   `date_event` datetime NOT NULL,
   `lieu` varchar(50) NOT NULL,
   `alias` varchar(255) NOT NULL,
@@ -221,6 +220,7 @@ CREATE TABLE `publications` (
   `publication_parent` int(11) DEFAULT NULL,
   `groupe` int(11) NOT NULL,
   `auteur` int(11) NOT NULL,
+  `titre` varchar(255) NOT NULL,
   `texte` text NOT NULL,
   `date_publi` datetime NOT NULL,
   `public` tinyint(1) NOT NULL,
@@ -248,7 +248,7 @@ INSERT INTO `arvie_arvie_publications` (`id`, `publication_parent`, `groupe`, `a
 
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
-  `label` int(11) NOT NULL,
+  `label` varchar(50) NOT NULL,
   `alias` varchar(255) NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
@@ -321,7 +321,6 @@ CREATE TABLE `utilisateur_even_map` (
   `id` int(11) NOT NULL,
   `participant` int(11) NOT NULL,
   `evenement` int(11) NOT NULL,
-  `date` datetime NOT NULL,
   `alias` varchar(255) NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,

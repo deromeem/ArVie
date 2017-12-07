@@ -73,18 +73,14 @@ class ArvieViewPublications extends JViewLegacy
 	{
 		// prépare l'affichage des colonnes de tri du calque
 		return array(
+			'p.publication_parent' => JText::_('COM_ARVIE_PUBLICATIONS_PARENT'),
 			'p.auteur' => JText::_('COM_ARVIE_PUBLICATIONS_AUTEUR'),
+			'p.texte' => JText::_('COM_ARVIE_PUBLICATIONS_TEXTE'),
 			'p.groupe' => JText::_('COM_ARVIE_PUBLICATIONS_GROUPE'),
 			'p.published' => JText::_('JSTATUS'),
 			'p.id' => "ID"
 		);
 	}
 
-	protected function displayParentPublication($currParentPublication) 
-	{
-		foreach ($this->publications as $publications) {
-			if($publications->id==$currParentPublication) return $publications->id;
-		}
-		return "N.C.";
-	}
+	
 }

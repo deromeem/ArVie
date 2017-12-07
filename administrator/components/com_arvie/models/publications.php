@@ -34,8 +34,8 @@ class ArvieModelPublications extends JModelList
 		$search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
 		$this->setState('filter.search', $search);
 
-		//$etat = $this->getUserStateFromRequest($this->context.'.filter.entreprises', 'filter_entreprises', '');
-		//$this->setState('filter.etat', $etat);
+		$etat = $this->getUserStateFromRequest($this->context.'.filter.publications', 'filter_publications', '');
+		$this->setState('filter.etat', $etat);
 
 		$published = $this->getUserStateFromRequest($this->context.'.filter.published', 'filter_published', '');
 		$this->setState('filter.published', $published);
@@ -51,12 +51,12 @@ class ArvieModelPublications extends JModelList
 		$query->from('#__arvie_publications p');
 		
 		// joint la table utilisateur pour les auteurs
-		$query->select('ap.nom AS auteur_nom')->join('LEFT', '#__arvie_utilisateurs AS ap ON ap.id=p.auteur');
+		$query->select('ap.prenom AS auteur_prenom')->join('LEFT', '#__arvie_utilisateurs AS ap ON ap.id=p.auteur');
 		
 		// joint la table groupes pour les groupes
 		$query->select('pp.nom AS groupes_nom')->join('LEFT', '#__arvie_groupes AS pp ON pp.id=p.groupe');
 
-		// joint la table groupes pour les parent
+		// joint la table publication pour les parent
 		$query->select('p.id AS parent_id')->join('LEFT', '#__arvie_publications AS op ON p.id=op.publication_parent');
 
 		// filtre de recherche rapide textuel

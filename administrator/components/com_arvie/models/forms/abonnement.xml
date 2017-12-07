@@ -5,24 +5,26 @@
 
 		<field name="asset_id" type="hidden" filter="unset" />
 		
-        <field name="abonne" type="text" label="COM_ARVIE_ABONNEMENTS_ABONNE"
+        <field name="abonne" type="sql" label="COM_ARVIE_ABONNEMENTS_ABONNE"
             description="COM_ARVIE_ABONNEMENTS_ABONNE"
-            size="40" class="inputbox" default="" required="true"
+			query="SELECT id, CONCAT(nom, ' ', prenom) AS nom FROM #__arvie_utilisateurs WHERE published=1 ORDER BY nom" 
+            key_field="id" value_field="nom" required="true"
         />
 
-        <field name="suivi" type="text" label="COM_ARVIE_ABONNEMENTS_SUIVI"
+        <field name="suivi" type="sql" label="COM_ARVIE_ABONNEMENTS_SUIVI"
             description="COM_ARVIE_ABONNEMENTS_SUIVI"
-            size="40" class="inputbox" default="" required="true"
+            query="SELECT id, CONCAT(nom, ' ', prenom) AS nom FROM #__arvie_utilisateurs WHERE published=1 ORDER BY nom" 
+			key_field="id" value_field="nom" required="true"
         />
 
-        <field name="date" type="date" label="COM_ARVIE_ABONNEMENTS_DATE"
-            description="COM_ARVIE_ABONNEMENTS_ALIAS"
-            size="40" class="inputbox" default=""
+        <field name="date" type="calendar" label="COM_ARVIE_ABONNEMENTS_DATE"
+            description="COM_ARVIE_ABONNEMENTS_DATE"
+        	size="40" class="inputbox" default="" required="true"
         />
 
         <field name="alias" type="text" label="COM_ARVIE_ABONNEMENTS_ALIAS"
             description="COM_ARVIE_ABONNEMENTS_ALIAS"
-            size="40" class="inputbox" default="" required="true"
+            size="40" class="inputbox" default=" " required=""
         />
 		
 		<field id="published" name="published" type="list"

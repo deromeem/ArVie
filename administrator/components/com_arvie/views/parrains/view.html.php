@@ -43,7 +43,7 @@ class ArvieViewParrains extends JViewLegacy
 	protected function addToolBar() 
 	{
 		// affiche le titre de la page
-		JToolBarHelper::title(JText::_('COM_ARVIE')." : ".JText::_('COM_ARVIE_UTILISATEURS'));
+		JToolBarHelper::title(JText::_('COM_ARVIE')." : ".JText::_('COM_ARVIE_PARRAINS'));
 		
 		// affiche les boutons d'action
 		JToolBarHelper::addNew('parrain.add');

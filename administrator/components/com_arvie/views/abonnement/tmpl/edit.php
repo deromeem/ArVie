@@ -31,12 +31,20 @@ JHtml::_('formbehavior.chosen', 'select');
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="form-vertical">
 				<div class="control-group">
-					<div class="control-label"><?php echo $this->form->getLabel('prenom'); ?></div>
-					<div class="controls"><?php echo $this->form->getInput('prenom'); ?></div>
+					<div class="control-label"><?php echo $this->form->getLabel('abonne'); ?></div>
+					<div class="controls"><?php echo $this->form->getInput('abonne'); ?></div>
 				</div>
 				<div class="control-group">
-					<div class="control-label"><?php echo $this->form->getLabel('email'); ?></div>
-					<div class="controls"><?php echo $this->form->getInput('email'); ?></div>
+					<div class="control-label"><?php echo $this->form->getLabel('suivi'); ?></div>
+					<div class="controls"><?php echo $this->form->getInput('suivi'); ?></div>
+				</div>
+				<div class="control-group">
+					<div class="control-label"><?php echo $this->form->getLabel('date'); ?></div>
+					<div class="controls"><?php echo $this->form->getInput('date'); ?></div>
+				</div>
+				<div class="control-group">
+					<div class="control-label"><?php echo $this->form->getLabel('alias'); ?></div>
+					<div class="controls"><?php echo $this->form->getInput('alias'); ?></div>
 				</div>
 			</div>
 		</div>

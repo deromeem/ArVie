@@ -1,13 +1,13 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
  
-class ArvieControllerAbonnement extends JControllerForm
+class ArvieControllerAbonnements extends JControllerAdmin
 {
-        function display($cachable = false, $urlparams = false) 
-        {
-                $input = JFactory::getApplication()->input;
-                $input->set('view', $input->getCmd('view', 'Abonnement'));
-
-                parent::display($cachable, $urlparams);
+	// surcharge pour gérer la suppression de utilisateurs par le modèle adéquat
+	public function getModel($name = 'Abonnement', $prefix = 'ArvieModel') 
+	{
+		// récupèrer le modèle de détail ($name au sigulier) pour la suppression assistée d'un (des) enregistrement(s)
+		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
+		return $model;
         }
 }

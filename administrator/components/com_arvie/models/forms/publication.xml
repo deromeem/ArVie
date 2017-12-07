@@ -10,21 +10,25 @@
             size="40" class="inputbox" default="" required="true"
         />
 
-        <field name="publication_parent" type="text" label="COM_ARVIE_PUBLICATIONS_PARENT"
+        <field name="publication_parent" type="sql" label="COM_ARVIE_PUBLICATIONS_PARENT" default="20"
             description="Parent"
-            size="40" class="inputbox" default="" required="true"
+            query="SELECT id, publication_parent FROM #__arvie_publications ORDER BY publication_parent" 
+			key_field="id" value_field="id" required="false"
         />
 
-        <field name="groupe" type="text" label="COM_ARVIE_PUBLICATIONS_GROUPE"
+        <field name="groupe" type="sql" label="COM_ARVIE_PUBLICATIONS_GROUPE"
             description="Groupe"
-            size="40" class="inputbox" default=""
+            query="SELECT id, nom FROM #__arvie_groupes ORDER BY nom" 
+			key_field="id" value_field="nom" required="true"
         />
 
-        <field name="auteur" type="text" label="COM_ARVIE_PUBLICATIONS_AUTEUR"
+        <field name="auteur" type="sql" label="COM_ARVIE_PUBLICATIONS_AUTEUR"
             description="Auteur"
-            size="40" class="inputbox" default="" required="true"
+            query="SELECT id, prenom FROM #__arvie_utilisateurs ORDER BY prenom" 
+			key_field="id" value_field="prenom" required="true"
         />
 		
+
 		<field id="published" name="published" type="list"
 			label="JSTATUS"	description="JSTATUS"
 			class="chzn-color-state" size="1" default="1"
@@ -58,11 +62,11 @@
 			class="inputbox" default=""
 		/>
 		<field
-			name="texte" type="editor" label="COM_ARVIE_PUBLICATIONS_TEXTE"
+			name="texte" type="textarea" label="COM_ARVIE_PUBLICATIONS_TEXTE"
 			description="COM_ANNUAIRE_COMMENT"
 			class="inputbox"
 			filter="JComponentHelper::filterText"
-			buttons="true"
+			rows="10" 
 			hide="readmore,pagebreak"
 		/>
 		<field

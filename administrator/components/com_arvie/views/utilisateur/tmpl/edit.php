@@ -46,10 +46,6 @@ JHtml::_('formbehavior.chosen', 'select');
 					<div class="control-label"><?php echo $this->form->getLabel('date_naiss'); ?></div>
 					<div class="controls"><?php echo $this->form->getInput('date_naiss'); ?></div>
 				</div>
-				<div class="control-group">
-					<div class="control-label"><?php echo $this->form->getLabel('date_fin'); ?></div>
-					<div class="controls"><?php echo $this->form->getInput('date_fin'); ?></div>
-				</div>
 			</div>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>

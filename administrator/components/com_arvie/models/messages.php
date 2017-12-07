@@ -9,17 +9,18 @@ class ArvieModelMessages extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'id', 'c.id',
-				'auteur', 'c.auteur',
-				'discussion', 'c.discussion',
-				'contenu', 'c.contenu',
-				'alias', 'c.contact_id',
-				'created', 'c.created_id',
-				'created_by', 'c.created_by',
-				'published', 'c.published',
-				'hits', 'c.hits',
-				'modified', 'c.modified'
-				'modified_by', 'c.modified_by'
+				'id', 'm.id',
+				'auteur', 'm.auteur',
+				'nom_auteur', 'u.nom',
+				'discussion', 'm.discussion',
+				'contenu', 'm.contenu',
+				'alias', 'm.contact_id',                                
+				'created', 'm.created_id',
+				'created_by', 'm.created_by',
+				'published', 'm.published',
+				'hits', 'm.hits',
+				'modified', 'm.modified',
+				'modified_by', 'm.modified_by'
 				);
 		}
 		parent::__construct($config);
@@ -41,24 +42,21 @@ class ArvieModelMessages extends JModelList
 		$this->setState('filter.published', $published);
 
 		// parent::populateState('modified', 'desc');
-		parent::populateState('c.nom', 'ASC');
+		parent::populateState('u.nom', 'ASC');
 	}
 	
 	protected function getListQuery()
 	{
 		// construit la requête d'affichage de la liste
 		$query = $this->_db->getQuery(true);
-		$query->select('c.id, c.nom, c.discussion, c.civilites_id, c.typescontacts_id, c.createds_id, c.contenu, c.created_by, c.mobile, c.tel, c.published, c.hits, c.modified');
-		$query->from('#__annuaire_contacts c');
+		$query->select('m.id, m.auteur, m.discussion, m.contenu, m.alias, m.published, m.created, m.created_by, m.modified, m.modified_by, m.hits');
+		$query->from('#__arvie_messages m');
 
-		// joint la table civilites
-		$query->select('m.civilite AS civilite')->join('LEFT', '#__annuaire_civilites AS m ON m.id=c.civilites_id');
+		// joint la table utilisateurs
+		$query->select('u.nom AS nom_auteur')->join('LEFT', '#__arvie_utilisateurs AS u ON m.auteur=u.id');
 
-		// joint la table typescontacts
-		$query->select('t.alias AS alias')->join('LEFT', '#__annuaire_typescontacts AS t ON t.id=c.typescontacts_id');
-
-		// joint la table createds
-		$query->select('e.nom AS created')->join('LEFT', '#__annuaire_createds AS e ON e.id=c.createds_id');
+		// joint la table discussions
+		$query->select('d.nom AS discussion')->join('LEFT', '#__arvie_discussions AS d ON m.discussion=d.id');
 
 		// joint la table _users de Joomla
 		// $query->select('ul.name AS linked_user')->join('LEFT', '#__users AS ul ON ul.id=a.affected_to');
@@ -75,7 +73,7 @@ class ArvieModelMessages extends JModelList
 				$search = $this->_db->Quote('%'.$this->_db->escape($search, true).'%');
 				// Compile les clauses de recherche
 				$searches	= array();
-				$searches[]	= 'c.nom LIKE '.$search;
+				$searches[]	= 'u.nom LIKE '.$search;
 				$searches[]	= 'c.discussion LIKE '.$search;
 				$searches[]	= 't.alias LIKE '.$search;
 				$searches[]	= 'e.nom LIKE '.$search;
@@ -87,53 +85,29 @@ class ArvieModelMessages extends JModelList
 		// filtre selon l'état du filtre 'filter_alias'
 		$alias = $this->getState('filter.alias');
 		if (is_numeric($alias)) {
-			$query->where('c.typescontacts_id=' . (int) $alias);
+			$query->where('m.typescontacts_id=' . (int) $alias);
 		}
 		// filtre selon l'état du filtre 'filter_created'
 		$created = $this->getState('filter.created');
 		if (is_numeric($created)) {
-			$query->where('c.createds_id=' . (int) $created);
+			$query->where('m.createds_id=' . (int) $created);
 		}
 		// filtre selon l'état du filtre 'filter_published'
 		$published = $this->getState('filter.published');
 		if (is_numeric($published)) {
-			$query->where('c.published=' . (int) $published);
+			$query->where('m.published=' . (int) $published);
 		}
 		elseif ($published === '') {
 			// si aucune sélection, on n'affiche que les publiés et dépubliés
-			$query->where('(c.published=0 OR c.published=1)');
+			$query->where('(m.published=0 OR m.published=1)');
 		}
 
 		// tri des colonnes
-		$orderCol = $this->state->get('list.ordering', 'c.nom');
+		$orderCol = $this->state->get('list.ordering', 'u.nom');
 		$orderDirn = $this->state->get('list.direction', 'ASC');
 		$query->order($this->_db->escape($orderCol.' '.$orderDirn));
 
-		// echo nl2br(str_replace('#__','egs_',$query));			// TEST/DEBUG
+		 echo nl2br(str_replace('#__','arvie_',$query));			// TEST/DEBUG
 		return $query;
 	}
-
-	public function getTypescontacts()
-	{
-		$query = $this->_db->getQuery(true);
-		$query->select('id, alias');
-		$query->from('#__annuaire_typescontacts');
-		$query->where('published=1');
-		$query->order('alias ASC');
-		$this->_db->setQuery($query);
-		$createds = $this->_db->loadObjectList();
-		return $createds;
-	}	
-
-	public function getcreateds()
-	{
-		$query = $this->_db->getQuery(true);
-		$query->select('id, nom');
-		$query->from('#__annuaire_createds');
-		$query->where('published=1');
-		$query->order('nom ASC');
-		$this->_db->setQuery($query);
-		$createds = $this->_db->loadObjectList();
-		return $createds;
-	}	
 }

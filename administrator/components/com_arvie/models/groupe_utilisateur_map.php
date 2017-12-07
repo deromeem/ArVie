@@ -44,6 +44,12 @@ class ArvieModelGroupe_utilisateur_map extends JModelList
 		$query->select('gum.id, gum.utilisateur, gum.groupe, gum.date_deb, gum.date_fin, gum.role, gum.published, gum.created, gum.modified, gum.modified_by, gum.hits');
 		$query->from('#__arvie_groupe_utilisateur_map gum');
 
+		// joint la table role pour les utilisateurs
+		$query->select('gum.role AS role_label')->join('LEFT', '#__arvie_roles AS r ON gum.role=r.role_label');
+
+		// joint la table utilisateur pour les prenoms
+		$query->select('gum.utilisateur AS utilisateur_prenom')->join('LEFT', '#__arvie_utilisateurs AS u ON gum.utilisateur=u.utilisateur_prenom');
+
 		// filtre de recherche rapide textuel
 		$search = $this->getState('filter.search');
 		if (!empty($search)) {
@@ -56,8 +62,8 @@ class ArvieModelGroupe_utilisateur_map extends JModelList
 				$search = $this->_db->Quote('%'.$this->_db->escape($search, true).'%');
 				// Compile les clauses de recherche
 				$searches	= array();
-				$searches[]	= 'gum.nom LIKE '.$search;
-				$searches[]	= 'gum.created_by LIKE '.$search;
+				$searches[]	= 'gum.utilisateur LIKE '.$search;
+				$searches[]	= 'gum.groupe LIKE '.$search;
 				// Ajoute les clauses à la requête
 				$query->where('('.implode(' OR ', $searches).')');
 			}

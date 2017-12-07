@@ -237,8 +237,8 @@ CREATE TABLE `#__arvie_publications` (
 -- Contenu de la table `#__arvie_publications`
 --
 
-INSERT INTO `#__arvie_publications` (`id`, `publication_parent`, `groupe`, `auteur`, `texte`, `date_publi`, `public`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
-(1, NULL, 1, 5, 'Salut les gars, les gens ils croient on fait pas mais si on fait !', '2017-10-19 16:32:12', 1, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0);
+INSERT INTO `arvie_arvie_publications` (`id`, `publication_parent`, `groupe`, `auteur`, `texte`, `date_publi`, `public`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
+(1, NULL, 1, 1, 'Le projet ArVie est actuellement développé par les étudiants TSIO2 SLAM au Lycée Louis-Armand.\r\n\r\nLes contributions faites à domicile doivent rester exceptionnelles afin de respecter la dynamique de groupe.', '2017-12-07 11:46:00', 1, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
 

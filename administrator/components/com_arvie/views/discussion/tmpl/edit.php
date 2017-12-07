@@ -25,19 +25,7 @@ JHtml::_('formbehavior.chosen', 'select');
 	
 
 	<div class="form-horizontal">
-		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'discussion')); ?>
-
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'discussion', JText::_('COM_ARVIE_DISCUSSION')); ?>
-		<div class="row-fluid form-horizontal-desktop">
-			<div class="form-vertical">
-				<div class="control-group">
-					<div class="control-label"><?php echo $this->form->getLabel('alias'); ?></div>
-					<div class="controls"><?php echo $this->form->getInput('alias'); ?></div>
-				</div>
-			</div>
-		</div>
-
-		<?php echo JHtml::_('bootstrap.endTab'); ?>
+		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'details')); ?>
 		
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'publishing', JText::_('JGLOBAL_FIELDSET_PUBLISHING', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">

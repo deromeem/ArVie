@@ -4,34 +4,12 @@
 		<field name="id" type="hidden" />
 
 		<field name="asset_id" type="hidden" filter="unset" />
-		
-        <field name="nom" type="text" label="Nom"
-            description="Nom"
-            size="40" class="input-large-text" default="" required="true"
+
+		<field 
+			name="alias" type="text" label="Alias"
+            description="Alias"
+            size="40" class="inputbox" default="" required="false"
         />
-
-		<field name="alias" type="text"
-			label="JFIELD_ALIAS_LABEL"
-			description="JFIELD_ALIAS_DESC"
-			hint="JFIELD_ALIAS_PLACEHOLDER"
-			class="inputbox" size="45"
-		/>
-		<field name="est_groupe_interet" type="radio" default="0" label="Quel type de groupe est-ce ?" description="">
-  			<option value="0">Classe</option>
-  			<option value="1">Intérêt</option>
-		</field>
-
-		<field name="est_public" type="radio" default="0" label="Est-ce un groupe public ?" description="">
-  			<option value="0">Privé</option>
-  			<option value="1">Public</option>
-		</field>
-
-		<field name="groupe_parent" type="sql" default="" label="Groupe Parent" 
-			description="Groupe Parent"
-			query="SELECT id, nom FROM #__arvie_groupes ORDER BY nom" 
-			key_field="id" value_field="nom" required="false"
-		/>
-
 		
 		<field id="published" name="published" type="list"
 			label="JSTATUS"	description="JSTATUS"

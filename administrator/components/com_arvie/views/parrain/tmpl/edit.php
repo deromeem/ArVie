@@ -27,9 +27,17 @@ JHtml::_('formbehavior.chosen', 'select');
 	<div class="form-horizontal">
 		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'parrain')); ?>
 
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'parrain', JText::_('COM_ARVIE_UTILISATEUR')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'parrain', JText::_('COM_ARVIE_PARRAIN')); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="form-vertical">
+				<div class="control-group">
+					<div class="control-label"><?php echo $this->form->getLabel('parrain'); ?></div>
+					<div class="controls"><?php echo $this->form->getInput('parrain'); ?></div>
+				</div>
+				<div class="control-group">
+					<div class="control-label"><?php echo $this->form->getLabel('filleul'); ?></div>
+					<div class="controls"><?php echo $this->form->getInput('filleul'); ?></div>
+				</div>
 				<div class="control-group">
 					<div class="control-label"><?php echo $this->form->getLabel('date_deb'); ?></div>
 					<div class="controls"><?php echo $this->form->getInput('date_deb'); ?></div>

@@ -32,14 +32,28 @@ JHtml::_('formbehavior.chosen', 'select');
 		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'details')); ?>
 
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'details', JText::_('COM_ARVIE_GROUPE')); ?>
-		<!-- Renommez le mot parent car il est reservé
+		
 		<div class="control-group">
 			<div class="span3">
-				<div class="control-label"><?php echo $this->form->getLabel('parent'); ?></div>
-				<div class="controls"><?php echo $this->form->getInput('parent'); ?></div>
+				<div class="control-label"><?php echo $this->form->getLabel('groupe_parent'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('groupe_parent'); ?></div>
 			</div>
 		</div>
-		-->
+
+		<div class="control-group">
+			<div class="span3">
+				<div class="control-label"><?php echo $this->form->getLabel('est_groupe_interet'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('est_groupe_interet'); ?></div>
+			</div>
+		</div>
+
+		<div class="control-group">
+			<div class="span3">
+				<div class="control-label"><?php echo $this->form->getLabel('est_public'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('est_public'); ?></div>
+			</div>
+		</div>
+		
 		<div class="row-fluid">
 			<div class="span3">
 				<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
@@ -47,13 +61,7 @@ JHtml::_('formbehavior.chosen', 'select');
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'infos', JText::_('COM_ARVIE_ADVANCED')); ?>
-		<div class="row-fluid">
-			<div class="span3">
-				<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
-			</div>
-		</div>
-		<?php echo JHtml::_('bootstrap.endTab'); ?>
+
 
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'publishing', JText::_('JGLOBAL_FIELDSET_PUBLISHING', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">

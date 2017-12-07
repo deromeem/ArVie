@@ -4,24 +4,25 @@
 		<field name="id" type="hidden" />
 
 		<field name="asset_id" type="hidden" filter="unset" />
+
+		<field name="parrain" type="sql" default="0" label="COM_ARVIE_PARRAINS_PARRAIN" 
+			description="COM_ARVIE_PARRAINS_FILLEUL"
+			query="SELECT id, CONCAT(nom, ' ', prenom) AS nom FROM #__arvie_utilisateurs WHERE published=1 ORDER BY nom" 
+			key_field="id" value_field="nom" required="true"
+		/>
+		<field name="filleul" type="sql" default="0" label="COM_ARVIE_PARRAINS_FILLEUL" 
+			description="COM_ARVIE_PARRAINS_FILLEUL"
+			query="SELECT id, CONCAT(nom, ' ', prenom) AS nom FROM #__arvie_utilisateurs WHERE published=1 ORDER BY nom" 
+			key_field="id" value_field="nom" required="true"
+		/>
 		
-        <field name="nom" type="text" label="COM_ARVIE_UTILISATEURS_NOM"
-            description="COM_ARVIE_UTILISATEURS_NOM"
+        <field name="date_deb" type="calendar" label="COM_ARVIE_PARRAINS_DATE_DEB"
+            description="COM_ARVIE_PARRAINS_DATE_DEB"
             size="40" class="inputbox" default="" required="true"
         />
 
-        <field name="prenom" type="text" label="COM_ARVIE_UTILISATEURS_PRENOM"
-            description="COM_ARVIE_UTILISATEURS_PRENOM"
-            size="40" class="inputbox" default="" required="true"
-        />
-
-        <field name="email" type="email" label="COM_ARVIE_UTILISATEURS_EMAIL"
-            description="COM_ARVIE_UTILISATEURS_EMAIL"
-            size="40" class="inputbox" default=""
-        />
-
-        <field name="fonction" type="text" label="COM_ARVIE_UTILISATEURS_FONCTION"
-            description="COM_ARVIE_UTILISATEURS_FONCTION"
+        <field name="date_fin" type="calendar" label="COM_ARVIE_PARRAINS_DATE_FIN"
+            description="COM_ARVIE_PARRAINS_DATE_FIN"
             size="40" class="inputbox" default="" required="true"
         />
 		

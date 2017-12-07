@@ -45,7 +45,7 @@ class ArvieModelAbonnements extends JModelList
 	{
 		// construit la requête d'affichage de la liste
 		$query = $this->_db->getQuery(true);
-		$query->select('a.abonne, a.suivi, a.date, a.alias, a.published, a.created, a.created_by, a.modified, a.modified_by, a.hits');
+		$query->select('a.id, a.abonne, a.suivi, a.date, a.alias, a.published, a.created, a.created_by, a.modified, a.modified_by, a.hits');
 		$query->from('#__arvie_abonnements a');
 		
 		// joint la table users

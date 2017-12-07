@@ -43,8 +43,8 @@ class ArvieHelper extends JHelperContent
 
 		JHtmlSidebar::addEntry(
 			JText::_('Metier_groupe_map'),
-			'index.php?option=com_arvie&view=metier_groupe_map',
-			$vName == 'metier_groupe_map'
+			'index.php?option=com_arvie&view=metier_groupe_maps',
+			$vName == 'metier_groupe_maps'
 		);
 		
 		JHtmlSidebar::addEntry(

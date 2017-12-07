@@ -13,10 +13,10 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 		<?php echo JHtml::_('grid.sort', 'COM_ARVIE_UTILISATEURS_NOM', 'u.nom', $listDirn, $listOrder) ?>
 	</th>
 	<th width="15%" class="nowrap">
-		<?php echo JHtml::_('grid.sort', 'COM_ARVIE_MESSAGES_DISCUSSION', 'm.discussion', $listDirn, $listOrder) ?>
+		<?php echo JHtml::_('grid.sort', 'COM_ARVIE_UTILISATEURS_PRENOM', 'u.prenom', $listDirn, $listOrder) ?>
 	</th>
 	<th width="20%" class="nowrap">
-		<?php echo JHtml::_('grid.sort', 'COM_ARVIE_MESSAGES_CONTENU', 'm.contenu', $listDirn, $listOrder) ?>
+		<?php echo JHtml::_('grid.sort', 'COM_ARVIE_UTILISATEURS_EMAIL', 'u.email', $listDirn, $listOrder) ?>
 	</th>
 	<th width="1%" style="min-width:55px" class="nowrap center ">
 		<?php echo JHtml::_('grid.sort', 'Publié', 'u.published', $listDirn, $listOrder) ?>

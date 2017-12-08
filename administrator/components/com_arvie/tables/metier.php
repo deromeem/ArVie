@@ -5,7 +5,7 @@ class ArvieTableMetier extends JTable
 {
 	function __construct(&$db) 
 	{
-			parent::__construct('#__arvie_metier', 'id', $db);
+			parent::__construct('#__arvie_metiers', 'id', $db);
 	}
 
 	public function store($updateNulls = false)

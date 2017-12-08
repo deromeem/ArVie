@@ -8,7 +8,7 @@ JHtml::_('formbehavior.chosen', 'select');
 <script type="text/javascript">
 	Joomla.submitbutton = function(task)
 	{
-		if (task == 'message.cancel' || document.formvalidator.isValid(document.id('arvie-form')))
+		if (task == 'metier.cancel' || document.formvalidator.isValid(document.id('arvie-form')))
 		{
 			Joomla.submitform(task, document.getElementById('arvie-form'));
 		}
@@ -19,15 +19,15 @@ JHtml::_('formbehavior.chosen', 'select');
       method="post" name="adminForm" id="arvie-form" class="form-validate">
 
 	<div class="control-group">
-		<div class="control-label"><?php echo $this->form->getLabel('nom'); ?></div>
-		<div class="controls"><?php echo $this->form->getInput('nom'); ?></div>
+		<div class="control-label"><?php echo $this->form->getLabel('id'); ?></div>
+		<div class="controls"><?php echo $this->form->getInput('id'); ?></div>
 	</div>
 
 
 	<div class="form-horizontal">
-		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'message')); ?>
+		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'metier')); ?>
 
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'message', JText::_('COM_ARVIE_METIERS')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'metier', JText::_('COM_ARVIE_METIERS')); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="form-vertical">
 				<div class="control-group">

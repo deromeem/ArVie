@@ -43,17 +43,17 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 		<thead>
 			<tr>
 				<th class="title">
-					<?php echo JHtml::_('grid.sort', JText::_('COM_ARVIE_UTILISATEURS_NOM'), 'nom', $listDirn, $listOrder) ?>
+					<?php echo JHtml::_('grid.sort', JText::_('COM_ARVIE_UTILISATEURS_NOM'), 'u.nom', $listDirn, $listOrder) ?>
 				</th>
 				<th class="title">
-					<?php echo JHtml::_('grid.sort', JText::_('COM_ARVIE_UTILISATEURS_PRENOM'), 'prenom', $listDirn, $listOrder) ?>
+					<?php echo JHtml::_('grid.sort', JText::_('COM_ARVIE_UTILISATEURS_PRENOM'), 'u.prenom', $listDirn, $listOrder) ?>
 				</th>
 				<!-- <th class="title">Publié</th> -->
 				<th class="title">
-					<?php echo JHtml::_('grid.sort', JText::_('COM_ARVIE_UTILISATEURS_TYPEUTILISATEUR'), 'typeutilisateur', $listDirn, $listOrder) ?>
+					<?php echo JHtml::_('grid.sort', JText::_('COM_ARVIE_UTILISATEURS_EMAIL'), 'u.email', $listDirn, $listOrder) ?>
 				</th>
 				<th class="title">
-					<?php echo JHtml::_('grid.sort', JText::_('COM_ARVIE_UTILISATEURS_ENTREPRISE'), 'entreprise', $listDirn, $listOrder) ?>
+					<?php echo JHtml::_('grid.sort', JText::_('COM_ARVIE_UTILISATEURS_MOBILE'), 'u.mobile', $listDirn, $listOrder) ?>
 				</th>
 				<!-- <th class="title"><?php echo JHtml::_('grid.sort', 'Date', 'created', $listDirn, $listOrder) ?></th> -->
 			</tr>
@@ -69,8 +69,8 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 						<a href="<?php echo $uriCompoDetail.$item->id ?>"><?php echo $item->prenom ?></a>
 					</td>
 					<!-- <td><?php echo JHtml::_('jgrid.published', $item->published, $i, 'entreprises.', true); ?></td> -->
-					<td><?php echo $item->typeutilisateur ?></td>
-					<td><?php echo $item->entreprise ?></td>
+					<td><?php echo $item->email ?></td>
+					<td><?php echo $item->mobile ?></td>
 					<!-- <td><?php echo JHtml::_('date', $item->created, 'j F Y'); ?></td> -->
 				</tr>			
 			<?php endforeach; ?>

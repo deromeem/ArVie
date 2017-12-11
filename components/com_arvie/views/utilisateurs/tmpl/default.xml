@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<metadata> 
+	<layout title="Liste des utilisateurs"> 
+		<message> 
+			<![CDATA[Ecran de liste de tous les utilisateurs]]> 
+		</message> 
+	</layout> 
+</metadata>

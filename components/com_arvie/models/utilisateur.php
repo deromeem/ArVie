@@ -25,19 +25,11 @@ class ArvieModelUtilisateur extends JModelItem
 		if (!isset($this->_item[$pk])) {
 			$db = $this->getDbo();
 			$query = $db->getQuery(true);
-			$query->select('c.id, c.nom, c.prenom, c.civilites_id, c.typesutilisateurs_id, c.entreprises_id, c.fonction, c.email, c.mobile, c.tel, c.commentaire');
-			$query->from('#__arvie_utilisateurs AS c');
+			$query->select('u.id, u.nom, u.prenom, u.email, u.mobile');
+			$query->from('#__arvie_utilisateurs AS u');
 
-			// joint la table civilites
-			$query->select('m.civilite AS civilite')->join('LEFT', '#__arvie_civilites AS m ON m.id=c.civilites_id');
-
-			// joint la table typesutilisateurs
-			$query->select('t.typeContact AS typeutilisateur')->join('LEFT', '#__arvie_typesutilisateurs AS t ON t.id=c.typesutilisateurs_id');
-
-			// joint la table entreprises
-			$query->select('e.nom AS entreprise')->join('LEFT', '#__arvie_entreprises AS e ON e.id=c.entreprises_id');		
 					
-			$query->where('c.id = ' . (int) $pk);
+			$query->where('u.id = ' . (int) $pk);
 			$db->setQuery($query);
 			$data = $db->loadObject();
 			$this->_item[$pk] = $data;

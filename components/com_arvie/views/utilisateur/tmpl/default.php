@@ -41,38 +41,6 @@ $isAdmin = (in_array('17', $user->groups));		// sets flag when user group is '17
 				</tr>
 				<tr>
 					<td width="20%" class="nowrap right">
-						<span class="label"><?php echo JText::_('COM_ARVIE_UTILISATEURS_CIVILITE'); ?></span>
-					</td>
-					<td width="80%">
-						<?php echo $this->item->civilite ?>
-					</td>
-				</tr>
-				<tr>
-					<td width="20%" class="nowrap right">
-						<span class="label"><?php echo JText::_('COM_ARVIE_UTILISATEURS_TYPEUTILISATEUR'); ?></span>
-					</td>
-					<td width="80%">
-						<?php echo $this->item->typeutilisateur ?>
-					</td>
-				</tr>
-				<tr>
-					<td width="20%" class="nowrap right">
-						<span class="label"><?php echo JText::_('COM_ARVIE_UTILISATEURS_ENTREPRISE'); ?></span>
-					</td>
-					<td width="80%">
-						<a href="<?php echo JRoute::_('index.php?option=com_arvie&view=entreprise&id='.(int) $this->item->entreprises_id); ?>"><?php echo $this->item->entreprise ?></a>
-					</td>
-				</tr>
-				<tr>
-					<td width="20%" class="nowrap right">
-						<span class="label"><?php echo JText::_('COM_ARVIE_UTILISATEURS_FONCTION'); ?></span>
-					</td>
-					<td width="80%">
-						<?php echo $this->item->fonction; ?>
-					</td>
-				</tr>
-				<tr>
-					<td width="20%" class="nowrap right">
 						<span class="label"><?php echo JText::_('COM_ARVIE_UTILISATEURS_EMAIL'); ?></span>
 					</td>
 					<td width="80%">
@@ -85,22 +53,6 @@ $isAdmin = (in_array('17', $user->groups));		// sets flag when user group is '17
 					</td>
 					<td width="80%">
 						<?php echo $this->item->mobile ?>
-					</td>
-				</tr>
-				<tr>
-					<td width="20%" class="nowrap right">
-						<span class="label"><?php echo JText::_('COM_ARVIE_UTILISATEURS_TEL'); ?></span>
-					</td>
-					<td width="80%">
-						<?php echo $this->item->tel ?>
-					</td>
-				</tr>
-				<tr>
-					<td width="20%" class="nowrap right">
-						<span class="label"><?php echo JText::_('COM_ARVIE_COMMENT'); ?></span>
-					</td>
-					<td width="80%">
-						<?php echo $this->item->commentaire ?>
 					</td>
 				</tr>
 			</tbody>

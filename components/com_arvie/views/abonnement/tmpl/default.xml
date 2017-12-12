@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<metadata> 
+	<layout title="Détail d'un abonnement"> 
+		<message> 
+			<![CDATA[Ecran de détail d'un abonnement]]> 
+		</message> 
+	</layout> 
+
+	<fields name="request">
+		<fieldset name="request">
+			<field name="id" type="text"
+				label="ID utilisateur"
+				description="Saisir l'ID de l'utilisateur à lier à cet abonnement"
+				required="true" edit="false" clear="true"                         
+			/>
+		</fieldset>
+	</fields>
+</metadata>

@@ -27,7 +27,7 @@ JHtml::_('formbehavior.chosen', 'select');
 	<div class="form-horizontal">
 		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'groupe')); ?>
 
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'groupe', JText::_('COM_ARVIE_METIERS')); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'groupe', JText::_('COM_ARVIE_GROUPE')); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="form-vertical">
 				<div class="control-group">
@@ -35,13 +35,13 @@ JHtml::_('formbehavior.chosen', 'select');
 					<div class="controls"><?php echo $this->form->getInput('groupe'); ?></div>
 				</div>
 				<div class="control-group">
-					<div class="control-label"><?php echo $this->form->getLabel('groupe'); ?></div>
-					<div class="controls"><?php echo $this->form->getInput('groupe'); ?></div>
+					<div class="control-label"><?php echo $this->form->getLabel('utilisateur'); ?></div>
+					<div class="controls"><?php echo $this->form->getInput('utilisateur'); ?></div>
 				</div>
 				<div class="control-group">
 					<div class="control-label"><?php echo $this->form->getLabel('alias'); ?></div>
 					<div class="controls"><?php echo $this->form->getInput('alias'); ?></div>
-				</div>
+				</div>				
 			</div>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
@@ -65,5 +65,3 @@ JHtml::_('formbehavior.chosen', 'select');
 	<input type="hidden" name="task" value="" />
 	<?php echo JHtml::_('form.token'); ?>
 </form>
-
-

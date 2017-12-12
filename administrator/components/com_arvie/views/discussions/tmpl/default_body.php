@@ -34,6 +34,9 @@ if ($saveOrder)
 		</div>
 	</td>
 	
+	<td class="center">
+		<?php echo (int) $item->nb_utilisateurs; ?>
+	</td>
 	<td width="5%" align="center">
 		<?php echo JHtml::_('jgrid.published', $item->published, $i, 'discussions.', true); ?>
 	</td>

@@ -52,8 +52,6 @@ $isAdmin = (in_array('17', $user->groups));		// sets flag when user group is '17
 			<fieldset>
 				<ul class="nav nav-tabs">
 					<li><a href="#groupe" data-toggle="tab"><?php echo JText::_('COM_ARVIE_GROUPE'); ?></a></li>
-					<li><a href="#avance" data-toggle="tab"><?php echo JText::_('COM_ARVIE_ADVANCED'); ?></a></li>
-					<li><a href="#commentaire" data-toggle="tab"><?php echo JText::_('COM_ARVIE_COMMENT'); ?></a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="groupe">
@@ -95,75 +93,10 @@ $isAdmin = (in_array('17', $user->groups));		// sets flag when user group is '17
 						</table>
 					</div>
 					
-					<div class="tab-pane" id="avance">
-						<table class="table">
-							<tbody>
-								<tr>
-									<td width="20%" class="nowrap right">
-										<div class="control-label"><?php echo $this->form->getLabel('pays_id'); ?></div>
-									</td>
-									<td width="80%">
-										<div class="controls"><?php echo $this->form->getInput('pays_id'); ?></div>
-									</td>
-								</tr>
-								<tr>
-									<td width="20%" class="nowrap right">
-										<div class="control-label"><?php echo $this->form->getLabel('numSIREN'); ?></div>
-									</td>
-									<td width="80%">
-										<div class="controls"><?php echo $this->form->getInput('numSIREN'); ?></div>
-									</td>
-								</tr>
-								<tr>
-									<td width="20%" class="nowrap right">
-										<div class="control-label"><?php echo $this->form->getLabel('numTVAintra'); ?></div>
-									</td>
-									<td width="80%">
-										<div class="controls"><?php echo $this->form->getInput('numTVAintra'); ?></div>
-									</td>
-								</tr>
-								<tr>
-									<td width="20%" class="nowrap right">
-										<div class="control-label"><?php echo $this->form->getLabel('siteWeb'); ?></div>
-									</td>
-									<td width="80%">
-										<div class="controls"><?php echo $this->form->getInput('siteWeb'); ?></div>
-									</td>
-								</tr>
-								<tr>
-									<td width="20%" class="nowrap right">
-										<div class="control-label"><?php echo $this->form->getLabel('adrRue'); ?></div>
-									</td>
-									<td width="80%">
-										<div class="controls"><?php echo $this->form->getInput('adrRue'); ?></div>
-									</td>
-								</tr>
-								<tr>
-									<td width="20%" class="nowrap right">
-										<div class="control-label"><?php echo $this->form->getLabel('adrVille'); ?></div>
-									</td>
-									<td width="80%">
-										<div class="controls"><?php echo $this->form->getInput('adrVille'); ?></div>
-									</td>
-								</tr>
-								<tr>
-									<td width="20%" class="nowrap right">
-										<div class="control-label"><?php echo $this->form->getLabel('adrCP'); ?></div>
-									</td>
-									<td width="80%">
-										<div class="controls"><?php echo $this->form->getInput('adrCP'); ?></div>
-									</td>
-								</tr>
-							</tbody>
-						</table>				
+					
 
 						<input type="hidden" name="task" value="" />
 						<input type="hidden" name="return" value="<?php echo $this->return_page; ?>" />
-					</div>
-					<div class="tab-pane" id="commentaire">
-						<?php echo $this->form->getControlGroup('commentaire'); ?>
-					</div>
-					</div>
 				<?php echo JHtml::_('form.token'); ?>
 			</fieldset>
 		</form>

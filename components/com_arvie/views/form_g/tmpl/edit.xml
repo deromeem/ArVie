@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-	<layout title="Créer une groupe" option="Créer">
+	<layout title="Créer un groupe" option="Créer">
 		<message>
-			<![CDATA[Affiche un formulaire pour créer une groupe]]>
+			<![CDATA[Affiche un formulaire pour créer un groupe]]>
 		</message>
 	</layout>
 </metadata>

@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
+<<<<<<< HEAD
 	<layout title="Créer un contact" option="Créer">
 		<message>
 			<![CDATA[Affiche un formulaire pour créer un contact]]>
+=======
+	<layout title="Créer un utilisateur" option="Créer">
+		<message>
+			<![CDATA[Affiche un formulaire pour créer un utilisateur]]>
+>>>>>>> 563054317def4a64b6268bb159b7c9f226967430
 		</message>
 	</layout>
 </metadata>

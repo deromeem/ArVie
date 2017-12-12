@@ -20,21 +20,12 @@ if ($saveOrder)
 	<td class="wrap has-context">
 		<div class="pull-left">
 			<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=metier_groupe_map.edit&id='.(int) $item->id); ?>">
-				<?= $this->escape($item->metier) ?>
+				<?= $this->escape($item->metier_label) ?>
 			</a>
-			<div class="small hidden-phone">
-				<?php // extrait description selon les paramètres de configuration
-				if ($this->paramDescShow) {
-					$desc = JFilterOutput::cleanText($item->activite);
-					echo substr($desc, 0, $this->paramDescSize);
-					echo (strlen($desc)>$this->paramDescSize?"...":"") ;
-				}
-				?>
-			</div>
 		</div>
 	</td>
 	<td align="small">
-		<?= $item->groupe ?>
+		<?= $item->groupe_nom ?>
 	</td>
 	<td align="center">
 		<?php echo JHtml::_('jgrid.published', $item->published, $i, 'parrains.', true); ?>

@@ -1,11 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 
-<<<<<<< HEAD
-class AnnuaireViewForm_c extends JViewLegacy
-=======
-class ArvieViewForm_c extends JViewLegacy
->>>>>>> 563054317def4a64b6268bb159b7c9f226967430
+class ArvieViewForm_g extends JViewLegacy
 {
 	protected $form;
 	protected $item;

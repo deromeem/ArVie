@@ -7,7 +7,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 $saveOrder	= $listOrder == 'ordering';
 if ($saveOrder)
 {
-	$saveOrderingUrl = 'index.php?option=com_arvie&task=groupe_utilisateur_map.saveOrderAjax&tmpl=component';
+	$saveOrderingUrl = 'index.php?option=com_arvie&task=groupe_utilisateur_maps.saveOrderAjax&tmpl=component';
 	JHtml::_('sortablelist.sortable', 'articleList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
 }
 ?>
@@ -19,7 +19,7 @@ if ($saveOrder)
                 </td>
 		<td class="wrap has-context">
 			<div class="pull-left">
-				<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=groupe_utilisateur_map.edit&id='.(int) $item->id); ?>">
+				<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=groupe_utilisateur_maps.edit&id='.(int) $item->id); ?>">
 					<?php echo $this->escape($item->id); ?>
 				</a>
 				<div class="small hidden-phone">
@@ -54,7 +54,7 @@ if ($saveOrder)
                 </td>
 
 		<td>
-			<?php echo JHtml::_('jgrid.published', $item->published, $i, 'groupe_utilisateur_map.', true); ?>
+			<?php echo JHtml::_('jgrid.published', $item->published, $i, 'groupe_utilisateur_maps.', true); ?>
 		</td>
 
 		<td class="hidden-tablet hidden-phone">

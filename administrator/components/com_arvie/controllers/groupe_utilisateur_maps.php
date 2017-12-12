@@ -1,12 +1,12 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
  
-class ArvieControllerGroupe_utilisateur_map extends JControllerForm
+class ArvieControllergroupe_utilisateur_maps extends JControllerForm
 {
 		function display($cachable = false, $urlparams = false) 
         {
                 $input = JFactory::getApplication()->input;
-                $input->set('view', $input->getCmd('view', 'groupe_utilisateur_map'));
+                $input->set('view', $input->getCmd('view', 'groupe_utilisateur_maps'));
  
                 parent::display($cachable, $urlparams);
         }

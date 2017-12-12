@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
  
-class ArvieViewGroupe_utilisateur_map extends JViewLegacy
+class ArvieViewgroupe_utilisateur_maps extends JViewLegacy
 {
 	function display($tpl = null) 
 	{
@@ -31,7 +31,7 @@ class ArvieViewGroupe_utilisateur_map extends JViewLegacy
 		// ajoute la toolbar contenant les boutons d'actions
 		$this->addToolBar();
 		// invoque la méthode addSubmenu du fichier de soutien (helper)
-		ArvieHelper::addSubmenu('groupe_utilisateur_map');
+		ArvieHelper::addSubmenu('groupe_utilisateur_maps');
 		// prépare et affiche la sidebar à gauche de la liste
 		$this->prepareSideBar();
 		$this->sidebar = JHtmlSidebar::render();
@@ -43,17 +43,17 @@ class ArvieViewGroupe_utilisateur_map extends JViewLegacy
 	protected function addToolBar() 
 	{
 		// affiche le titre de la page
-		JToolBarHelper::title('Arvie : groupe_utilisateur_map');
+		JToolBarHelper::title('Arvie : groupe_utilisateur_maps');
 		
 		// affiche les boutons d'action
-		JToolBarHelper::addNew('groupe_utilisateur_map.add', 'Nouveau groupe_utilisateur_map');
-		JToolBarHelper::editList('groupe_utilisateur_map.edit', 'Modifier groupe_utilisateur_map');
-		JToolBarHelper::deleteList('Etes vous sur ?', 'groupe_utilisateur_map.delete', 'Supprimer groupe_utilisateur_map');
-		JToolbarHelper::publish('groupe_utilisateur_map.publish', 'JTOOLBAR_PUBLISH', true);
-		JToolbarHelper::unpublish('groupe_utilisateur_map.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-		JToolbarHelper::archiveList('groupe_utilisateur_map.archive');
-		JToolbarHelper::checkin('groupe_utilisateur_map.checkin');
-		JToolbarHelper::trash('groupe_utilisateur_map.trash');
+		JToolBarHelper::addNew('groupe_utilisateur_maps.add', 'Nouveau groupe_utilisateur_maps');
+		JToolBarHelper::editList('groupe_utilisateur_maps.edit', 'Modifier groupe_utilisateur_maps');
+		JToolBarHelper::deleteList('Etes vous sur ?', 'groupe_utilisateur_maps.delete', 'Supprimer groupe_utilisateur_maps');
+		JToolbarHelper::publish('groupe_utilisateur_maps.publish', 'JTOOLBAR_PUBLISH', true);
+		JToolbarHelper::unpublish('groupe_utilisateur_maps.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+		JToolbarHelper::archiveList('groupe_utilisateur_maps.archive');
+		JToolbarHelper::checkin('groupe_utilisateur_maps.checkin');
+		JToolbarHelper::trash('groupe_utilisateur_maps.trash');
 		JToolbarHelper::preferences('com_arvie');
 	}
 
@@ -86,8 +86,8 @@ class ArvieViewGroupe_utilisateur_map extends JViewLegacy
 
 	protected function displayParent($currParent) 
 	{
-		foreach ($this->groupe_utilisateur_map as $groupe_utilisateur_map) {
-			if($groupe_utilisateur_map->id==$currParent) return $groupe_utilisateur_map->nom;
+		foreach ($this->groupe_utilisateur_maps as $groupe_utilisateur_maps) {
+			if($groupe_utilisateur_maps->id==$currParent) return $groupe_utilisateur_maps->nom;
 		}
 		return "N.C.";
 	}

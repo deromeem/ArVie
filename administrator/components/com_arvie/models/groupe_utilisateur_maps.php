@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
 
-class ArvieModelGroupe_utilisateur_map extends JModelList
+class ArvieModelgroupe_utilisateur_maps extends JModelList
 {
 	public function __construct($config = array())
 	{

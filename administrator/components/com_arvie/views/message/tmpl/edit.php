@@ -17,26 +17,42 @@ JHtml::_('formbehavior.chosen', 'select');
 
 <form action="<?php echo JRoute::_('index.php?option=com_arvie&layout=edit&id='.(int) $this->item->id); ?>"
       method="post" name="adminForm" id="arvie-form" class="form-validate">
+	  
+		<div class="control-group">
+			<div class="control-label"><?php echo $this->form->getLabel('alias'); ?></div>
+			<div class="controls"><?php echo $this->form->getInput('alias'); ?></div>
+		</div>
+		
+	
+		<div class="form-horizontal">
+			<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'message')); ?>
 
-	<div class="control-group">
-		<div class="control-label"><?php echo $this->form->getLabel('nom'); ?></div>
-		<div class="controls"><?php echo $this->form->getInput('nom'); ?></div>
-	</div>
-
-
-	<div class="form-horizontal">
-		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'message')); ?>
-
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'message', JText::_('COM_ARVIE_MESSAGE')); ?>
+			<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'message', JText::_('COM_ARVIE_MESSAGE')); ?>
 		<div class="row-fluid form-horizontal-desktop">
-			<div class="form-vertical">
-				<div class="control-group">
-					<div class="control-label"><?php echo $this->form->getLabel('prenom'); ?></div>
-					<div class="controls"><?php echo $this->form->getInput('prenom'); ?></div>
-				</div>
-				<div class="control-group">
-					<div class="control-label"><?php echo $this->form->getLabel('date_fin'); ?></div>
-					<div class="controls"><?php echo $this->form->getInput('date_fin'); ?></div>
+		<div class="control-group">
+			<div class="span2">
+				<div class="control-label"><?php echo $this->form->getLabel('auteur'); ?></div>
+			</div>					
+			<div class="span7">
+				<div class="controls"><?php echo $this->form->getInput('auteur'); ?></div>
+		</div>	
+
+ 	    <div class="control-group">
+			<div class="span6">
+				<div class="control-label"><?php echo $this->form->getLabel('discussion'); ?></div>
+			</div>					
+			<div class="span7">
+				<div class="controls"><?php echo $this->form->getInput('discussion'); ?></div>
+			</div>					
+		</div>		 
+			
+        <div class="form-vertical">
+			<?php echo $this->form->getControlGroup('contenu'); ?>										
+	    </div>					
+
+		<div class="control-group">
+			<div class="control-label"><?php echo $this->form->getLabel('date_fin'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('date_fin'); ?></div>
 				</div>
 			</div>
 		</div>

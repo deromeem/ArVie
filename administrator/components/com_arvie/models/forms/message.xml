@@ -5,16 +5,16 @@
 
 		<field name="asset_id" type="hidden" filter="unset" />
 		
-		<field name="auteur" type="sql" default="" label="COM_ARVIE_AUTEUR" 
-			description="COM_ARVIE_AUTEUR"
-			query="SELECT id, auteur FROM #__arvie_message_auteur ORDER BY auteur" 
-			key_field="id" value_field="auteur" required="false"
+	    <field name="auteur" type="sql" default="" label="Auteur" 
+			description="COM_ARVIE_MESSAGE_AUTEUR"
+			query="SELECT id, nom FROM #__arvie_utilisateurs ORDER BY nom" 
+			key_field="id" value_field="nom" required="false"
 		/>
-		
-		<field name="discussion" type="sql" default="" label="COM_ARVIE_MESSAGE_DISCUSSION" 
-			description="COM_ARVIE_DISCUSSION"
-			query="SELECT id, discussion FROM #__arvie_message_discussions ORDER BY discussion" 
-			key_field="id" value_field="discussion" required="false"
+
+		<field name="discussion" type="sql" default="" label="Discussion" 
+			description="COM_ARVIE_MESSAGE_DISCUSSION"
+			query="SELECT id, nom FROM #__arvie_discussions ORDER BY nom" 
+			key_field="id" value_field="nom" required="false"
 		/>
 
 		<field name="alias" type="text"
@@ -25,8 +25,8 @@
 		/>
 
 		<field
-			name="contenu" type="editor" label="COM_ARVIE_CONTENU"
-			description="COM_ARVIE_CONTENU"
+			name="contenu" type="editor" label="Contenu"
+			description="COM_ARVIE_MESSAGE_CONTENU"
 			class="inputbox"
 			filter="JComponentHelper::filterText"
 			buttons="true"

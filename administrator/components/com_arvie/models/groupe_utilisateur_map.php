@@ -1,97 +1,50 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
 
-class ArvieModelGroupe_utilisateur_map extends JModelList
+class ArvieModelGroupe_utilisateur_map extends JModelAdmin
 {
-	public function __construct($config = array())
+	protected $_compo = 'com_arvie';
+	protected $_context = 'groupe_utilisateur_map';
+	public $typeAlias = 'com_arvie.groupe_utilisateur_map';
+	
+	// Surcharges des m�thodes de la classe m�re pour :
+	
+	// 1) d�finir la table de soutien � utiliser
+	public function getTable($type = 'groupe_utilisateur_map', $prefix = 'ArvieTable', $config = array()) 
 	{
-		// précise les colonnes activant le tri
-		if (empty($config['filter_fields']))
+		return JTable::getInstance($type, $prefix, $config);
+	}
+
+	// 2) pr�ciser le chemin du contexte � utiliser pour charger le fichier XML d�crivant les champs de saisie
+	public function getForm($data = array(), $loadData = true) 
+	{
+		$form = $this->loadForm($this->typeAlias, $this->_context,
+			array('control'=>'jform', 'load_data'=>$loadData));
+		if (empty($form)) 
 		{
-			$config['filter_fields'] = array(
-				'id', 'gum.id',
-				'utilisateur', 'gum.utilisateur',
-				'groupe','gum.groupe',
-				'date_deb','gum.date_deb',
-				'date_fin','gum.date_fin',
-				'role','gum.role',
-				'published', 'gum.published',
-				'created','gum.created',
-				'modified', 'gum.modified',
-				'modified_by', 'gum.modified_by',
-				'hits', 'gum.hits',
-				'role_label','r.label',
-				'utilisateur_prenom','u.prenom',
-				'groupe_nom','g.nom'
-			);
+			return false;
 		}
-		parent::__construct($config);
+		return $form;
 	}
 
-	protected function populateState($ordering = null, $direction = null)
+	// 3) contr�ler qu'un tableau de donn�es n'est pas d�j� initialis� dans la session
+	protected function loadFormData() 
 	{
-		// récupère les informations de la session groupe nécessaires au paramétrage de l'écran
-		$search = $this->getUserStateFromRequest($this->context.'.filter.search', 'filter_search');
-		$this->setState('filter.search', $search);
-
-		$published = $this->getUserStateFromRequest($this->context.'.filter.published', 'filter_published', '');
-		$this->setState('filter.published', $published);
-
-		parent::populateState('modified', 'desc');
-	}
-	
-	protected function getListQuery(){
-	
-		// construit la requête d'affichage de la liste
-		$query = $this->_db->getQuery(true);
-		$query->select('gum.id, gum.utilisateur, gum.groupe, gum.date_deb, gum.date_fin, gum.role, gum.published, gum.created, gum.modified, gum.modified_by, gum.hits');
-		$query->from('#__arvie_groupe_utilisateur_map gum');
-
-		// joint la table role pour les labels
-		$query->select('r.label AS role_label')->join('LEFT', '#__arvie_roles AS r ON gum.role=r.id');
-
-		// joint la table utilisateur pour les prenoms
-		$query->select('u.prenom AS utilisateur_prenom')->join('LEFT', '#__arvie_utilisateurs AS u ON gum.utilisateur=u.id');
-
-		// joint la table groupe pour les nom de groupe
-		$query->select('g.nom AS groupe_nom')->join('LEFT', '#__arvie_groupes AS g ON gum.groupe=g.id');
-
-		// filtre de recherche rapide textuel
-		$search = $this->getState('filter.search');
-		if (!empty($search)) {
-			// recherche prefixée par 'id:'
-			if (stripos($search, 'id:') === 0) {
-				$query->where('gum.id = '.(int) substr($search, 3));
-			}
-			else {
-				// recherche textuelle classique (sans préfixe)
-				$search = $this->_db->Quote('%'.$this->_db->escape($search, true).'%');
-				// Compile les clauses de recherche
-				$searches	= array();
-				$searches[]	= 'gum.utilisateur LIKE '.$search;
-				$searches[]	= 'gum.groupe LIKE '.$search;
-				// Ajoute les clauses à la requête
-				$query->where('('.implode(' OR ', $searches).')');
-			}
+		$data = JFactory::getApplication()->getUserState($this->_compo.'.edit.'.$this->_context.'.data', array());
+		if (empty($data)) 
+		{
+			$data = $this->getItem();
 		}
-
-		// filtre selon l'état du filtre 'filter_published'
-		$published = $this->getState('filter.published');
-		if (is_numeric($published)) {
-			$query->where('gum.published=' . (int) $published);
-		}
-		elseif ($published === '') {
-			// si aucune sélection, on n'affiche que les publié et dépublié
-			$query->where('(gum.published=0 OR gum.published=1)');
-		}
-
-		// tri des colonnes
-		$orderCol = $this->state->get('list.ordering', 'id');
-		$orderDirn = $this->state->get('list.direction', 'ASC');
-		$query->order($this->_db->escape($orderCol.' '.$orderDirn));
-
-		//echo nl2br(str_replace('#__','arvie_',$query));			// TEST/DEBUG
-		return $query;
+		return $data;
 	}
 
+	// 4) pr�parer les donn�es avant la sauvegarde en base de donn�es par l'objet JTable
+	protected function prepareTable($table)
+	{
+		$table->alias = JApplication::stringURLSafe($table->alias);
+		if (empty($table->alias))
+		{
+			$table->alias = JApplication::stringURLSafe($table->label);
+		}
+	}
 }

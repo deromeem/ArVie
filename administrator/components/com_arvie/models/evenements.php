@@ -10,7 +10,8 @@ class ArvieModelEvenements extends JModelList
 		{
 			$config['filter_fields'] = array(
 				'id',              'e.id',
-				'titre',		   'e.titre',
+				'titre',           'p.titre',
+				'texte',           'p.texte',
 				'date_event',      'e.date_event',
 				'lieu',            'e.lieu',
 				'alias',           'e.alias',
@@ -44,11 +45,12 @@ class ArvieModelEvenements extends JModelList
 	{
 		// construit la requête d'affichage de la liste
 		$query = $this->_db->getQuery(true);
-		$query->select('e.id, e.titre, e.date_event, e.lieu, e.alias, e.published, e.created, e.created_by, e.modified, e.modified_by, e.hits');
+		$query->select('e.id, e.date_event, e.lieu, e.alias, e.published, e.created, e.created_by, e.modified, e.modified_by, e.hits');
 		$query->from('#__arvie_evenements e');
 		
+		// joint la table users
+		$query->select('p.titre, p.texte')->join('INNER', '#__arvie_publications AS p ON e.id = p.id');
 		
-
 
 		// filtre de recherche rapide textuel
 		$search = $this->getState('filter.search');
@@ -62,7 +64,7 @@ class ArvieModelEvenements extends JModelList
 				$search = $this->_db->Quote('%'.$this->_db->escape($search, true).'%');
 				// Compile les clauses de recherche
 				$searches	= array();
-				$searches[]	= 'e.titre LIKE '.$search;
+				$searches[]	= 'p.titre LIKE '.$search;
 				$searches[]	= 'e.date_event LIKE '.$search;
 				//$searches[]	= 'e.fonction LIKE '.$search;
 				$searches[]	= 'e.email LIKE '.$search;

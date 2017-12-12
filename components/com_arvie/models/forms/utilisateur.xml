@@ -19,25 +19,6 @@
 			description="COM_ARVIE_UTILISATEURS_PRENOM"
 			size="40" class="inputbox" default="" required="true"
 		/>
-		<field name="civilites_id" type="sql" default="" label="COM_ARVIE_UTILISATEURS_CIVILITE" 
-			description="COM_ARVIE_UTILISATEURS_CIVILITE"
-			query="SELECT id, civilite FROM #__arvie_civilites ORDER BY civilite" 
-			key_field="id" value_field="civilite" required="false"
-		/>
-		<field name="typescontacts_id" type="sql" default="" label="COM_ARVIE_UTILISATEURS_TYPEUTILISATEUR" 
-			description="COM_ARVIE_UTILISATEURS_TYPEUTILISATEUR"
-			query="SELECT id, typeUtilisateur FROM #__arvie_typescontacts ORDER BY typeContact" 
-			key_field="id" value_field="typeContact" required="false"
-		/>
-		<field name="entreprises_id" type="sql" default="" label="COM_ARVIE_UTILISATEURS_ENTREPRISE" 
-			description="COM_ARVIE_UTILISATEURS_ENTREPRISE"
-			query="SELECT id, nom FROM #__arvie_entreprises ORDER BY nom" 
-			key_field="id" value_field="nom" required="false"
-		/>
-		<field name="fonction" type="text" label="COM_ARVIE_UTILISATEURS_FONCTION"
-			description="COM_ARVIE_UTILISATEURS_FONCTION"
-			size="40" class="inputbox" default="" required="false"
-		/>
 		<field name="email" type="text" label="COM_ARVIE_UTILISATEURS_EMAIL"
 			description="COM_ARVIE_UTILISATEURS_EMAIL"
 			size="40" class="inputbox" default="" required="false"
@@ -45,18 +26,6 @@
 		<field name="mobile" type="text" label="COM_ARVIE_UTILISATEURS_MOBILE"
 			description="COM_ARVIE_UTILISATEURS_MOBILE"
 			size="40" class="inputbox" default="" required="false"
-		/>
-		<field name="tel" type="text" label="COM_ARVIE_UTILISATEURS_TEL"
-			description="COM_ARVIE_UTILISATEURS_TEL"
-			size="40" class="inputbox" default="" required="false"
-		/>
-		<field
-			name="commentaire" type="editor" label="COM_ARVIE_COMMENT"
-			description="COM_ARVIE_COMMENT"
-			class="inputbox"
-			filter="JComponentHelper::filterText"
-			buttons="true"
-			hide="readmore,pagebreak"
 		/>
 		<field id="published" name="published" type="list"
 			label="JSTATUS"	description="JSTATUS"

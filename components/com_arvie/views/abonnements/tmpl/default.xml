@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<metadata> 
+	<layout title="Liste des contacts"> 
+		<message> 
+			<![CDATA[Ecran de liste de tous les contacts]]> 
+		</message> 
+	</layout> 
+</metadata>

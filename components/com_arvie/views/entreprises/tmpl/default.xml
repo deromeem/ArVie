@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<metadata> 
+	<layout title="Liste des entreprises"> 
+		<message> 
+			<![CDATA[Ecran de liste de toutes les entreprises]]> 
+		</message> 
+	</layout> 
+</metadata>

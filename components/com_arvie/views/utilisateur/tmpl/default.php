@@ -17,7 +17,7 @@ $isAdmin = (in_array('17', $user->groups));		// sets flag when user group is '17
 				<span class="icon-cancel"></span></a>
 		</div>	
 		<div class="btn-group pull-right">
-			<a href="<?php echo JRoute::_('index.php?option=com_arvie&view=form_c&layout=edit&id='.$this->item->id); ?>" class="btn" role="button"><span class="icon-edit"></span></a>
+			<a href="<?php echo JRoute::_('index.php?option=com_arvie&view=form_u&layout=edit&id='.$this->item->id); ?>" class="btn" role="button"><span class="icon-edit"></span></a>
 		</div>	
 	</div>
 	<div>

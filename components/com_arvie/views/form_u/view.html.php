@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die;
 
-class ArvieViewForm_c extends JViewLegacy
+class ArvieViewForm_u extends JViewLegacy
 {
 	protected $form;
 	protected $item;

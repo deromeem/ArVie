@@ -26,7 +26,7 @@ class ArvieHelper extends JHelperContent
 		JHtmlSidebar::addEntry(
 			JText::_('Groupe_util_map'),
 			'index.php?option=com_arvie&view=groupe_utilisateur_maps',
-			$vName == 'groupe_utilisateur_map'
+			$vName == 'groupe_utilisateur_maps'
 		);		
 	
 		JHtmlSidebar::addEntry(
@@ -74,13 +74,13 @@ class ArvieHelper extends JHelperContent
 		JHtmlSidebar::addEntry(
 			JText::_('Utilisateur_discu_map'),
 			'index.php?option=com_arvie&view=utilisateur_discu_maps',
-			$vName == 'utilisateur_discu_map'
+			$vName == 'utilisateur_discu_maps'
 		);		
 
 		JHtmlSidebar::addEntry(
 			JText::_('Utilisateur_even_map'),
 			'index.php?option=com_arvie&view=utilisateur_even_maps',
-			$vName == 'utilisateur_even_map'
+			$vName == 'utilisateur_even_maps'
 		);		
 		
 		JHtmlSidebar::addEntry(

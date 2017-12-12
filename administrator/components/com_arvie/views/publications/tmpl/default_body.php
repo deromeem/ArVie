@@ -17,12 +17,20 @@ if ($saveOrder)
 	<td class="hidden-phone">
 		<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 	</td>
-	
 	<td align="small">
-		<?php echo $item->publication_parent; ?>
+		<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=publication.edit&id='.(int) $item->id); ?>">
+			<?php echo $item->titre; ?>
+		</a>
 	</td>
 	<td align="small">
-		<?php echo $item->groupes_nom; ?>
+		<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=publication.edit&id='.(int) $item->parent); ?>">
+			<?php echo $item->publication_parent; ?>
+		</a>
+	</td>
+	<td align="small">
+		<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=groupe.edit&id='.(int) $item->groupe); ?>">
+			<?php echo $item->groupes_nom; ?>
+		</a>
 	</td>
 	<td align="small">
 		<?php echo $item->auteur_prenom; ?>

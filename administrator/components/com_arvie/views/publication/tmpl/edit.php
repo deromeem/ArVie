@@ -18,42 +18,38 @@ JHtml::_('formbehavior.chosen', 'select');
 <form action="<?php echo JRoute::_('index.php?option=com_arvie&layout=edit&id='.(int) $this->item->id); ?>"
       method="post" name="adminForm" id="arvie-form" class="form-validate">
 
-	  <div class="form-inline form-inline-header">
-		<div class="control-group">
-			<div class="control-label"><?php echo $this->form->getLabel('nom'); ?></div>
-			<div class="controls"><?php echo $this->form->getInput('nom'); ?></div>
-		</div>					
-		<div class="control-group">
-			<div class="control-label"><?php echo $this->form->getLabel('alias'); ?></div>
-			<div class="controls"><?php echo $this->form->getInput('alias'); ?></div>
-		</div>					
-	</div>			
+	<div class="control-group">
+		<div class="control-label"><?php echo $this->form->getLabel('id'); ?></div>
+		<div class="controls"><?php echo $this->form->getInput('id'); ?></div>
+	</div>
 
 
 	<div class="form-horizontal">
-		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'details')); ?>
-			
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'details', JText::_('COM_ARVIE_PUBLICATION')); ?>
-		<div class="row-fluid form-horizontal-desktop">
+		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'publication')); ?>
 
-		<div class="span9">
-				<div class="form-vertical">
-					<div class="span2">
-						<div class="control-label"><?php echo $this->form->getLabel('COM_ARVIE_PUBLICATION_PARENT'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('COM_ARVIE_PUBLICATION_PARENT'); ?></div>
-					</div>
-					<div class="span2">
-						<div class="control-label"><?php echo $this->form->getLabel('COM_ARVIE_PUBLICATION_AUTEUR'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('COM_ARVIE_PUBLICATION_AUTEUR'); ?></div>
-					</div>
-					<div class="span2">
-						<div class="control-label"><?php echo $this->form->getLabel('COM_ARVIE_PUBLICATION_GROUPE'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('COM_ARVIE_PUBLICATION_GROUPE'); ?></div>
-					</div>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'publication', JText::_('COM_ARVIE_PUBLICATION')); ?>
+		<div class="row-fluid form-horizontal-desktop">
+			<div class="form-vertical">
+				<div class="control-group">
+					<div class="control-label"><?php echo $this->form->getLabel('publication_parent'); ?></div>
+					<div class="controls"><?php echo $this->form->getInput('publication_parent'); ?></div>
+				</div>
+				<div class="control-group">
+					<div class="control-label"><?php echo $this->form->getLabel('groupe'); ?></div>
+					<div class="controls"><?php echo $this->form->getInput('groupe'); ?></div>
+				</div>
+				<div class="control-group">
+					<div class="control-label"><?php echo $this->form->getLabel('auteur'); ?></div>
+					<div class="controls"><?php echo $this->form->getInput('auteur'); ?></div>
+				</div>
+				<div class="control-group">
+					<div class="control-label"><?php echo $this->form->getLabel('texte'); ?></div>
+					<div class="controls"><?php echo $this->form->getInput('texte'); ?></div>
 				</div>
 			</div>
-			<?php echo JHtml::_('bootstrap.endTab'); ?>
 		</div>
+		<?php echo JHtml::_('bootstrap.endTab'); ?>
+		
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'publishing', JText::_('JGLOBAL_FIELDSET_PUBLISHING', true)); ?>
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="form-vertical">
@@ -66,7 +62,7 @@ JHtml::_('formbehavior.chosen', 'select');
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 
-		<?php echo JLayoutHelper::render('joomla.edit.params', $this); ?>
+		<?php echo JLayoutHelper::render('joomla.edit.arams', $this); ?>
 
 		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 	</div>

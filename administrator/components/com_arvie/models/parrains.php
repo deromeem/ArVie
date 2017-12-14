@@ -9,7 +9,7 @@ class ArvieModelParrains extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'id' =>             'id',
+				'id' =>             'p.id',
 				'parrain' =>        'p.parrain',
 				'nom_parrain' =>    'up.nom',
 				'prenom_parrain' => 'up.prenom',
@@ -49,7 +49,7 @@ class ArvieModelParrains extends JModelList
 	{
 		// construit la requête d'affichage de la liste
 		$query = $this->_db->getQuery(true);
-		$query->select('CONCAT(p.parrain, p.filleul) AS id, p.parrain, p.filleul, p.date_deb, p.date_fin, p.alias, p.published, p.created, p.created_by, p.modified, p.modified_by, p.hits');
+		$query->select('p.id, p.parrain, p.filleul, p.date_deb, p.date_fin, p.alias, p.published, p.created, p.created_by, p.modified, p.modified_by, p.hits');
 		$query->from('#__arvie_parrains p');
 		
 		// joint la table users

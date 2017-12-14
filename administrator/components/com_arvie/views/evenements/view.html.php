@@ -73,10 +73,10 @@ class ArvieViewEvenements extends JViewLegacy
 	{
 		// prépare l'affichage des colonnes de tri du calque
 		return array(
-			'e.titre' => JText::_('COM_ARVIE_EVENEMENTS_TITRE'),
+			'p.titre' => JText::_('COM_ARVIE_PUBLICATIONS_TITRE'),
 			'e.date_event' => JText::_('COM_ARVIE_EVENEMENTS_DATE_EVENT'),
-			'e.published' => JText::_('COM_ARVIE_EVENEMENTS_PUBLISHED'),
-			'e.id' => JText::_('COM_ARVIE_EVENEMENTS_ID')
+			'e.published' => JText::_('JSTATUS'),
+			'e.id' => JText::_('JGRID_HEADING_ID')
 		);
 	}
 }

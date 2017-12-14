@@ -32,9 +32,18 @@ if ($saveOrder)
 							?>
 						</div>
 					</div>
-                </td>
+		</td>
+		
                 <td align="small">
                         <?php echo $item->parent_nom; ?>
+		</td>
+
+		<td align="small">
+                        <?php echo $item->est_groupe_interet; ?>
+		</td>
+
+		<td align="small">
+                        <?php echo $item->est_public; ?>
 		</td>
 
 		<td align="small">

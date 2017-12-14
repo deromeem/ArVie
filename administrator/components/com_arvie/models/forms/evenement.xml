@@ -5,7 +5,7 @@
 
 		<field name="asset_id" type="hidden" filter="unset" />
 		
-        <field name="titre" type="text" label="COM_ARVIE_EVENEMENTS_TITRE"
+        <field name="titre" type="text" label="COM_ARVIE_PUBLICATIONS_TITRE"
             description="COM_ARVIE_EVENEMENTS_NOM"
             size="40" class="inputbox" default="" required="true"
         />

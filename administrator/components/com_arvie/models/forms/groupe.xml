@@ -16,23 +16,22 @@
 			hint="JFIELD_ALIAS_PLACEHOLDER"
 			class="inputbox" size="45"
 		/>
+		<field name="est_groupe_interet" type="radio" default="0" label="Quel type de groupe est-ce ?" description="">
+  			<option value="0">Classe</option>
+  			<option value="1">Intérêt</option>
+		</field>
 
-		<field name="parent" type="sql" default="" label="Groupe Parent" 
+		<field name="est_public" type="radio" default="0" label="Est-ce un groupe public ?" description="">
+  			<option value="0">Privé</option>
+  			<option value="1">Public</option>
+		</field>
+
+		<field name="groupe_parent" type="sql" default="" label="Groupe Parent" 
 			description="Groupe Parent"
 			query="SELECT id, nom FROM #__arvie_groupes ORDER BY nom" 
 			key_field="id" value_field="nom" required="false"
 		/>
 
-		<field
-				name="commentaire" type="editor" label="COM_ARVIE_GROUPES_COMMENTAIRE"
-				description="COM_ARVIE_GROUPES_COMMENTAIRE"
-				height = "10px"
-				width = "10px"
-				class="inputbox"
-				filter="JComponentHelper::filterText"
-				buttons="true"
-				hide="readmore,pagebreak"
-		/>
 		
 		<field id="published" name="published" type="list"
 			label="JSTATUS"	description="JSTATUS"

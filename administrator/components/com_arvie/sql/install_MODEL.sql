@@ -48,7 +48,6 @@ CREATE TABLE `discussions` (
 
 CREATE TABLE `evenements` (
   `id` int(11) NOT NULL,
-  `titre` varchar(255) NOT NULL,
   `date_event` datetime NOT NULL,
   `lieu` varchar(50) NOT NULL,
   `alias` varchar(255) NOT NULL,
@@ -221,9 +220,10 @@ CREATE TABLE `publications` (
   `publication_parent` int(11) DEFAULT NULL,
   `groupe` int(11) NOT NULL,
   `auteur` int(11) NOT NULL,
+  `titre` varchar(255) NOT NULL,
   `texte` text NOT NULL,
   `date_publi` datetime NOT NULL,
-  `public` tinyint(1) NOT NULL,
+  `est_public` tinyint(1) NOT NULL DEFAULT '0',
   `alias` varchar(255) NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
@@ -237,8 +237,8 @@ CREATE TABLE `publications` (
 -- Contenu de la table `publications`
 --
 
-INSERT INTO `publications` (`id`, `publication_parent`, `groupe`, `auteur`, `texte`, `date_publi`, `public`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
-(1, NULL, 1, 5, 'Salut les gars, les gens ils croient on fait pas mais si on fait !', '2017-10-19 16:32:12', 1, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0);
+INSERT INTO `publications` (`id`, `publication_parent`, `groupe`, `auteur`, `titre`, `texte`, `date_publi`, `est_public`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
+(1, NULL, 1, 1, 'Projet ArVie', 'Le projet ArVie est actuellement développé par les étudiants TSIO2 SLAM au Lycée Louis-Armand.\r\n\r\nLes contributions faites à domicile doivent rester exceptionnelles afin de respecter la dynamique de groupe.', '2017-12-07 11:46:00', 1, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -248,7 +248,7 @@ INSERT INTO `publications` (`id`, `publication_parent`, `groupe`, `auteur`, `tex
 
 CREATE TABLE `roles` (
   `id` int(11) NOT NULL,
-  `label` int(11) NOT NULL,
+  `label` varchar(50) NOT NULL,
   `alias` varchar(255) NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
@@ -301,7 +301,7 @@ CREATE TABLE `utilisateur_discu_map` (
   `id` int(11) NOT NULL,
   `utilisateur` int(11) NOT NULL,
   `discussion` int(11) NOT NULL,
-  `admin` tinyint(1) NOT NULL,
+  `est_admin` tinyint(1) NOT NULL DEFAULT '0',
   `alias` varchar(255) NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
@@ -321,7 +321,6 @@ CREATE TABLE `utilisateur_even_map` (
   `id` int(11) NOT NULL,
   `participant` int(11) NOT NULL,
   `evenement` int(11) NOT NULL,
-  `date` datetime NOT NULL,
   `alias` varchar(255) NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT '0',
   `created` datetime NOT NULL,
@@ -339,8 +338,7 @@ CREATE TABLE `utilisateur_even_map` (
 ALTER TABLE `abonnements`
   ADD PRIMARY KEY (`id`),
   ADD KEY `suivi` (`suivi`),
-  ADD KEY `abonne` (`abonne`),
-  ADD KEY `suivi_2` (`suivi`);
+  ADD KEY `abonne` (`abonne`);
 
 --
 -- Index pour la table `discussions`
@@ -428,8 +426,7 @@ ALTER TABLE `utilisateurs`
 ALTER TABLE `utilisateur_discu_map`
   ADD PRIMARY KEY (`id`),
   ADD KEY `discussion` (`discussion`),
-  ADD KEY `utilisateur` (`utilisateur`),
-  ADD KEY `discussion_2` (`discussion`);
+  ADD KEY `utilisateur` (`utilisateur`);
 
 --
 -- Index pour la table `utilisateur_even_map`
@@ -437,8 +434,7 @@ ALTER TABLE `utilisateur_discu_map`
 ALTER TABLE `utilisateur_even_map`
   ADD PRIMARY KEY (`id`),
   ADD KEY `evenement` (`evenement`),
-  ADD KEY `participant` (`participant`),
-  ADD KEY `evenement_2` (`evenement`);
+  ADD KEY `participant` (`participant`);
 
 --
 -- AUTO_INCREMENT pour la table `abonnements`

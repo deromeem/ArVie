@@ -17,6 +17,36 @@ if ($saveOrder)
 	<td class="hidden-phone">
 		<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 	</td>
+	<td align="small">
+		<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=publication.edit&id='.(int) $item->id); ?>">
+			<?php echo $item->titre; ?>
+		</a>
+	</td>
+	<td align="small">
+		<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=publication.edit&id='.(int) $item->parent); ?>">
+			<?php echo $item->publication_parent; ?>
+		</a>
+	</td>
+	<td align="small">
+		<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=groupe.edit&id='.(int) $item->groupe); ?>">
+			<?php echo $item->groupes_nom; ?>
+		</a>
+	</td>
+	<td align="small">
+		<?php echo $item->auteur_prenom; ?>
+	</td>
+	<td align="center">
+		<?php echo $item->texte; ?>
+	</td>
+	<td width="5%" style="min-width:55px" align="center">
+		<?php echo JHtml::_('jgrid.published', $item->published, $i, 'publications.', true); ?>
+	</td>
+	<td class="nowrap center hidden-phone ">
+		<?php echo JHtml::_('date', $item->modified, $this->paramDateFmt); ?>
+	</td>
+	<td class="nowrap center hidden-phone">
+			<?php echo (int) $item->hits; ?>
+	</td>
 	<td class="wrap has-context">
 		<div class="pull-left">
 			<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=publication.edit&id='.(int) $item->id); ?>">
@@ -32,27 +62,6 @@ if ($saveOrder)
 				?>
 			</div>
 		</div>
-	</td>
-	<td align="small">
-		<?php echo $item->parent; ?>
-	</td>
-	<td align="small">
-		<?php echo $item->groupes_nom; ?>
-	</td>
-	<td align="small">
-		<?php echo $item->auteur_nom; ?>
-	</td>
-	<td align="center">
-		<?php echo $item->texte; ?>
-	</td>
-	<td align="center hidden phone ">
-		<?php echo JHtml::_('jgrid.published', $item->published, $i, 'publications.', true); ?>
-	</td>
-	<td class="center hidden-phone">
-		<?php echo JHtml::_('date', $item->modified, $this->paramDateFmt); ?>
-	</td>
-	<td class="pull-right hidden-tablet hidden-phone">
-			<?php echo (int) $item->hits; ?>
 	</td>
 
 </tr>

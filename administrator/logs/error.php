@@ -25,3 +25,4 @@
 =======
 2017-12-11T09:26:37+00:00	INFO ::1	joomlafailure	Mot de passe invalide
 >>>>>>> 1fce6d606733414dea9d6b5c0a3550dc4788b672
+2017-12-14T14:22:46+00:00	INFO ::1	joomlafailure	Mot de passe invalide

@@ -17,6 +17,12 @@ if ($saveOrder)
 	<td class="hidden-phone">
 		<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 	</td>
+<<<<<<< HEAD
+	<td align="small">
+		<?php echo $item->titre; ?>
+	</td>
+=======
+>>>>>>> 1fce6d606733414dea9d6b5c0a3550dc4788b672
 	<td align="small">
 		<a href="<?php echo JRoute::_('index.php?option=com_arvie&task=publication.edit&id='.(int) $item->id); ?>">
 			<?php echo $item->titre; ?>
@@ -37,6 +43,9 @@ if ($saveOrder)
 	</td>
 	<td align="center">
 		<?php echo $item->texte; ?>
+	</td>
+	<td align="small">
+		<?php echo $item->est_public; ?>
 	</td>
 	<td width="5%" style="min-width:55px" align="center">
 		<?php echo JHtml::_('jgrid.published', $item->published, $i, 'publications.', true); ?>

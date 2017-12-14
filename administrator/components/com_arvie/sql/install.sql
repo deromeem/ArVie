@@ -269,7 +269,7 @@ CREATE TABLE `#__arvie_utilisateurs` (
   `email` varchar(50) NOT NULL,
   `prenom` varchar(40) NOT NULL,
   `nom` varchar(40) NOT NULL,
-  `mobile` int(12) DEFAULT NULL,
+  `mobile` varchar(40) DEFAULT NULL,
   `date_naiss` date NOT NULL,
   `alias` varchar(255) NOT NULL,
   `published` tinyint(1) NOT NULL DEFAULT '0',
@@ -285,11 +285,11 @@ CREATE TABLE `#__arvie_utilisateurs` (
 --
 
 INSERT INTO `#__arvie_utilisateurs` (`id`, `email`, `prenom`, `nom`, `mobile`, `date_naiss`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
-(1, 'emmanuel.derome@gmail.com', 'Emmanuel', 'Derome', NULL, '1960-10-03', '', 1, '2017-10-19 16:32:12', 416, '2017-10-19 16:32:12', 416, 0),
-(2, 'f.salimou@hotmail.fr', 'Salimou', 'Fofana', NULL, '1998-03-01', '', 1, '2017-10-19 16:32:12', 416, '2017-10-19 16:32:12', 416, 0),
-(3, 'gregory.brugnet@gmail.com', 'Gregory', 'Brugnet', NULL, '1996-10-01', '', 1, '2017-10-19 16:32:12', 416, '2017-10-19 16:32:12', 416, 0),
-(4, 'n.peugnet@free.fr', 'Nicolas', 'Peugnet', NULL, '1996-05-09', '', 1, '2017-10-19 16:32:12', 416, '2017-10-19 16:32:12', 416, 0),
-(5, 'rahari.anja@gmail.com', 'Anja', 'Raharijaonarivelo', 0, '1997-06-15', 'raharijaonarivelo', 1, '2017-10-19 16:32:12', 416, '2017-11-16 15:58:09', 416, 0);
+(1, 'emmanuel.derome@gmail.com', 'Emmanuel', 'Derome', NULL, '1960-10-03', '', 1, '2017-10-19 16:32:12', '07', '2017-10-19 16:32:12', 416, 0),
+(2, 'f.salimou@hotmail.fr', 'Salimou', 'Fofana', NULL, '1998-03-01', '', 1, '2017-10-19 16:32:12', '06', '2017-10-19 16:32:12', 416, 0),
+(3, 'gregory.brugnet@gmail.com', 'Gregory', 'Brugnet', NULL, '1996-10-01', '', 1, '2017-10-19 16:32:12', '06', '2017-10-19 16:32:12', 416, 0),
+(4, 'n.peugnet@free.fr', 'Nicolas', 'Peugnet', NULL, '1996-05-09', '', 1, '2017-10-19 16:32:12', '06', '2017-10-19 16:32:12', 416, 0),
+(5, 'rahari.anja@gmail.com', 'Anja', 'Raharijaonarivelo', 0, '1997-06-15', 'raharijaonarivelo', '07', '2017-10-19 16:32:12', 416, '2017-11-16 15:58:09', 416, 0);
 
 -- --------------------------------------------------------
 

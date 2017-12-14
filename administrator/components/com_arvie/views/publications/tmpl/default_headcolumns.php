@@ -10,6 +10,9 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 		<?php echo JHtml::_('grid.checkall'); ?> 
 	</th>
 	<th width="10%" class="nowrap">
+		<?php echo JHtml::_('grid.sort', 'COM_ARVIE_PUBLICATIONS_TITRE', 'p.titre', $listDirn, $listOrder) ?>
+	</th>
+	<th width="10%" class="nowrap">
 		<?php echo JHtml::_('grid.sort', 'COM_ARVIE_PUBLICATIONS_PARENT', 'p.parent', $listDirn, $listOrder) ?>
 	</th>
 	<th width="10%" class="nowrap">
@@ -21,6 +24,9 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 	<th width="25%" class="nowrap">
 		<?php echo JHtml::_('grid.sort', 'COM_ARVIE_PUBLICATIONS_TEXTE', 'p.texte', $listDirn, $listOrder) ?>
 	</th> 
+	<th width="5%" class="nowrap">
+		<?php echo JHtml::_('grid.sort', 'COM_ARVIE_PUBLICATIONS_EST_PUBLIC', 'p.est_public', $listDirn, $listOrder) ?>
+	</th>
 	<th width="5%" style="min-width:55px"  align="center">
 		<?php echo JHtml::_('grid.sort', 'Publié', 'p.published', $listDirn, $listOrder) ?>
 	</th>

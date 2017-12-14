@@ -17,7 +17,9 @@ if ($saveOrder)
 	<td class="hidden-phone">
 		<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 	</td>
-	
+	<td align="small">
+		<?php echo $item->titre; ?>
+	</td>
 	<td align="small">
 		<?php echo $item->publication_parent; ?>
 	</td>
@@ -29,6 +31,9 @@ if ($saveOrder)
 	</td>
 	<td align="center">
 		<?php echo $item->texte; ?>
+	</td>
+	<td align="small">
+		<?php echo $item->est_public; ?>
 	</td>
 	<td width="5%" style="min-width:55px" align="center">
 		<?php echo JHtml::_('jgrid.published', $item->published, $i, 'publications.', true); ?>

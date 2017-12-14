@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Créer un utilisateur" option="Créer">
+		<message>
+			<![CDATA[Affiche un formulaire pour créer un utilisateur]]>
+		</message>
+	</layout>
+</metadata>

@@ -11,6 +11,7 @@ class ArvieModelDiscussions extends JModelList
 			$config['filter_fields'] = array(
 				'id',             'd.id',
 				'nom',            'd.nom',
+				'nb_utilisateurs','nb_utilisateurs',
 				'published',      'd.published',
 				'created',        'd.created',
 				'created_by',     'd.created_by',
@@ -46,13 +47,8 @@ class ArvieModelDiscussions extends JModelList
 		
 		
 		//joint entre la table #__arvie_utilisateur_discu_map
-		//$query->select('ud.utilisateur')->join('INNER','#__arvie_utilisateur__discu_map AS ud ON ud.discussion = d.id');
-		
-		//SELECT d.nom ,COUNT(*) AS nbUtilisateurs
-		//FROM `arvie_arvie_utilisateur_discu_map` ud
-		//JOIN `arvie_arvie_discussions` d 
-		//ON ud.discussion = d.id
-		//GROUP BY d.nom
+		$query->select('COUNT(*) AS nb_utilisateurs')->join('LEFT','#__arvie_utilisateur_discu_map AS ud ON ud.discussion = d.id');
+		$query->group('d.id');
 
 		// filtre de recherche rapide textuel
 		$search = $this->getState('filter.search');
@@ -88,7 +84,7 @@ class ArvieModelDiscussions extends JModelList
 		$orderDirn = $this->state->get('list.direction', 'ASC');
 		$query->order($this->_db->escape($orderCol.' '.$orderDirn));
 
-		// echo nl2br(str_replace('#__','egs_',$query));			// TEST/DEBUG
+		// echo nl2br(str_replace('#__','arvie_',$query));			// TEST/DEBUG
 		return $query;
 	}
 

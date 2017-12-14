@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <metadata> 
+<<<<<<< HEAD
 	<layout title="Liste des entreprises"> 
 		<message> 
 			<![CDATA[Ecran de liste de toutes les entreprises]]> 
+=======
+	<layout title="Liste des publications"> 
+		<message> 
+			<![CDATA[Ecran de liste de toutes les publications]]> 
+>>>>>>> 1fce6d606733414dea9d6b5c0a3550dc4788b672
 		</message> 
 	</layout> 
 </metadata>

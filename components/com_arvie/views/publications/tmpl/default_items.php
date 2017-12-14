@@ -1,7 +1,11 @@
 <?php
 defined('_JEXEC') or die;
 
+<<<<<<< HEAD
 $uriCompoDetail = JURI::base(true)."/index.php?option=com_annuaire&view=entreprise&id=";
+=======
+$uriCompoDetail = JURI::base(true)."/index.php?option=com_arvie&view=publication&id=";
+>>>>>>> 1fce6d606733414dea9d6b5c0a3550dc4788b672
 
 $listOrder	= $this->escape($this->state->get('list.ordering'));
 $listDirn	= $this->escape($this->state->get('list.direction'));
@@ -30,7 +34,11 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				<i class="icon-search"></i></button>
 		</div>	
 		<div class="btn-group pull-left">
+<<<<<<< HEAD
 			<a href="<?php echo JRoute::_('index.php?option=com_annuaire&view=form&layout=edit'); ?>" class="btn" role="button"><span class="icon-plus"></span></a>
+=======
+			<a href="<?php echo JRoute::_('index.php?option=com_arvie&view=form_p&layout=edit'); ?>" class="btn" role="button"><span class="icon-plus"></span></a>
+>>>>>>> 1fce6d606733414dea9d6b5c0a3550dc4788b672
 		</div>	
 		<div class="btn-group pull-right">
 			<label for="limit" class="element-invisible"><?php echo JText::_('JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC');?></label>
@@ -43,6 +51,7 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 		<thead>
 			<tr>
 				<th class="title">
+<<<<<<< HEAD
 					<?php echo JHtml::_('grid.sort', JText::_('COM_ANNUAIRE_ENTREPRISES_NOM'), 'nom', $listDirn, $listOrder) ?>
 				</th>
 				<!-- <th class="title">Publié</th> -->
@@ -51,6 +60,16 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 				</th>
 				<th class="title">
 					<?php echo JHtml::_('grid.sort', JText::_('COM_ANNUAIRE_ENTREPRISES_SITEWEB'), 'siteWeb', $listDirn, $listOrder) ?>
+=======
+					<?php echo JHtml::_('grid.sort', JText::_('COM_ARVIE_GROUPES_NOM'), 'nom', $listDirn, $listOrder) ?>
+				</th>
+				<!-- <th class="title">Publié</th> -->
+				<th class="title">
+					<?php echo JHtml::_('grid.sort', JText::_('COM_ARVIE_GROUPES_GROUPES_PARENT'), 'publication_parent_nom', $listDirn, $listOrder) ?>
+				</th>
+				<th class="title">
+					<?php echo JHtml::_('grid.sort', JText::_('COM_ARVIE_GROUPES_EST_GROUPE_INTERET'), 'est_publication_interet', $listDirn, $listOrder) ?>
+>>>>>>> 1fce6d606733414dea9d6b5c0a3550dc4788b672
 				</th>
 				<!-- <th class="title"><?php echo JHtml::_('grid.sort', 'Date', 'created', $listDirn, $listOrder) ?></th> -->
 			</tr>
@@ -62,9 +81,18 @@ $listDirn	= $this->escape($this->state->get('list.direction'));
 					<td>
 						<a href="<?php echo $uriCompoDetail.$item->id ?>"><?php echo $item->nom ?></a>
 					</td>
+<<<<<<< HEAD
 					<!-- <td><?php echo JHtml::_('jgrid.published', $item->published, $i, 'entreprises.', true); ?></td> -->
 					<td><?php echo $item->codeAPE_NAF ?></td>
 					<td><?php echo $item->siteWeb ?></td>
+=======
+					<!-- <td><?php echo JHtml::_('jgrid.published', $item->published, $i, 'publications.', true); ?></td> -->
+					<td><?php echo $item->publication_parent_nom ?></td>
+					<td><?php if($item->est_publication_interet)
+										{echo 'Interêt';} 
+									else{echo 'Classe';}
+						?></td>
+>>>>>>> 1fce6d606733414dea9d6b5c0a3550dc4788b672
 					<!-- <td><?php echo JHtml::_('date', $item->created, 'j F Y'); ?></td> -->
 				</tr>			
 			<?php endforeach; ?>

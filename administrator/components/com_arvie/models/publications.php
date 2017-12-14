@@ -10,14 +10,16 @@ class ArvieModelPublications extends JModelList
 		{
 			$config['filter_fields'] = array(
 				'id',             'p.id',
+				'titre',          'p.titre',
 				'parent',		  'p.publication_parent',
+				'groupe',         'p.groupe',
 				'groupes_nom',    'p.groupe',
 				'titre',          'p.titre',
 				'est_public',     'p.est_public',
 				'auteur_prenom',  'p.auteur',
 				'texte',          'p.texte',
 				'date_publi',     'p.date_publi',
-				'public',		  'p.public',
+				'public',         'p.public',
 				'alias',          'p.alias',
 				'published',      'p.published',
 				'created',        'p.created',
@@ -49,7 +51,11 @@ class ArvieModelPublications extends JModelList
 	{
 		// construit la requête d'affichage de la liste
 		$query = $this->_db->getQuery(true);
+<<<<<<< HEAD
 		$query->select('p.id, p.publication_parent, p.groupe, p.auteur, p.titre, p.texte, p.est_public, p.published, p.created, p.created_by, p.modified, p.modified_by, p.hits');
+=======
+		$query->select('p.id, p.titre, p.publication_parent, p.groupe, p.auteur, p.texte, p.published, p.created, p.created_by, p.modified, p.modified_by, p.hits');
+>>>>>>> 1fce6d606733414dea9d6b5c0a3550dc4788b672
 		$query->from('#__arvie_publications p');
 		
 		// joint la table utilisateur pour les auteurs

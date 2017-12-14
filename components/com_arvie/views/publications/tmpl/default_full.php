@@ -2,7 +2,11 @@
 defined('_JEXEC') or die('Restricted access');
 ?>
 
+<<<<<<< HEAD
 <h1>Entreprises de l'annuaire</h1>
+=======
+<h1>Publications de l'arvie</h1>
+>>>>>>> 1fce6d606733414dea9d6b5c0a3550dc4788b672
 
 <form action="<?php echo htmlspecialchars(JFactory::getURI()->toString()); ?>" method="post" name="adminForm" id="adminForm">
 

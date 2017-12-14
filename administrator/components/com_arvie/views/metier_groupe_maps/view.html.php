@@ -43,7 +43,7 @@ class ArvieViewMetier_groupe_maps extends JViewLegacy
 	protected function addToolBar() 
 	{
 		// affiche le titre de la page
-		JToolBarHelper::title(JText::_('COM_ARVIE')." : ".JText::_('COM_ARVIE_PARRAINS'));
+		JToolBarHelper::title(JText::_('COM_ARVIE')." : ".JText::_('COM_ARVIE_METIER_GROUPE_MAP'));
 		
 		// affiche les boutons d'action
 		JToolBarHelper::addNew('metier_groupe_map.add');

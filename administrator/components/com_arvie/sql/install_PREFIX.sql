@@ -115,6 +115,17 @@ CREATE TABLE `arvie_arvie_groupe_utilisateur_map` (
   `hits` int(11) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `arvie_arvie_groupe_utilisateur_map`
+--
+
+INSERT INTO `arvie_arvie_groupe_utilisateur_map` (`id`, `utilisateur`, `groupe`, `date_deb`, `date_fin`, `role`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
+(1, 1, 2, '0000-00-00 00:00:00', NULL, 1, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
+(2, 3, 7, '0000-00-00 00:00:00', NULL, 3, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
+(3, 2, 7, '0000-00-00 00:00:00', NULL, 2, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
+(4, 4, 7, '0000-00-00 00:00:00', NULL, 4, '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0);
+
+
 -- --------------------------------------------------------
 
 --
@@ -258,6 +269,15 @@ CREATE TABLE `arvie_arvie_roles` (
   `hits` int(11) UNSIGNED NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Contenu de la table `arvie_arvie_roles`
+--
+
+INSERT INTO `arvie_arvie_roles` (`id`, `label`, `alias`, `published`, `created`, `created_by`, `modified`, `modified_by`, `hits`) VALUES
+(1, 'Professeur', '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
+(2, 'Élève', '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
+(3, 'Délégué', '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0),
+(4, 'Suppléant', '', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0, 0);
 -- --------------------------------------------------------
 
 --

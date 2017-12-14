@@ -9,18 +9,15 @@ class ArvieModelUtilisateurs extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'id',             'u.id',
-				'nom',            'u.nom',
-				'prenom',         'u.prenom',
-				'email',          'u.email',
-				'mobile',         'u.mobile',
-				'password',       'ju.password',
-				'published',      'u.published',
-				'created',        'u.created',
-				'created_by',     'u.created_by',
-				'modified',       'u.modified',
-				'modified_by',    'u.modified_by',
-				'hits',           'u.hits'
+				'id',             'um.id',
+				'participant',    'um.participant',
+				'evenement',      'um.evenement',
+				'published',      'um.published',
+				'created',        'um.created',
+				'created_by',     'um.created_by',
+				'modified',       'um.modified',
+				'modified_by',    'um.modified_by',
+				'hits',           'um.hits'
 			);
 		}
 		parent::__construct($config);
@@ -45,8 +42,8 @@ class ArvieModelUtilisateurs extends JModelList
 	{
 		// construit la requête d'affichage de la liste
 		$query = $this->_db->getQuery(true);
-		$query->select('u.id, u.nom, u.prenom, u.email, u.mobile, u.published, u.created, u.created_by, u.modified, u.modified_by, u.hits');
-		$query->from('#__arvie_utilisateurs u');
+		$query->select('um.id, um.nom, um.prenom, um.email, um.mobile, um.published, um.created, um.created_by, um.modified, um.modified_by, um.hits');
+		$query->from('#__arvie_utilisateur_even_map um');
 		
 		// joint la table users
 		$query->select('ju.password')->join('LEFT', '#__users AS ju ON u.email = ju.email');

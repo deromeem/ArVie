@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Créer une entreprise" option="Créer">
+		<message>
+			<![CDATA[Affiche un formulaire pour créer une entreprise]]>
+		</message>
+	</layout>
+</metadata>

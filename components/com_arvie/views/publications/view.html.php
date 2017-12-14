@@ -3,7 +3,11 @@ defined('_JEXEC') or die('Restricted access');
  
 jimport('joomla.application.component.view');
  
+<<<<<<< HEAD
+class AnnuaireViewEntreprises extends JViewLegacy
+=======
 class ArvieViewPublications extends JViewLegacy
+>>>>>>> 1fce6d606733414dea9d6b5c0a3550dc4788b672
 {
 	protected $items;
 	

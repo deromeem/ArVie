@@ -31,6 +31,10 @@ JHtml::_('formbehavior.chosen', 'select');
 		<div class="row-fluid form-horizontal-desktop">
 			<div class="form-vertical">
 				<div class="control-group">
+					<div class="control-label"><?php echo $this->form->getLabel('titre'); ?></div>
+					<div class="controls"><?php echo $this->form->getInput('titre'); ?></div>
+				</div>
+				<div class="control-group">
 					<div class="control-label"><?php echo $this->form->getLabel('publication_parent'); ?></div>
 					<div class="controls"><?php echo $this->form->getInput('publication_parent'); ?></div>
 				</div>
@@ -46,6 +50,11 @@ JHtml::_('formbehavior.chosen', 'select');
 					<div class="control-label"><?php echo $this->form->getLabel('texte'); ?></div>
 					<div class="controls"><?php echo $this->form->getInput('texte'); ?></div>
 				</div>
+				<div class="control-group">
+					<div class="control-label"><?php echo $this->form->getLabel('est_public'); ?></div>
+					<div class="controls"><?php echo $this->form->getInput('est_public'); ?></div>
+				</div>
+
 			</div>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
